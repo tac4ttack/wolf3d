@@ -1,16 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_fractol                                   :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 17:48:16 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/11 17:05:16 by fmessina         ###   ########.fr        #
+#    Updated: 2017/07/17 16:35:57 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 					fractol
+NAME = 					wolf3d
 
 CC = 					clang
 CFLAGS +=				-Wall -Wextra -Werror
@@ -20,41 +20,19 @@ RM := 					rm -rf
 INC = 					$(addprefix $(INC_PATH)/,$(INC_NAMES))
 INC_PATH =				./includes
 
-INCLUDES =				-I $(INC_PATH) -I libft/ -I mlx/
+INCLUDES =				-I $(INC_PATH) -I libft/
 
 LIBFT :=				$(LIBFT_PATH)/libft.a
 LIBFT_PATH :=			./libft
-LIBFT_INC_PATH :=		./libft
+LIBFT_INC_PATH :=		$(LIBFT_PATH)/
 LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
 
-OS_TEST := $(shell uname)
-ifeq ($(OS_TEST), Darwin)
-INC_NAMES = 			fractol.h \
-						mac_keys.h
-MLXFLAGS =				-framework OpenGL -framework AppKit
-KEYS =					-DMAC_KEYS
-OS_VERSION_TEST := $(shell uname -r | cut -d . -f 1)
-endif
-ifeq  ($(OS_VERSION_TEST),16)
-OS_NAME =				"Sierra"
-MLX_PATH =				./mlx/mlx_sierra
-else ifeq ($(OS_TEST), Darwin)
-OS_NAME =				"El_Capitan"
-MLX_PATH =				./mlx/mlx_capitan
-endif
-ifeq ($(OS_TEST),"Linux")
-OS_NAME =				"Linux"
-MLX_PATH =				./mlx/mlx_x11
-INC_NAMES = 			fractol.h \
-						linux_keys.h
-MLXFLAGS =				-lmlx -lXext -lX11
-KEYS =					-DLINUX_KEYS
-endif
-
-MLX =					$(MLX_PATH)/libmlx.a
-
+SDL2 := $(SDL2_PATH)/libSDL2.a
+SDL2_PATH := ./SDL2/lib
+SDL2_INC_PATH := ./SDL2/include/SDL2
+SLD2FLAGS := -lSDL2
 
 OBJ =					$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJ_PATH =				./obj
@@ -62,65 +40,55 @@ OBJ_NAME =				$(SRC_NAME:.c=.o)
 
 SRC =					$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 SRC_PATH =				./src
-SRC_NAME =  			burning_ship.c \
-						celtic.c \
-						color.c \
-						guides.c \
-						hud.c \
+SRC_NAME =  			color.c \
+						debug.c \
 						init.c \
-						juliapow.c \
-						mandeldrop.c \
-						mlx_main_loop.c \
-						mlx_image_draw.c \
-						mlx_key_press.c \
-						mlx_key_release.c \
-						mlx_key_repeated.c \
-						mlx_key_simple.c \
-						mlx_mouse.c \
-						mouse_zoom.c \
-						multibrot.c \
-					    render.c \
-						tools.c \
-						tricornpow.c \
+						loop.c \
 						main.c \
-						test.c
+						poubelle.c \
+						test.c \
+						utils.c
 
 default: usage
 
 all: $(NAME)
 
-$(NAME): libft mlx $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
-	@echo "Compiling Fractol with $(OS_NAME) MLX version"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(MLX) $(MLXFLAGS) $(LIBMATHFLAGS) $(GPU_L)
+$(NAME): libft $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
+	@echo "Compiling $(NAME)"
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) -L$(SDL2_PATH)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) -I $(MLX_PATH) $(GPU_MACRO) $(KEYS) $(DEBUG_MACRO)
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) -I $(SDL2_INC_PATH) $(DEBUG)
 
 $(OBJ_PATH):
 	@echo "Creating ./obj path and making binaries from source files"
 	@mkdir $(OBJ_PATH)
 
-CPU: all
-cpu: CPU
+$(SDL2_PATH)/$(SDL2):
+	rm -rf SDL2/trash/SDL2-2.0.5.tar.gz SDL2/trash/SDL2-2.0.5
+	mkdir -p SDL2/trash
+	curl -O https://www.libsdl.org/release/SDL2-2.0.5.tar.gz
+	tar xf SDL2-2.0.5.tar.gz
+	(cd SDL2-2.0.5 \
+	&& ./configure CC=clang --prefix=$(shell pwd)/SDL2/ \
+	&& $(MAKE) CC=clang && $(MAKE) CC=clang install )
+	mv SDL2-2.0.5.tar.gz SDL2-2.0.5 SDL2/trash
 
-GPU: gpu_flags all
-gpu: GPU
-gpu_flags:
-	$(eval GPU_L = -framework OpenCL)
-	$(eval GPU_MACRO = -DGPU)
+COMPILE: all
+compile: COMPILE
 
 debug: debug_flag
 debug_flag:
-	$(eval DEBUG_MACRO = -DDEBUG -g)
+	$(eval DEBUG = -DDEBUG -g)
 
 clean:
 	@echo "Cleaning..."
 	@echo "Deleting .obj files"
 	@rm -rf $(OBJ_PATH)
 
-fclean: cleanmlx fcleanlibft clean 
+fclean: fcleanlibft clean 
 	@echo "Full cleaning..."
-	@echo "Deleting fractol executable and config file"
+	@echo "Deleting $(NAME) executable and config file"
 	@rm -rf $(NAME) ./config
 
 libft:
@@ -150,13 +118,11 @@ norme:
 	norminette $(INC_PATH)
 
 usage:
-	@echo "\n$(B_RED)Please use one of the following commands:$(EOC)\n"
-	@echo "Compile and compute with $(GREEN)CPU$(EOC) -> $(B_YELL)make cpu$(EOC)\n"
-	@echo "Compile and compute with $(GREEN)OpenCL$(EOC) -> $(B_YELL)make gpu$(EOC)\n"
-	@echo "If you want to activate the debugging output add \
-	$(GREEN)debug$(EOC) before -> $(B_YELL)make debug gpu$(EOC)\n"
+	@echo "\n$(B_RED)Please use the following command:$(EOC)\n"
+	@echo "Compile $(GREEN)$(NAME)$(EOC) -> $(B_YELL)make compile$(EOC)\n"
+#	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug$(EOC)\n"
 
-.PHONY: all clean fclean re libft mlx
+.PHONY: all clean fclean re libft sdl
 
 GREY =					\x1b[2;29m
 BLACK =					\x1b[2;30m
