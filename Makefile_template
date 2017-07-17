@@ -1,0 +1,119 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/02/28 16:17:09 by fmessina          #+#    #+#              #
+#    Updated: 2017/05/15 16:11:50 by fmessina         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC := gcc
+CFLAGS := -Wall -Werror -Wextra
+OFLAGS := -O3
+RM := rm -rf
+
+NAME := fractol
+
+INCLUDES_PATH := ./includes
+SRC_PATH := ./srcs
+SRC :=	color.c \
+		init.c \
+		loop.c \
+		main.c \
+		utils.c \
+		debug.c \
+		test.c
+
+OBJ := $(SRC:.c=.o)
+OBJ_PATH := obj
+POBJ = $(addprefix $(OBJ_PATH)/, $(OBJ))
+
+LIBMATHFLAGS := -lm
+
+LIBFT_PATH := ./libft
+LIBFT_INCLUDES_PATH := ./libft
+LIBFT := $(LIBFT_PATH)/libft.a
+LIBFTFLAGS := -lft
+
+SDL2_PATH := ./SDL2/lib
+SDL2_INCLUDES_PATH := ./SDL2/include/SDL2
+SDL2 := libSDL2.a
+LDFLAGS := -lSDL2
+
+default: usage
+
+usage:
+	@echo "\n\x1b[1;31mPlease use one of the following commands:\x1b[0m\n"
+	@echo "Compile and compute with CPU -> \x1b[1;33mmake cpu\x1b[0m\n"
+	@echo "Compile and compute with OpenCL -> \x1b[1;33mmake gpu\x1b[0m\n"
+	@echo "If you want to activate the debugging output add \
+	'debug' before -> \x1b[1;33mmake debug gpu\x1b[0m\n"
+
+all: $(LIBFT) $(NAME)
+
+libft:
+	$(MAKE) -C $(LIBFT_PATH)
+
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_PATH)
+
+$(NAME): $(SDL2_PATH)/$(SDL2) $(OBJ_PATH) $(POBJ)
+	@echo "\nLinking objects to make "$@
+	$(CC) -o $@ $(POBJ) -L$(SDL2_PATH) $(LDFLAGS) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(GPU_L)
+
+CPU: all
+cpu: CPU
+
+GPU: gpu_flags all
+gpu: GPU
+gpu_flags:
+	$(eval GPU_L = -framework OpenCL)
+	$(eval GPU_MACRO = -DGPU)
+
+debug: debug_flag
+debug_flag:
+	$(eval DEBUG_MACRO = -DDEBUG -g)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH)
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INCLUDES_PATH) -I $(LIBFT_INCLUDES_PATH) -I $(SDL2_INCLUDES_PATH) $(GPU_MACRO) $(DEBUG_MACRO)
+
+$(OBJ_PATH):
+	@echo "Creating ./obj/ path and making binaries from source files"
+	@mkdir $(OBJ_PATH)
+
+$(SDL2_PATH)/$(SDL2):
+	rm -rf SDL2/trash/SDL2-2.0.5.tar.gz SDL2/trash/SDL2-2.0.5
+	mkdir -p SDL2/trash
+	curl -O https://www.libsdl.org/release/SDL2-2.0.5.tar.gz
+	tar xf SDL2-2.0.5.tar.gz
+	(cd SDL2-2.0.5 \
+	&& ./configure CC=clang --prefix=$(shell pwd)/SDL2/ \
+	&& $(MAKE) CC=clang && $(MAKE) CC=clang install )
+	mv SDL2-2.0.5.tar.gz SDL2-2.0.5 SDL2/trash
+
+clean:
+	@$(RM) $(OBJ_PATH)
+	@echo "\nCleaning object files in \x1b[1;31m\"$(NAME)\"\x1b[0m project directory\n"
+	@$(MAKE) $@ -C $(LIBFT_PATH)
+
+cleansdl2:
+	$(RM) ./SDL2/
+
+cleanlibft:
+	@$(MAKE) clean -C $(LIBFT_PATH)
+
+fclean: clean cleansdl2
+	@$(RM) $(NAME)
+	@echo "\nCleaning \x1b[1;31m\"$(NAME)\"\x1b[0m project directory\n"
+	@$(MAKE) $@ -C $(LIBFT_PATH)
+
+re: fclean all
+
+norme:
+	norminette $(SRC_PATH)
+	norminette $(INCLUDES_PATH)
+
+.PHONY: fractol LIBFT norme SDL2 all clean re fclean
