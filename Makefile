@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 17:48:16 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/17 17:30:55 by fmessina         ###   ########.fr        #
+#    Updated: 2017/07/17 17:54:34 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,10 @@ LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
 
-SDL2 := libSDL2.a
-SDL2_PATH := ./SDL2/lib
-SDL2_INC_PATH := ./SDL2/include/SDL2
-SLD2FLAGS := -lSDL2
+SDL2 :=					libSDL2.a
+SDL2_PATH :=			./SDL2/lib
+SDL2_INC_PATH :=		./SDL2/include/SDL2
+SLD2FLAGS :=			-lSDL2
 
 OBJ =					$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJ_PATH =				./obj
@@ -39,7 +39,7 @@ OBJ_NAME =				$(SRC_NAME:.c=.o)
 
 SRC =					$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 SRC_PATH =				./src
-SRC_NAME =  			color.c \
+SRC_NAME =				color.c \
 						debug.c \
 						init.c \
 						loop.c \
