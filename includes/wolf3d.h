@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 16:46:28 by fmessina          #+#    #+#             */
-/*   Updated: 2017/05/12 17:44:05 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:38:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef WOLF3D_H
+# define WOLF3D_H
 
 # include <libft.h>
 # include <math.h>
@@ -22,7 +22,7 @@
 
 # include <stdio.h> // do no forget to remove
 
-# define ID         "Fractol"
+# define ID         "Wolf3D"
 # define BWID       1024
 # define BHEI       768
 # define WCEN       SDL_WINDOWPOS_CENTERED
