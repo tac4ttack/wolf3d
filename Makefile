@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 17:48:16 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/17 16:41:05 by fmessina         ###   ########.fr        #
+#    Updated: 2017/07/17 16:52:01 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRC_NAME =  			color.c \
 						init.c \
 						loop.c \
 						main.c \
-						poubelle.c \
 						test.c \
 						utils.c
 
