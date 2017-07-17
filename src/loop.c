@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:47:44 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:50:37 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void win_events(t_env *env)
 void	keypress_events(t_env *env)
 {
 	if (env->eve.key.type == SDL_KEYDOWN)
-		(env->eve.key.keysym.sym == 27 ? exit(env) : 0);
+		(env->eve.key.keysym.sym == 27 ? quit(env) : 0);
 }
 
 
@@ -39,7 +39,7 @@ Uint8	main_loop(t_env *env)
 				(env->eve.type == SDL_KEYDOWN ? keypress_events(env) : 0);
 //				(e->debug ? DebugFunkyFuncts() : 0);
 				(env->eve.type == SDL_QUIT ? env->run = 0 : 0);
-				(env->run == 0 ? exit(env) : 0);
+				(env->run == 0 ? quit(env) : 0);
 			}
 			Render_Rand_Rect_SDL(env);
 		}

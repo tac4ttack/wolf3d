@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:48:36 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:50:08 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		error(t_env *e, char *str)
 	exit(EXIT_FAILURE);
 }
 
-void		exit(t_env *e)
+void		quit(t_env *e)
 {
 	if (e)
 	{
