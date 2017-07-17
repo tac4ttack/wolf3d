@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 16:46:28 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:51:10 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 17:29:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # define SDL_MAIN_HANDLED
-# include <SDL.h>
+# include "SDL.h"
 
 # include <stdio.h> // do no forget to remove
 

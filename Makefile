@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 17:48:16 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/17 16:52:01 by fmessina         ###   ########.fr        #
+#    Updated: 2017/07/17 17:30:55 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ RM := 					rm -rf
 
 INC = 					$(addprefix $(INC_PATH)/,$(INC_NAMES))
 INC_PATH =				./includes
-
-INCLUDES =				-I $(INC_PATH) -I libft/
+INC_NAMES =				wolf3d.h
 
 LIBFT :=				$(LIBFT_PATH)/libft.a
 LIBFT_PATH :=			./libft
@@ -29,7 +28,7 @@ LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
 
-SDL2 := $(SDL2_PATH)/libSDL2.a
+SDL2 := libSDL2.a
 SDL2_PATH := ./SDL2/lib
 SDL2_INC_PATH := ./SDL2/include/SDL2
 SLD2FLAGS := -lSDL2
@@ -54,7 +53,7 @@ all: $(NAME)
 
 $(NAME): libft $(SDL2_PATH)/$(SDL2) $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) -L$(SDL2_PATH)
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) -L$(SDL2_PATH) $(SLD2FLAGS)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
 	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) -I $(SDL2_INC_PATH) $(DEBUG)
@@ -85,7 +84,7 @@ clean:
 	@echo "Deleting .obj files"
 	@rm -rf $(OBJ_PATH)
 
-fclean: fcleanlibft clean 
+fclean: cleansdl2 clean 
 	@echo "Full cleaning..."
 	@echo "Deleting $(NAME) executable and config file"
 	@rm -rf $(NAME) ./config
@@ -94,21 +93,9 @@ libft:
 	@echo "Compiling Libft library"
 	make -C $(LIBFT_PATH)/ all
 
-cleanlibft:
-	@echo "Cleaning Libft folder"
-	make -C $(LIBFT_PATH)/ clean
-
-fcleanlibft: cleanlibft
-	@echo "Full cleaning Libft"
-	make -C $(LIBFT_PATH)/ fclean
-
-mlx:
-	@echo "Compiling MLX library"
-	make -C $(MLX_PATH)/ all
-
-cleanmlx:
-	@echo "Cleaning Minilibx folder"
-	@make -C $(MLX_PATH)/ clean
+cleansdl2:
+	@echo "Full cleaning SDL2"
+	$(RM) ./SDL2/
 
 re: fclean all
 
