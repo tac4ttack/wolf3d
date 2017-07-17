@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:34:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/05/11 17:28:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:39:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "wolf3d.h"
 
 Uint32		set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b)
 {

@@ -6,11 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:27:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/05/12 15:25:40 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:39:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "wolf3d.h"
 
 void    PrintWindowEvent(const SDL_Event *ev)
 {
