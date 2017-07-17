@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:39:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/17 16:48:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		ft_error(t_env *e, char *str)
+void		error(t_env *e, char *str)
 {
 	ft_putstr("Oh no Fractol crashed! ");
 	ft_putendl(SDL_GetError());
@@ -27,7 +27,7 @@ void		ft_error(t_env *e, char *str)
 	exit(EXIT_FAILURE);
 }
 
-void		ft_exit(t_env *e)
+void		exit(t_env *e)
 {
 	if (e)
 	{

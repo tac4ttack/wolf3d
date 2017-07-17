@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_fractol                                   :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/15 17:48:16 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/17 16:35:57 by fmessina         ###   ########.fr        #
+#    Updated: 2017/07/17 16:41:05 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ default: usage
 
 all: $(NAME)
 
-$(NAME): libft $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
+$(NAME): libft $(SDL2_PATH)/$(SDL2) $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
 	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) -L$(SDL2_PATH)
 
