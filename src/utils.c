@@ -6,11 +6,26 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/24 19:12:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/24 21:17:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void			flush_str_array(t_env *e, char **array)
+{
+	int		i;
+
+	i = 0;
+	if (array == NULL)
+		error(e, "Error critical failure -> can't flush NULL array");
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
 void		error(t_env *e, char *str)
 {
