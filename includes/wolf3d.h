@@ -6,13 +6,14 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 21:26:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/22 18:36:58 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
+# include <fcntl.h>
 # include <libft.h>
 # include <math.h>
 # include <stdlib.h>
@@ -32,38 +33,59 @@
 
 typedef struct      s_hue // ARGB8888 Pixels format
 {
-    Uint8           r;
-    Uint8           g;
-    Uint8           b;
-    Uint8           a;
-    Uint32          h;
+	Uint8           r;
+	Uint8           g;
+	Uint8           b;
+	Uint8           a;
+	Uint32          h;
 }                   t_hue;
 
 typedef struct      s_pt    // USELESS? float est le seul interet
 {
-    float           x;
-    float           y;
-    t_hue           c;
+	float           x;
+	float           y;
+	t_hue           c;
 }                   t_pt;
 
 typedef struct      s_rec   // USELESS?
 {
-    t_pt            p;
-    int             w;
-    int             h;
+	t_pt            p;
+	int             w;
+	int             h;
 }                   t_rec;
+
+typedef struct      s_map
+{
+	int             **grid;
+	int             col;
+	int             row;
+	int				width;
+	int				height;
+	int             tile_w;
+	int             tile_h;
+}                   t_map;
+
+typedef struct      s_player
+{
+	int             pos_x;
+	int             pos_y;
+	int             dir;
+	int             height;
+}                   t_player;
+
 
 typedef struct      s_env
 {
-    SDL_Window      *win;
-    SDL_Renderer    *ren;
-    SDL_Texture     *tex;
-    SDL_Event       eve;
-    SDL_bool        run;
-    Uint8           debug;
-    Uint16          w_w;
-    Uint16          w_h;
+	SDL_Window      *win;
+	SDL_Renderer    *ren;
+	SDL_Texture     *tex;
+	SDL_Event       eve;
+	SDL_bool        run;
+	Uint8           debug;
+	Uint16          w_w;
+	Uint16          w_h;
 	Uint32			*sce;
+	t_map           map;
 }                   t_env;
 
 Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);

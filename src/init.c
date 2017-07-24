@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:47:31 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/22 17:52:53 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		init_sdl(t_env *e)
 	if (!(e->ren = SDL_CreateRenderer(e->win, -1,SDL_RENDERER_SOFTWARE)))
 		error(e, "Error creating the renderer");
 	if (!(e->tex = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, BWID, BHEI)))
-		error(e, "Error creating the render texture");
+		error(e, "Error creating the rendering context");
 	if (!(e->sce = (Uint32*)malloc(BWID * BHEI * sizeof(Uint32))))
 		error(e, "Error allocating memory for scene");
 	e->run = 1;

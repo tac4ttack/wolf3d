@@ -1,4 +1,4 @@
-# Vertexes (Y coordinate, followed by list of X coordinates)
+ # Vertexes (Y coordinate, followed by list of X coordinates)
 vertex	0	0 6 28
 vertex	2	1 17.5
 vertex	5	4 6 18 21

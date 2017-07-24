@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:50:08 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/22 17:45:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		error(t_env *e, char *str)
 {
-	ft_putstr("Oh no Fractol crashed! ");
+	ft_putstr("Oh no I just crashed! ");
 	ft_putendl(SDL_GetError());
 	ft_putendl(str);
 	if (e)
