@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/22 18:36:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/24 21:17:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct      s_env
 Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
 void		        error(t_env *env, char *str);
 void                quit(t_env *env);
+void				flush_str_array(t_env *e, char **array);
 void                init_sdl(t_env *env);
 Uint8               main_loop(t_env *env);
 
