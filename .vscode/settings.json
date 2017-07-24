@@ -19,6 +19,7 @@
         "unistd.h": "c",
         "stddef.h": "c",
         "_null.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "quaternion.h": "c"
     }
 }
