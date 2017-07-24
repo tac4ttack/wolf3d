@@ -15,6 +15,10 @@
         "get_next_line.h": "c",
         "assert.h": "c",
         "stdio.h": "c",
-        "sdl_sysrender.h": "c"
+        "sdl_sysrender.h": "c",
+        "unistd.h": "c",
+        "stddef.h": "c",
+        "_null.h": "c",
+        "stdlib.h": "c"
     }
 }
