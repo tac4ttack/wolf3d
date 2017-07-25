@@ -20,6 +20,8 @@
         "stddef.h": "c",
         "_null.h": "c",
         "stdlib.h": "c",
-        "quaternion.h": "c"
+        "quaternion.h": "c",
+        "sdl_test_md5.h": "c",
+        "sdl_haptic.h": "c"
     }
 }
