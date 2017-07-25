@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/24 21:17:36 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/07/25 19:42:09 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ typedef struct      s_map
 	int             **grid;
 	int             col;
 	int             row;
-	int				width;
-	int				height;
+	int				cei;
+	int				grd;
 	int             tile_w;
 	int             tile_h;
 }                   t_map;
@@ -69,6 +69,7 @@ typedef struct      s_player
 {
 	int             pos_x;
 	int             pos_y;
+	int				fov;
 	int             dir;
 	int             height;
 }                   t_player;
@@ -85,7 +86,8 @@ typedef struct      s_env
 	Uint16          w_w;
 	Uint16          w_h;
 	Uint32			*sce;
-	t_map           map;
+	t_map           *map;
+	t_player		*player;
 }                   t_env;
 
 Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
@@ -93,6 +95,7 @@ void		        error(t_env *env, char *str);
 void                quit(t_env *env);
 void				flush_str_array(t_env *e, char **array);
 void                init_sdl(t_env *env);
+t_map				*init_map(void);
 Uint8               main_loop(t_env *env);
 
 /* Test & play funky funct' */
