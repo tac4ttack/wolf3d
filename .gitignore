@@ -1,4 +1,4 @@
 .DS_Store
-SDL2
+./SDL2
 wolf3d
 obj
