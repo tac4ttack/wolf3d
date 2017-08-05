@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/25 19:42:09 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/01 19:46:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,19 @@ typedef struct      s_rec   // USELESS?
 typedef struct      s_map
 {
 	int             **grid;
-	int             col;
-	int             row;
-	int				cei;
-	int				grd;
-	int             tile_w;
-	int             tile_h;
+	int             col; // longuest line length
+	int             row; // number of lines
+	int				cei; // ceilling height
+	int				flo; // floor height
 }                   t_map;
 
 typedef struct      s_player
 {
-	int             pos_x;
-	int             pos_y;
-	int				fov;
-	int             dir;
-	int             height;
+	int             pos_x; // not engough explicit moron?
+	int             pos_y; // not enough explicit moron?
+	int				fov; // field of view
+	int             dir; // view direction
+	int             height; // player's height
 }                   t_player;
 
 
@@ -85,17 +83,18 @@ typedef struct      s_env
 	Uint8           debug;
 	Uint16          w_w;
 	Uint16          w_h;
+	int             tile_w;
+	int             tile_h;
 	Uint32			*sce;
-	t_map           *map;
-	t_player		*player;
+	t_map           map;
+	t_player		player;
 }                   t_env;
 
 Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
 void		        error(t_env *env, char *str);
 void                quit(t_env *env);
 void				flush_str_array(t_env *e, char **array);
-void                init_sdl(t_env *env);
-t_map				*init_map(void);
+void                init(t_env *env);
 Uint8               main_loop(t_env *env);
 
 /* Test & play funky funct' */
