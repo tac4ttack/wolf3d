@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:04:50 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/17 16:48:32 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 11:19:52 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void		Render_Rand_SDLRect(t_env *env)
 
 
 // TEXTURE DRAWING /////////////////////////////////////////////////////////////
-void	Text_Draw(t_env *e)
+void	Texture_Draw(t_env *e)
 {
 	Uint32 * pixels, *p;
 	Uint8 r,g,b;
@@ -181,7 +181,6 @@ void	Text_Draw(t_env *e)
 
 	pixels = (Uint32*) malloc(BWID*BHEI*sizeof(Uint32));
 	if (!pixels) {fprintf(stderr,"Erreur allocation\n"); return;}
-
 
 	p = pixels;
 	for(y=0;y<BHEI;y++)
