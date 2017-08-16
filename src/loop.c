@@ -6,34 +6,23 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 16:47:03 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 17:18:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void win_events(t_env *e)
+void	draw_frame(t_env *e)
 {
-	if (e->eve.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
-	{
-		e->w_w = e->eve.window.data1;
-		e->w_h = e->eve.window.data2;
-	}
+	//ft_putendl("maybe i will draw maybe not");
+	Texture_Draw(e); // a drawing in a texture, same as mlx_img
+	//ft_putendl("hi i just drawed a frame");
 }
-
-static void	keypress_events(t_env *e)
-{
-	if (e->eve.key.type == SDL_KEYDOWN)
-	{
-		(e->eve.key.keysym.sym == 27 ? quit(e) : 0);
-	//	(e->eve.key.keysym.sym == 104 ? PrintWindowEvent(&e->eve) : 0);
-	}
-}
-
 
 Uint8	main_loop(t_env *e)
 {
 	if (e)
+	//	SDL_SetRenderDrawBlendMode(e->ren,SDL_BLENDMODE_BLEND);
 		while (e->run)
 		{
 			while (SDL_PollEvent(&e->eve))
@@ -44,7 +33,9 @@ Uint8	main_loop(t_env *e)
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);
 			}
-			Render_Rand_Rect_SDL(e);
+			//Render_Rand_Rect_SDL(e);
+			Texture_Draw(e);
+			//draw_frame(e);
 		}
 	return (0);
 }
