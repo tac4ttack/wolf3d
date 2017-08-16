@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:04:50 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 11:19:52 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 17:17:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,24 +179,25 @@ void	Texture_Draw(t_env *e)
 	Uint8 r,g,b;
 	int x,y;
 
-	pixels = (Uint32*) malloc(BWID*BHEI*sizeof(Uint32));
-	if (!pixels) {fprintf(stderr,"Erreur allocation\n"); return;}
+	pixels = (Uint32*) malloc(e->w_w*e->w_h*sizeof(Uint32));
 
+	if (!pixels) {fprintf(stderr,"Erreur allocation\n"); return;}
 	p = pixels;
-	for(y=0;y<BHEI;y++)
+	for(y=0;y<e->w_h;y++)
 	{
-		for(x=0;x<BWID;x++)
+		for(x=0;x<e->w_w;x++)
 		{
-			r = 255 * y / BHEI;
-			g = 255 * x / BWID;
-			b = 255 * (x+y) / (BWID+BHEI);
+			r = 255 * y / e->w_h;
+			g = 255 * x / e->w_w;
+			b = 255 * (x+y) / (e->w_w + e->w_h);
 			*p=set_color(0,r,g,b);
 			p++;
 		}
 	}
-	SDL_UpdateTexture(e->tex, NULL, pixels, BWID * sizeof (Uint32));
+	SDL_UpdateTexture(e->tex, NULL, pixels, e->w_w * sizeof (Uint32));
 	SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
 	SDL_RenderPresent(e->ren);
-	SDL_DestroyTexture(e->tex);
+//	SDL_DestroyTexture(e->tex);
 	free(pixels);
+//	ft_putendl("finished drawing");
 }///////////////////////////////////////////////////////////////////////////////
