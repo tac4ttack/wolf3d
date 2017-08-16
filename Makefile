@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/08/16 16:39:09 by fmessina         ###   ########.fr        #
+#    Updated: 2017/08/16 17:04:22 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC_PATH =				./src
 SRC_NAME =				color.c \
 						debug.c \
 						drawing.c \
+						events.c \
 						init.c \
 						loop.c \
 						main.c \
