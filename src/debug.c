@@ -6,11 +6,34 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:27:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/07/22 17:38:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 15:17:23 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void map_test(t_env *e)
+{
+//	read the result
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (j < e->map.lin)
+	{
+		ft_putchar('|');
+		while (i < e->map.col)
+		{
+			ft_putnbr(e->map.grid[j][i]);
+			ft_putchar('|');
+			i++;
+		}
+		ft_putchar('\n');
+		i = 0;
+		j++;
+	}
+}
 
 void    PrintWindowEvent(const SDL_Event *ev)
 {
