@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 15:50:15 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 18:30:43 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,38 @@ void	init_player(t_env *e)
 	}
 }
 
-void		init(t_env *e)
+void	init_texture_pixels(t_env *e)
+{
+	int	x;
+	int	y;
+	Uint32	*tmp;
+	
+	x = 0;
+	y = 0;
+	tmp = e->pix;
+	while (y < e->w_h)
+	{
+		while (x < e->w_w)
+		{
+			*tmp=set_color(0,66,66,66);
+			tmp++;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+	SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
+	SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
+	SDL_RenderPresent(e->ren);
+}
+
+void	init(t_env *e)
 {
 	e->debug = DBUG;
 	e->w_w = BWID;
 	e->w_h = BHEI;
 	e->ren = NULL;
-	e->sce = NULL;
+	e->pix = NULL;
 	e->tex = NULL;
 	e->win = NULL;
 	e->tile_w = 64;
@@ -67,11 +92,12 @@ void		init(t_env *e)
 		error(e, "Error initializing SDL2");
 	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, e->w_w, e->w_h, WFLA)))
 		error(e, "Error creating the window");
-	if (!(e->ren = SDL_CreateRenderer(e->win, -1,SDL_RENDERER_SOFTWARE)))
+	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_SOFTWARE)))
 		error(e, "Error creating the renderer");
-	if (!(e->tex = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, BWID, BHEI)))
+	if (!(e->tex = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, e->w_w, e->w_h)))
 		error(e, "Error creating the rendering context");
-	if (!(e->sce = (Uint32*)malloc(BWID * BHEI * sizeof(Uint32))))
-		error(e, "Error allocating memory for scene");	
+	if (!(e->pix = (Uint32*)malloc(e->w_w * e->w_h * sizeof(Uint32))))
+		error(e, "Error allocating memory for texture pixels");
+//	init_texture_pixels(e); inutile?
 	e->run = 1;
 }

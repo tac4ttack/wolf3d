@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 17:01:57 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 19:07:51 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ typedef struct      s_env
 	Uint8           debug;
 	Uint16          w_w;
 	Uint16          w_h;
+	Uint32			*pix;
 	int             tile_w;
 	int             tile_h;
-	Uint32			*sce;
 	t_map           map;
 	t_player		player;
 }                   t_env;
@@ -107,6 +107,7 @@ int					get_player_pos(t_env *e);
 
 // fonctions dessin SDL
 Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
+void	sdl_tex_pix_put(t_env *e, int x, int y,  int color);
 
 // fonctions de debug
 void                PrintWindowEvent(const SDL_Event *ev);
