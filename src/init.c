@@ -6,11 +6,51 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/01 17:38:50 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 15:50:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	init_map(t_env *e)
+{
+	if (e)
+	{
+		e->map.col = 0;
+		e->map.lin = 0;
+		e->map.cei = 64;
+		e->map.flo = 0;
+	}	
+}
+
+int		**init_map_grid(t_env *e)
+{
+	int i;
+	int **map;
+	
+	i = 0;
+	if (!(map = (int**)malloc(sizeof(int*) * e->map.lin)))
+		error(e, "Error allocating memory for map grid lines");
+	while (i < e->map.lin)
+	{
+		if (!(map[i] = (int*)malloc(sizeof(int) * e->map.col)))
+			error(e, "Error allocating memory for map grid cols");
+		i++;
+	}
+	return (map);
+}
+
+void	init_player(t_env *e)
+{
+	if (e)
+	{
+		e->player.fov = 90;
+		e->player.dir = 0;
+		e->player.height = e->tile_h / 2;
+		if (get_player_pos(e) != 0)
+			error(e, "Error during initializing player data");
+	}
+}
 
 void		init(t_env *e)
 {
