@@ -38,4 +38,4 @@ dlopen=''
 dlpreopen=''
 
 # Directory that this library needs to be installed in:
-libdir='/Users/tac/Documents/A_Projects/9_wolf3d/SDL2/lib'
+libdir='/Users/fmessina/Documents/A_Projects/9_wolf3d/SDL2/lib'

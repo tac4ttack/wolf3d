@@ -1,6 +1,6 @@
 # sdl pkg-config source file
 
-prefix=/Users/tac/Documents/A_Projects/9_wolf3d/SDL2
+prefix=/Users/fmessina/Documents/A_Projects/9_wolf3d/SDL2
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
