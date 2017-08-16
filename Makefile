@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/07/17 21:25:53 by fmessina         ###   ########.fr        #
+#    Updated: 2017/08/16 16:39:09 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,13 @@ SRC =					$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 SRC_PATH =				./src
 SRC_NAME =				color.c \
 						debug.c \
+						drawing.c \
 						init.c \
 						loop.c \
 						main.c \
+						map.c \
+						map_data.c \
+						player.c \
 						test.c \
 						utils.c
 
