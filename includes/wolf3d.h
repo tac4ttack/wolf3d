@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 16:49:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/16 17:01:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,10 @@ void				parse_data(t_env *e, char *data);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);
+
+// SDL events
+void				win_events(t_env *e);
+void				keypress_events(t_env *e);
 
 /* Test & play funky funct' */
 void  		        Render_Scramble_SDL(t_env *env);
