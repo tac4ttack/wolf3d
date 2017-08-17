@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 19:07:51 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/17 16:59:32 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ typedef struct      s_hue // ARGB8888 Pixels format
 	Uint32          h;
 }                   t_hue;
 
-typedef struct      s_pt    // USELESS? float est le seul interet
+typedef struct			s_ldpt    // USELESS? float est le seul interet
 {
-	float           x;
-	float           y;
-	t_hue           c;
-}                   t_pt;
+	long double			x;
+	long double			y;
+	t_hue				c;
+}                   	t_ldpt;
 
 typedef struct      s_rec   // USELESS?
 {
-	t_pt            p;
+	t_ldpt            p;
 	int             w;
 	int             h;
 }                   t_rec;
@@ -105,9 +105,16 @@ void				init_player(t_env *e);
 // fonctions joueur
 int					get_player_pos(t_env *e);
 
+// fonctions couleurs
+t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
+Uint32				set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
+Uint32				flip_color_byte_order(int color);
+
 // fonctions dessin SDL
-Uint32		        set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
-void	sdl_tex_pix_put(t_env *e, int x, int y,  int color);
+void				sdl_tex_pix_put(t_env *e, int x, int y,  int color);
+void				sdl_tex_line(t_env *e, t_ldpt pt1, t_ldpt pt2, int color);
+void				sdl_tex_line_ver(t_env *e, t_ldpt p1, t_ldpt p2, int c);
+void				sdl_tex_line_hor(t_env *e, t_ldpt p1, t_ldpt p2, int c);
 
 // fonctions de debug
 void                PrintWindowEvent(const SDL_Event *ev);
