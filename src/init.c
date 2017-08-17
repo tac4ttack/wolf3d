@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 18:30:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/17 17:03:55 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	init_player(t_env *e)
 	}
 }
 
-void	init_texture_pixels(t_env *e)
+/* USELESS */
+/*svoid	init_texture_pixels(t_env *e)
 {
 	int	x;
 	int	y;
@@ -75,7 +76,7 @@ void	init_texture_pixels(t_env *e)
 	SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
 	SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
 	SDL_RenderPresent(e->ren);
-}
+}*/
 
 void	init(t_env *e)
 {
