@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 19:08:47 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/17 17:02:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,32 @@
 
 void	draw_frame(t_env *e)
 {
-//	Texture_Draw(e); // a drawing in a texture, same as mlx_img
-	sdl_tex_pix_put(e, 250, 250, 0x00ffffff);
+	int i, j;
+	t_ldpt	a, b;
+
+	a.x = 45;
+	a.y = 500;
+	b.x = 900;
+	b.y = 250;
+	i = 0;
+	j = 0;
+	while (j < 8)
+	{
+		while (i < 8)
+		{
+			sdl_tex_pix_put(e, i, j, 0x0000ffff);
+			i++;
+		}
+		i = 0;
+		j++;
+	}	
+	sdl_tex_line(e, a, b, 0xff00ff00);
 }
 
 Uint8	main_loop(t_env *e)
 {
 	if (e)
-	//	SDL_SetRenderDrawBlendMode(e->ren,SDL_BLENDMODE_BLEND);
+		SDL_SetRenderDrawBlendMode(e->ren,SDL_BLENDMODE_BLEND);
 		while (e->run)
 		{
 			while (SDL_PollEvent(&e->eve))
@@ -32,12 +50,11 @@ Uint8	main_loop(t_env *e)
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);
 			}
-//			Texture_Draw(e);
 			draw_frame(e);
+		//	Render_Rand_Rect_SDL(e);
 			SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
 			SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
 			SDL_RenderPresent(e->ren);
-//			Render_Rand_Rect_SDL(e);
 		}
 	return (0);
 }
