@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/17 17:02:14 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/17 19:47:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ Uint8	main_loop(t_env *e)
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);
 			}
-			draw_frame(e);
-		//	Render_Rand_Rect_SDL(e);
-			SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
-			SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
-			SDL_RenderPresent(e->ren);
+		//	draw_frame(e);
+			Render_Rand_Rect_SDL(e);
+		//	SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
+		//	SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
+		//	SDL_RenderPresent(e->ren);
 		}
 	return (0);
 }
