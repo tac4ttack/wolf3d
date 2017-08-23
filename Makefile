@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/08/16 17:04:22 by fmessina         ###   ########.fr        #
+#    Updated: 2017/08/23 16:26:44 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRC_NAME =				color.c \
 						map.c \
 						map_data.c \
 						player.c \
+						raycasting.c \
 						test.c \
 						utils.c
 
@@ -109,9 +110,11 @@ norme:
 	norminette $(INC_PATH)
 
 usage:
-	@echo "\n$(B_RED)Please use the following command:$(EOC)\n"
+	@echo "\n$(B_RED)Please use one of the following command:$(EOC)\n"
 	@echo "Compile $(GREEN)$(NAME)$(EOC) -> $(B_YELL)make compile$(EOC)\n"
-#	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug$(EOC)\n"
+	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug compile$(EOC)\n"
+	@echo "If you want to activate the debug mode, be sure to do a 'make fclean' first\n"
+	
 
 .PHONY: all clean fclean re libft sdl
 
