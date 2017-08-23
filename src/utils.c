@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/01 19:46:28 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:48:41 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			flush_str_array(t_env *e, char **array)
 
 	i = 0;
 	if (array == NULL)
-		error(e, "Error critical failure -> can't flush NULL array");
+		env_error(e, "Error critical failure -> can't flush NULL array");
 	while (array[i])
 	{
 		free(array[i]);
@@ -27,9 +27,15 @@ void			flush_str_array(t_env *e, char **array)
 	free(array);
 }
 
-void		error(t_env *e, char *str)
+void		error(void)
 {
-	ft_putstr("Oh no I just crashed! ");
+	perror(NULL);
+	exit(EXIT_FAILURE);
+}
+
+void		env_error(t_env *e, char *str)
+{
+	//ft_putstr("Oh no I just crashed!");
 	ft_putendl(SDL_GetError());
 	ft_putendl(str);
 	if (e)

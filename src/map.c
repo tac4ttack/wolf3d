@@ -6,23 +6,21 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 16:48:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:27:23 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static char	*read_file(t_env *e, char *file)
+static	char	*read_line(t_env *e, int fd, char *tmp)
 {
-	int		i;
-	int		fd;
-	char	*tmp;
-	char	*buf;
+	int i;
+	char *buf;
 	
 	i = 0;
-//	fd = 0;  à virer pour passer à 25 lignes, verifier si ok niveau protection
-	tmp = ft_strnew(0);
-	if ((fd = open(file, O_RDONLY)) >= 0)
+	if (get_next_line(fd, &buf) == -1)
+		error();
+	else
 	{
 		while (get_next_line(fd, &buf) == 1)
 		{
@@ -34,11 +32,24 @@ static char	*read_file(t_env *e, char *file)
 			else
 				free(buf);
 		}
+	}
+	e->map.lin = i;
+	return (tmp);
+}
+
+static char	*read_file(t_env *e, char *file)
+{
+	int		fd;
+	char	*tmp;
+	
+	tmp = ft_strnew(0);
+	if ((fd = open(file, O_RDONLY)) >= 0)
+	{
+		tmp = read_line(e, fd, tmp);
 		close(fd);
 	}
 	else
-		error(e, "Error opening target file");
-	e->map.lin = i;
+		error();	
 	return (tmp);
 }
 

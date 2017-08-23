@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 11:04:50 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/17 14:22:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:48:06 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void  		Render_Scramble_SDL(t_env *env)
 	    	rect.x=i;
 	    	rect.y=j;
 	    	res = SDL_RenderReadPixels(env->ren,&rect,SDL_PIXELFORMAT_ARGB8888,&value,32*env->w_w);
-			(res < 0 ? error(NULL, "Error reading pixels format") : res);
+			(res < 0 ? env_error(NULL, "Error reading pixels format") : res);
 			ca = rand()%256;
 			cr = rand()%256;
 			cg = rand()%256;

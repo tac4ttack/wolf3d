@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 16:49:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:46:25 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void		parse_data(t_env *e, char *data)
 	
 	tmp = NULL;
 	if (check_data(data) != 0)
-		error(e, "Error, the map file seems to be invalid");
+		env_error(e, "Error, the map file seems to be invalid");
 	e->map.col = count_col(data);
 	e->map.grid = init_map_grid(e);
 	tmp = split_map_data(e, data);

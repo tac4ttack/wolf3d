@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/17 17:03:55 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:45:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int		**init_map_grid(t_env *e)
 	
 	i = 0;
 	if (!(map = (int**)malloc(sizeof(int*) * e->map.lin)))
-		error(e, "Error allocating memory for map grid lines");
+		env_error(e, "Error allocating memory for map grid lines");
 	while (i < e->map.lin)
 	{
 		if (!(map[i] = (int*)malloc(sizeof(int) * e->map.col)))
-			error(e, "Error allocating memory for map grid cols");
+			env_error(e, "Error allocating memory for map grid cols");
 		i++;
 	}
 	return (map);
@@ -48,7 +48,7 @@ void	init_player(t_env *e)
 		e->player.dir = 0;
 		e->player.height = e->tile_h / 2;
 		if (get_player_pos(e) != 0)
-			error(e, "Error during initializing player data");
+			env_error(e, "Error during initializing player data");
 	}
 }
 
@@ -90,15 +90,15 @@ void	init(t_env *e)
 	e->tile_w = 64;
 	e->tile_h = 64;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		error(e, "Error initializing SDL2");
+		env_error(e, "Error initializing SDL2");
 	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, e->w_w, e->w_h, WFLA)))
-		error(e, "Error creating the window");
+		env_error(e, "Error creating the window");
 	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_SOFTWARE)))
-		error(e, "Error creating the renderer");
+		env_error(e, "Error creating the renderer");
 	if (!(e->tex = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, e->w_w, e->w_h)))
-		error(e, "Error creating the rendering context");
+		env_error(e, "Error creating the rendering context");
 	if (!(e->pix = (Uint32*)malloc(e->w_w * e->w_h * sizeof(Uint32))))
-		error(e, "Error allocating memory for texture pixels");
+		env_error(e, "Error allocating memory for texture pixels");
 //	init_texture_pixels(e); inutile?
 	e->run = 1;
 }
