@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/17 16:59:32 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 16:55:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 # include <libft.h>
 # include <math.h>
 # include <stdlib.h>
+# include <stdio.h>
 
 # define SDL_MAIN_HANDLED
 # include "SDL.h"
-
-# include <stdio.h> // do no forget to remove
 
 # define ID         "Wolf3D"
 # define BWID       1024
@@ -92,7 +91,8 @@ typedef struct      s_env
 }                   t_env;
 
 // fonctions utilitaires
-void		        error(t_env *env, char *str);
+void				error(void);
+void		        env_error(t_env *env, char *str);
 void                quit(t_env *env);
 void				flush_str_array(t_env *e, char **array);
 
