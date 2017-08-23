@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 18:35:36 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 22:05:39 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 static	char	*read_line(t_env *e, int fd, char *tmp)
 {
 	int i;
+	int status;
 	char *buf;
 	
 	i = 0;
-	if (get_next_line(fd, &buf) == -1)
-		error();
-	else
+	status = 1;
+	while (status == 1)
 	{
-		while (get_next_line(fd, &buf) == 1)
+		status = get_next_line(fd, &buf);
+		(status == -1 ? error() : 1);
+		if ( status == 0)
+			break;
+		if (buf[0] != '#')
 		{
-			ft_putendl("line is =");
-			ft_putendl(buf);
-			if (buf[0] != '#')
-			{
-				tmp = ft_strjoin_free(tmp, ft_strjoin_frs1(buf, "\n"));
-				i++;
-			}
-			else
-				free(buf);
+			tmp = ft_strjoin_free(tmp, ft_strjoin_frs1(buf, "\n"));
+			i++;
 		}
+		else
+			free(buf);
 	}
 	e->map.lin = i;
 	return (tmp);
