@@ -1,7 +1,6 @@
 .DS_Store
-./SDL2
 wolf3d
 obj
 .vscode
-SDL2/trash
+SDL2/trash/
 log
