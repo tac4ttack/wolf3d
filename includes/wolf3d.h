@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 16:55:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:38:11 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define BWID       1024
 # define BHEI       768
 # define WCEN       SDL_WINDOWPOS_CENTERED
-# define WFLA       SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE
+# define WFLA       SDL_WINDOW_SHOWN//|SDL_WINDOW_RESIZABLE
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
 # define TEXACC		SDL_TEXTUREACCESS_STREAMING
 

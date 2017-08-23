@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:27:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/16 15:17:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:40:52 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 void map_test(t_env *e)
 {
-//	read the result
 	int i;
 	int j;
 
 	i = 0;
 	j = 0;
-	while (j < e->map.lin)
+	ft_putendl("\nLoaded map =");
+    while (j < e->map.lin)
 	{
-		ft_putchar('|');
+		write(1, "|", 1);
 		while (i < e->map.col)
 		{
 			ft_putnbr(e->map.grid[j][i]);
-			ft_putchar('|');
+			write(1, "|", 1);
 			i++;
 		}
-		ft_putchar('\n');
+		write(1, "\n", 1);
 		i = 0;
 		j++;
 	}
+    write(1, "\n", 1);
 }
 
 void    PrintWindowEvent(const SDL_Event *ev)

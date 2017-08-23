@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 17:27:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:35:36 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 	{
 		while (get_next_line(fd, &buf) == 1)
 		{
+			ft_putendl("line is =");
+			ft_putendl(buf);
 			if (buf[0] != '#')
 			{
 				tmp = ft_strjoin_free(tmp, ft_strjoin_frs1(buf, "\n"));

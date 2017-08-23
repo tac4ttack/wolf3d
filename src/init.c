@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 16:45:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/23 17:35:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	init(t_env *e)
 	e->pix = NULL;
 	e->tex = NULL;
 	e->win = NULL;
-	e->tile_w = 64;
-	e->tile_h = 64;
+	e->tile_w = BHEI / 6;
+	e->tile_h = e->tile_w;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		env_error(e, "Error initializing SDL2");
 	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, e->w_w, e->w_h, WFLA)))
