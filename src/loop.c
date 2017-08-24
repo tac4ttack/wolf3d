@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/17 19:47:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/24 13:36:31 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,20 @@
 
 void	draw_frame(t_env *e)
 {
-	int i, j;
-	t_ldpt	a, b;
+	int x;
 
-	a.x = 45;
-	a.y = 500;
-	b.x = 900;
-	b.y = 250;
-	i = 0;
-	j = 0;
-	while (j < 8)
+	x = 0;
+	while (x < e->w_w)
 	{
-		while (i < 8)
-		{
-			sdl_tex_pix_put(e, i, j, 0x0000ffff);
-			i++;
-		}
-		i = 0;
-		j++;
-	}	
-	sdl_tex_line(e, a, b, 0xff00ff00);
+		// initialisation rayon
+		// calcul direction
+		// dda
+		// calcul taille mur a dessiner
+		// calcul couleur a appliquer
+		// dessin du mur
+		x++;
+	}
+	// fonction mouvement
 }
 
 Uint8	main_loop(t_env *e)

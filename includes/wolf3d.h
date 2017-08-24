@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 17:38:11 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/24 13:44:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,13 @@ typedef struct      s_rec   // USELESS?
 	int             h;
 }                   t_rec;
 
+typedef struct      s_ray
+{
+	t_ldpt			pos;
+	int				dir;
+	int				height;
+}                   t_ray;
+
 typedef struct      s_map
 {
 	int             **grid;
@@ -87,6 +94,7 @@ typedef struct      s_env
 	int             tile_w;
 	int             tile_h;
 	t_map           map;
+	t_ray			r;
 	t_player		player;
 }                   t_env;
 
