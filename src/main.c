@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/24 13:37:21 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/30 13:21:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ int 		main(int ac, char **av)
 		if (ac == 2)
 			load_map(e, av[1]);
 	}
-	printf("player pos.x = %d pos.y = %d\n", e->player.pos_x, e->player.pos_y);
+
+//	printf("player pos.x = %d pos.y = %d\n", e->player.pos_x, e->player.pos_y);
 	// NE PAS OUBLIER DE VIRER LE PRINTF OU REFAIRE LA FONCTION
+
 	if (DBUG == 1)
 		printf("Ce fichier a ete compile le %s a %s\n", __DATE__, __TIME__);
-		
+	
+	draw_frame(e);
+
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");
 	quit(e);

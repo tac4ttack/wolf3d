@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/23 17:35:50 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/30 18:23:55 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ void	init_player(t_env *e)
 {
 	if (e)
 	{
-		e->player.fov = 90;
-		e->player.dir = 0;
+		e->player.spawned = 0;
+		e->player.fov = 60;
+		e->player.dir = 320;
 		e->player.height = e->tile_h / 2;
-		if (get_player_pos(e) != 0)
+		e->deg_step = (long double)e->player.fov / (long double)e->w_w;
+		e->sc_gap = (e->w_w / 2) / tan(e->player.fov / 2);
+		if (get_player_pos(e) != 1)
 			env_error(e, "Error during initializing player data");
+		printf("player spawn = %d | player x = %Lf y = %Lf \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y);
 	}
 }
 

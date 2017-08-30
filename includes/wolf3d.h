@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/24 13:44:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/30 15:32:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,35 @@ typedef struct			s_ldpt    // USELESS? float est le seul interet
 
 typedef struct      s_rec   // USELESS?
 {
-	t_ldpt            p;
+	t_ldpt          p;
 	int             w;
 	int             h;
 }                   t_rec;
 
 typedef struct      s_ray
 {
-	t_ldpt			pos;
-	int				dir;
+	t_ldpt			grid;
+	t_ldpt			pix;
+	long double		deg_dir;
+	long double		rad_dir;
+	int				xa;
+	int				ya;
 	int				height;
 }                   t_ray;
+
+typedef struct      s_player
+{
+//	int				x;		// grid x position
+//	int				y;		// grid y position
+//	int             pix_x; // pixels x position
+//	int             pix_y; // pixels y position
+	t_ldpt			grid;
+	t_ldpt			pix;
+	int				fov; // field of view
+	int             dir; // view direction
+	int             height; // player's height
+	int				spawned;
+}                   t_player;
 
 typedef struct      s_map
 {
@@ -68,17 +86,6 @@ typedef struct      s_map
 	int				cei; // ceilling height
 	int				flo; // floor height
 }                   t_map;
-
-typedef struct      s_player
-{
-	int             pos_x; // not engough explicit moron?
-	int             pos_y; // not enough explicit moron?
-	int				fov; // field of view
-	int             dir; // view direction
-	int             height; // player's height
-	int				spawned;
-}                   t_player;
-
 
 typedef struct      s_env
 {
@@ -93,6 +100,8 @@ typedef struct      s_env
 	Uint32			*pix;
 	int             tile_w;
 	int             tile_h;
+	int				sc_gap;
+	long double		deg_step;
 	t_map           map;
 	t_ray			r;
 	t_player		player;
@@ -110,8 +119,9 @@ void				init_map(t_env *e);
 int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
 
-// fonctions joueur
+// fonctions coord
 int					get_player_pos(t_env *e);
+t_ldpt				grid_to_pixels(t_env *e, int x, int y);
 
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
@@ -136,6 +146,12 @@ void				load_map(t_env *e, char *file);
 int					check_data(char *str);
 int					count_col(char *data);
 void				parse_data(t_env *e, char *data);
+
+// fonctions raycasting
+void				init_ray(t_env *e, int x);
+void				convert_dir(t_env *e);
+void				calc_dda(t_env *e);
+void				draw_frame(t_env *e);	// pour test
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);
