@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/30 18:20:18 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/30 18:47:26 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	init_ray(t_env *e, int x)
 void	convert_dir(t_env *e)
 {
 	long double tmp;
-	
+
 	tmp = e->r.deg_dir;
 	if (tmp == 360 || tmp == 0)
 		e->r.rad_dir = 0;
@@ -43,21 +43,16 @@ void	convert_dir(t_env *e)
 			e->r.deg_dir = fabsl(tmp) - 360;
 		e->r.rad_dir = e->r.deg_dir * (M_PI / 180);
 	}
-	tmp = e->r.rad_dir;
-	
 	if (e->r.deg_dir == 0 || e->r.deg_dir == 360)
 		e->r.ya = -e->tile_h;
-	else if ((tmp > (3 * M_PI_2) && tmp <= 2 * M_PI) || (tmp > 0 && tmp < M_PI_2))
+	else if ((e->r.rad_dir > (3 * M_PI_2) && e->r.rad_dir <= 2 * M_PI) ||
+			(e->r.rad_dir > 0 && e->r.rad_dir < M_PI_2))
 		e->r.ya = -e->tile_h;
 	else
 		e->r.ya = e->tile_h;
-		
 	e->r.xa = e->r.ya / tan(M_PI_2 - tmp);
-//	e->r.xa = 
 	printf("new deg_dir is = %Lf\nrad_dir is = %Lf\n", e->r.deg_dir, e->r.rad_dir);
 	printf("Ya = %d Xa = %d\n\n", e->r.ya, e->r.xa);
-
-	
 	// cas particulier à vérifier: 0/360 90 180 270
 	//At 0 and pi, there's no point in searching for horizontal intersections as the ray is horizontal.
 	//You'll need to explicitly check for that case.
@@ -65,8 +60,3 @@ void	convert_dir(t_env *e)
 	//It will work even if it looks ugly.
 	//For vertical intersections, shift the angles by pi/2 and the same reasoning applies.
 }
-
-//void	calc_dda(t_env *e)
-//{
-	
-//}
