@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 15:13:01 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 15:13:43 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_ldpt	grid_to_pixels(t_env *e, int x, int y)
 	return (res);
 }
 
-/*
+
 t_ldpt pixels_to_grid(t_env *e, int x, int y)
 {
 	t_ldpt res;

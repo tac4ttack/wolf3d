@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 14:46:21 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 15:14:08 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ void				init_player(t_env *e);
 // fonctions coord
 int					get_player_pos(t_env *e);
 t_ldpt				grid_to_pixels(t_env *e, int x, int y);
+t_ldpt				pixels_to_grid(t_env *e, int x, int y);
+int					read_grid(t_env *e, int x, int y);
 
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
