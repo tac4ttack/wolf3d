@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 14:56:33 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 15:08:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,13 @@ void	convert_dir(t_env *e)
 			e->r.deg_dir = fabsl(tmp) - 360;
 		e->r.rad_dir = e->r.deg_dir * (M_PI / 180);
 	}
-	// cas particulier à vérifier: 0/360 90 180 270
-	//At 0 and pi, there's no point in searching for horizontal intersections as the ray is horizontal.
-	//You'll need to explicitly check for that case.
-	//At pi/2 and 3pi/2, the tangent is infinite so 1/tan() should give you zero with floating point math.
-	//It will work even if it looks ugly.
-	//For vertical intersections, shift the angles by pi/2 and the same reasoning applies.
 }
 
 void	calc_step(t_env *e)
 {
-	if ((e->r.deg_dir > 270 && e->r.deg_dir < 360) ||	// si angle entre 270 et 90 (en passant par 0)
+	if ((e->r.deg_dir > 270 && e->r.deg_dir < 360) ||
 			(e->r.deg_dir >= 0 && e->r.deg_dir < 90) ||
-			e->r.deg_dir == 0 || e->r.deg_dir == 360)					// si angle 
+			e->r.deg_dir == 0 || e->r.deg_dir == 360)
 		e->r.h_ya = -e->tile_h;
 	else
 		e->r.h_ya = e->tile_h;
@@ -75,3 +69,20 @@ void	calc_step(t_env *e)
 	printf("Horizontal DDA | Ya = %Lf Xa = %Lf\n", e->r.h_ya, e->r.h_xa);
 	printf("Vertical DDA | Ya = %Lf Xa = %Lf\n\n", e->r.v_ya, e->r.v_xa);
 }
+
+	// cas particulier à vérifier: 0/360 90 180 270
+	//At 0 and pi, there's no point in searching for horizontal intersections as the ray is horizontal.
+	//You'll need to explicitly check for that case.
+	//At pi/2 and 3pi/2, the tangent is infinite so 1/tan() should give you zero with floating point math.
+	//It will work even if it looks ugly.
+	//For vertical intersections, shift the angles by pi/2 and the same reasoning applies.
+
+/*
+calcul dda
+sur horizontal puis vertical
+	step par step on check la valeur de la case ou tape le rayon
+		- fonction pixels to grid
+		- fonction read grid
+	lorsqu'on tape un mur on s'arrete et on calcul la distance
+on compare les 2 distances et on prend la plus courte
+*/
