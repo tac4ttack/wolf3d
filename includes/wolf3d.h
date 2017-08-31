@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 11:51:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 14:46:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ typedef struct      s_ray
 	t_ldpt			pix;
 	long double		deg_dir;
 	long double		rad_dir;
-	int				h_xa;
-	int				h_ya;
-	int				v_xa;
-	int				v_ya;
+	long double		h_xa;
+	long double		h_ya;
+	long double		v_xa;
+	long double		v_ya;
 	int				height;
 }                   t_ray;
 
