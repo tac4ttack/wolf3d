@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/30 15:00:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 15:13:01 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,29 @@ t_ldpt	grid_to_pixels(t_env *e, int x, int y)
 {
 	t_ldpt res;
 
+	res.x = 0;
+	res.y = 0;
 	res.x = (x * e->tile_w) + (e->tile_w / 2);
 	res.y = (y * e->tile_h) + (e->tile_h / 2);
+	return (res);
+}
+
+/*
+t_ldpt pixels_to_grid(t_env *e, int x, int y)
+{
+	t_ldpt res;
+	
+	res.x = 0;
+	res.y = 0;
+	res.x = x / e->tile_w;
+	res.y = y / e->tile_h;
+	return (res);
+}
+
+int		read_grid(t_env *e, int x, int y)
+{
+	int	res;
+
+	res = e->map.grid[y][x];
 	return (res);
 }
