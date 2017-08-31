@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/30 18:18:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 11:35:58 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_frame(t_env *e)
 	{
 		init_ray(e, x);		// initialisation rayon, semble OK
 		convert_dir(e);		// conversion direction en radian, semble OK
-		//calc_step
+		calc_step(e);		//calc_step
 		//	calc_dda(e);		// calcul du point d'intersection avec algo dda
 		// calcul taille mur a dessiner
 		// calcul couleur a appliquer

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/30 15:32:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/08/31 11:51:06 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ typedef struct      s_ray
 	t_ldpt			pix;
 	long double		deg_dir;
 	long double		rad_dir;
-	int				xa;
-	int				ya;
+	int				h_xa;
+	int				h_ya;
+	int				v_xa;
+	int				v_ya;
 	int				height;
 }                   t_ray;
 
@@ -148,10 +150,11 @@ int					count_col(char *data);
 void				parse_data(t_env *e, char *data);
 
 // fonctions raycasting
+void				draw_frame(t_env *e);	// pour test
 void				init_ray(t_env *e, int x);
 void				convert_dir(t_env *e);
 void				calc_dda(t_env *e);
-void				draw_frame(t_env *e);	// pour test
+void				calc_step(t_env *e);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);

@@ -2,6 +2,11 @@
 Another Wolf3d 
 ---------------
 
+---------------
+Notes
+---------------
+Compteur de FPS check man gettimeofday
+
 Bonus:
 ------
 1 - SDL2 pour le son
