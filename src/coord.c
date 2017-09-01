@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 15:13:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/01 00:43:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		get_player_pos(t_env *e)
+int		search_player_pos(t_env *e)
 {
 	int x;
 	int y;

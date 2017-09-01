@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 15:22:40 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/01 01:17:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_ray(t_env *e, int x)
 	e->r.h_ya = 0;
 	e->r.v_xa = 0;
 	e->r.v_ya = 0;
-//	printf("X = %d | player dir = %d\n", x, e->player.dir);
-//	printf("r.pix_x = %Lf, r.pix_y = %Lf\nr.dir = %Lf, r.height = %d\n", e->r.pix.x, e->r.pix.y, e->r.deg_dir, e->r.height);
+	printf("X = %d | player dir = %d\n", x, e->player.dir);
+	printf("r.pix_x = %Lf, r.pix_y = %Lf\nr.dir = %Lf, r.height = %d\n", e->r.pix.x, e->r.pix.y, e->r.deg_dir, e->r.height);
 //	printf("e.sc_gap = %d\ne.deg_step = %Lf\n", e->sc_gap, e->deg_step);
 }
 
@@ -86,3 +86,12 @@ sur horizontal puis vertical
 	lorsqu'on tape un mur on s'arrete et on calcul la distance
 on compare les 2 distances et on prend la plus courte
 */
+
+void 	calc_dda(t_env *e)
+{
+	/* test case suivante
+			- direction a determiner suivant angle
+			-> si mur alors il faut trouver comment calculer la distance
+		si pas mur alors on 
+	*/
+}

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/31 15:14:08 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/01 00:44:07 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,12 @@ typedef struct      s_ray
 	long double		h_ya;
 	long double		v_xa;
 	long double		v_ya;
+	long double		dst;
 	int				height;
 }                   t_ray;
 
 typedef struct      s_player
 {
-//	int				x;		// grid x position
-//	int				y;		// grid y position
-//	int             pix_x; // pixels x position
-//	int             pix_y; // pixels y position
 	t_ldpt			grid;
 	t_ldpt			pix;
 	int				fov; // field of view
@@ -122,7 +119,7 @@ int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
 
 // fonctions coord
-int					get_player_pos(t_env *e);
+int					search_player_pos(t_env *e);
 t_ldpt				grid_to_pixels(t_env *e, int x, int y);
 t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);

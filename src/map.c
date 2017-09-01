@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/30 11:06:14 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/01 00:42:10 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,6 @@ static char	*read_file(t_env *e, char *file)
 	else
 		error();	
 	return (tmp);
-}
-
-int		get_map_grid_val(t_env *e, int x, int y)
-{
-	return(e->map.grid[y][x]);
 }
 
 void	load_map(t_env *e, char *file)
