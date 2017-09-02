@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 00:08:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 01:05:32 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ void	calc_dst(t_env *e)
 
 	diff_x = e->r.pix.x - e->r.a.x;
 	diff_y = e->r.pix.y - e->r.a.y;
-	h_dst = sqrt(diff_x * diff_x + diff_y * diff_y);
+	h_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
+//	h_dst = fabsl(e->r.pix.x - e->r.a.x) / cos(M_PI_2 - e->r.rad);
 	diff_x = e->r.pix.x - e->r.b.x;
 	diff_y = e->r.pix.y - e->r.b.y;
-	v_dst = sqrt(diff_x * diff_x + diff_y * diff_y);
+	v_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
+//	v_dst = fabsl(e->r.pix.x - e->r.b.x) / cos(M_PI_2 - e->r.rad);
 //	ft_putstr("h_dist = ");
 //	ft_putnbr(h_dst);
 //	ft_putstr(" | v_dist = ");
@@ -108,26 +110,3 @@ void	calc_dst(t_env *e)
 //	ft_putnbr(e->r.dst);
 //	ft_putendl("\n");
 }
-	// cas particulier à vérifier: 0/360 90 180 270
-	//At 0 and pi, there's no point in searching for horizontal intersections as the ray is horizontal.
-	//You'll need to explicitly check for that case.
-	//At pi/2 and 3pi/2, the tangent is infinite so 1/tan() should give you zero with floating point math.
-	//It will work even if it looks ugly.
-	//For vertical intersections, shift the angles by pi/2 and the same reasoning applies.
-
-/*
-calcul dda
-sur horizontal puis vertical
-	step par step on check la valeur de la case ou tape le rayon
-		- fonction pixels to grid
-		- fonction read grid
-	lorsqu'on tape un mur on s'arrete et on calcul la distance
-on compare les 2 distances et on prend la plus courte
-*/
-
-	/* test case suivante
-			- direction a determiner suivant angle
-			-> si mur alors il faut trouver comment calculer la distance
-		si pas mur alors on 
-	*/
-

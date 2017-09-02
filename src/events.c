@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 17:01:07 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 00:16:25 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 00:57:05 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,26 @@ void	keypress_events(t_env *e)
 		(e->player.dir == -1 ? e->player.dir = 359 : 0);
 		(e->eve.key.keysym.sym == 0x4000004F ? e->player.dir += 1 : 0); // droite
 		(e->player.dir == 361 ? e->player.dir = 1 : 0);
-		if (e->eve.key.keysym.sym == 0x40000052) // haut
-		{
-			e->player.pix.x += cos(e->player.dir * (M_PI / 180)) * 10;
-			e->player.pix.y += sin(e->player.dir * (M_PI / 180)) * 10;
-		}
-		if (e->eve.key.keysym.sym == 0x40000051) // bas
-		{
-			e->player.pix.x -= cos(e->player.dir * (M_PI / 180)) * 10;
-			e->player.pix.y -= sin(e->player.dir * (M_PI / 180)) * 10;
-		}
+	//	if (e->eve.key.keysym.sym == 0x40000052) // haut
+	//	{
+	//		e->player.n_pix.x = e->player.pix.x + cos(e->player.dir * (M_PI / 180)) * 10;
+	//		e->player.n_pix.y = e->player.pix.y + sin(e->player.dir * (M_PI / 180)) * 10;
+	//		if (read_pixels(e, e->player.n_pix.x, e->player.n_pix.y) != 1)
+	//		{
+	//			e->player.pix.x = e->player.n_pix.x;
+	//			e->player.pix.y = e->player.n_pix.y;
+	//		}
+	//	}
+	//	if (e->eve.key.keysym.sym == 0x40000051) // bas
+	//	{
+	//		e->player.n_pix.x = e->player.pix.x - cos(e->player.dir * (M_PI / 180)) * 10;
+	//		e->player.n_pix.y = e->player.pix.y - sin(e->player.dir * (M_PI / 180)) * 10;
+	//		if (read_pixels(e, e->player.n_pix.x, e->player.n_pix.y) != 1)
+	//		{
+	//			e->player.pix.x = e->player.n_pix.x;
+	//			e->player.pix.y = e->player.n_pix.y;
+	//		}
+	//	}
 	//	(e->eve.key.keysym.sym == 104 ? PrintWindowEvent(&e->eve) : 0);
 	}
 }
