@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/01 00:44:07 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/02 23:48:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ typedef struct      s_ray
 {
 	t_ldpt			grid;
 	t_ldpt			pix;
-	long double		deg_dir;
-	long double		rad_dir;
+	t_ldpt			a;
+	t_ldpt			b;
+	long double		deg;
+	long double		rad;
 	long double		h_xa;
 	long double		h_ya;
 	long double		v_xa;
@@ -71,8 +73,8 @@ typedef struct      s_player
 {
 	t_ldpt			grid;
 	t_ldpt			pix;
-	int				fov; // field of view
-	int             dir; // view direction
+	double			fov; // field of view
+	double          dir; // view direction
 	int             height; // player's height
 	int				spawned;
 }                   t_player;
@@ -123,6 +125,7 @@ int					search_player_pos(t_env *e);
 t_ldpt				grid_to_pixels(t_env *e, int x, int y);
 t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);
+int					read_pixels(t_env *e, int x, int y);
 
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
@@ -153,7 +156,12 @@ void				draw_frame(t_env *e);	// pour test
 void				init_ray(t_env *e, int x);
 void				convert_dir(t_env *e);
 void				calc_dda(t_env *e);
-void				calc_step(t_env *e);
+void				calc_hor_step(t_env *e);
+void				calc_ver_step(t_env *e);
+void				calc_dst(t_env *e);
+
+// fonction rendering
+void	draw_wall_col(t_env *e, int x);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);

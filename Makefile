@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/08/30 14:47:48 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/02 21:52:21 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_NAME =				color.c \
 						map.c \
 						map_data.c \
 						raycasting.c \
+						render.c \
 						test.c \
 						utils.c
 

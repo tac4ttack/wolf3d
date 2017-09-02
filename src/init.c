@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/01 00:43:44 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/02 23:57:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@ void	init_map(t_env *e)
 		e->map.cei = 64;
 		e->map.flo = 0;
 	}	
+}
+
+void	init_ray(t_env *e, int x)
+{
+//	x++; // a verifier si utile ou non
+	e->r.pix.x = e->player.pix.x;
+	e->r.pix.y = e->player.pix.y;
+	e->r.grid.x = e->player.grid.x;
+	e->r.grid.y = e->player.grid.y;
+	e->r.deg = (e->player.dir - (e->player.fov / 2)) + (x * e->deg_step);
+	e->r.height = e->player.height;
+	e->r.h_xa = 0;
+	e->r.h_ya = 0;
+	e->r.v_xa = 0;
+	e->r.v_ya = 0;
 }
 
 int		**init_map_grid(t_env *e)
@@ -46,10 +61,11 @@ void	init_player(t_env *e)
 	{
 		e->player.spawned = 0;
 		e->player.fov = 60;
-		e->player.dir = 40;
+		e->player.dir = 0;
 		e->player.height = e->tile_h / 2;
-		e->deg_step = (long double)e->player.fov / (long double)e->w_w;
-		e->sc_gap = (e->w_w / 2) / tan(e->player.fov / 2);
+		e->deg_step = e->player.fov / e->w_w;
+		e->sc_gap = (e->w_w / 2) / tan(M_PI / 6);
+		printf("sc_gap = %d | ", e->sc_gap);
 		if (search_player_pos(e) != 1)
 			env_error(e, "Error during initializing player data");
 		printf("player spawn = %d | player x = %Lf y = %Lf \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y);
@@ -91,7 +107,7 @@ void	init(t_env *e)
 	e->pix = NULL;
 	e->tex = NULL;
 	e->win = NULL;
-	e->tile_w = BHEI / 6;
+	e->tile_w = 64;//BHEI / 6;
 	e->tile_h = e->tile_w;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		env_error(e, "Error initializing SDL2");

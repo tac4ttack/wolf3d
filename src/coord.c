@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/01 00:43:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/02 22:02:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,29 @@ int		read_grid(t_env *e, int x, int y)
 	int	res;
 
 	res = e->map.grid[y][x];
+	return (res);
+}
+
+int		read_pixels(t_env *e, int x, int y)
+{
+	int	res;
+	
+	res = 1;
+//	ft_putstr("base x = ");
+//	ft_putnbr(x);
+//	ft_putstr(" | base y = ");
+//	ft_putnbr(y);
+//	ft_putstr("\n");
+	if (x >= 0 && y >= 0 && x < e->w_w && y < e->w_h)
+	{
+		x = x / e->tile_w;
+		y = y / e->tile_h;
+		res = e->map.grid[y][x];
+	}
+//	ft_putstr("x = ");
+//	ft_putnbr(x);
+//	ft_putstr(" | y = ");
+//	ft_putnbr(y);
+//	ft_putstr("\n\n");
 	return (res);
 }
