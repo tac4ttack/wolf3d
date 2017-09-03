@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 23:59:00 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 00:08:41 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_ray(t_env *e, int x)
 	e->r.grid.x = e->player.grid.x;
 	e->r.grid.y = e->player.grid.y;
 	e->r.deg = (e->player.dir - (e->player.fov / 2)) + (x * e->deg_step);
-//	printf("init_ray r.deg = %Lf | degstep = %Lf | fov = %Lf | fov/2 = %Lf\n", e->r.deg, e->deg_step, e->player.fov, e->player.fov/2);
+//	printf("init_ray r.deg = %f | degstep = %f | fov = %f | fov/2 = %f\n", e->r.deg, e->deg_step, e->player.fov, e->player.fov/2);
 	e->r.height = e->player.height;
 	e->r.h_xa = 0;
 	e->r.h_ya = 0;
@@ -30,7 +30,7 @@ void	init_ray(t_env *e, int x)
 
 void	convert_dir(t_env *e)
 {
-	long double tmp;
+	float tmp;
 
 	tmp = e->r.deg;
 	if (tmp == 360 || tmp == 0)
@@ -42,7 +42,7 @@ void	convert_dir(t_env *e)
 		else if (tmp > 360)
 			e->r.deg = ft_fabs(tmp) - 360;
 		e->r.rad = e->r.deg * DEG2RAD;
-//		printf("convert_dir new r.deg = %Lf | r.rad = %Lf\n", e->r.deg, e->r.rad);
+//		printf("convert_dir new r.deg = %f | r.rad = %f\n", e->r.deg, e->r.rad);
 	}
 }
 
@@ -102,10 +102,10 @@ void	calc_ver_step(t_env *e)
 
 void	calc_dst(t_env *e)
 {
-	long double h_dst;
-	long double v_dst;
-	long double diff_x;
-	long double diff_y;
+	float h_dst;
+	float v_dst;
+	float diff_x;
+	float diff_y;
 
 	diff_x = e->r.pix.x - e->r.a.x;
 	diff_y = e->r.pix.y - e->r.a.y;
@@ -124,7 +124,7 @@ void	calc_dst(t_env *e)
 		e->r.dst = h_dst;
 	else
 		e->r.dst = v_dst;
-//	printf("hdst = %Lf | vdst = %Lf | dst = %Lf\n", h_dst, v_dst, e->r.dst);
+//	printf("hdst = %f | vdst = %f | dst = %f\n", h_dst, v_dst, e->r.dst);
 //	ft_putstr("DST = ");
 //	ft_putnbr(e->r.dst);
 //	ft_putendl("\n");

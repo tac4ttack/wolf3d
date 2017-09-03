@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 22:48:30 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 00:08:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct      s_hue // ARGB8888 Pixels format
 
 typedef struct			s_ldpt    // USELESS? float est le seul interet
 {
-	long double			x;
-	long double			y;
+	float			x;
+	float			y;
 	t_hue				c;
 }                   	t_ldpt;
 
@@ -61,13 +61,13 @@ typedef struct      s_ray
 	t_ldpt			pix;
 	t_ldpt			a;
 	t_ldpt			b;
-	long double		deg;
-	long double		rad;
-	long double		h_xa;
-	long double		h_ya;
-	long double		v_xa;
-	long double		v_ya;
-	long double		dst;
+	float		deg;
+	float		rad;
+	float		h_xa;
+	float		h_ya;
+	float		v_xa;
+	float		v_ya;
+	float		dst;
 	int				height;
 }                   t_ray;
 
@@ -76,8 +76,8 @@ typedef struct      s_player
 	t_ldpt			grid;
 	t_ldpt			pix;
 	t_ldpt			n_pix;
-	long double			fov; // field of view
-	long double          dir; // view direction
+	float			fov; // field of view
+	float          dir; // view direction
 	int             height; // player's height
 	int				spawned;
 }                   t_player;
@@ -105,7 +105,7 @@ typedef struct      s_env
 	int             tile_w;
 	int             tile_h;
 	int				sc_gap;
-	long double		deg_step;
+	float		deg_step;
 	t_map           map;
 	t_ray			r;
 	t_player		player;

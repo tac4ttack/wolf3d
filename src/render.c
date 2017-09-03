@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 00:02:02 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 00:08:41 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_wall_col(t_env *e, int x)
 {
-	long double		correct_dst;
+	float		correct_dst;
 	int		height;
 	t_ldpt	p1;
 	t_ldpt	p2;
@@ -27,7 +27,7 @@ void	draw_wall_col(t_env *e, int x)
 	height = (e->tile_w / correct_dst) * e->sc_gap;
 //	height = (e->tile_w / e->r.dst) * e->sc_gap;
 	p2.y = (e->w_h / 2) - (height / 2);
-	printf("x = %d | dst = %Lf | correct dst = %Lf | height = %d\n", x, e->r.dst, correct_dst, height);
+	printf("x = %d | dst = %f | correct dst = %f | height = %d\n", x, e->r.dst, correct_dst, height);
 	sdl_tex_line(e, p1, p2, 0xAA0000FF);
 	p1.y = p2.y + 1;
 	p2.y = p1.y + height;

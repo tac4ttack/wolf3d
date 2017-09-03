@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 21:41:23 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 00:08:41 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_player(t_env *e)
 		printf("sc_gap = %d | ", e->sc_gap);
 		if (search_player_pos(e) != 1)
 			env_error(e, "Error during initializing player data");
-		printf("player spawn = %d | player x = %Lf y = %Lf | player dir = %Lf \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y, e->player.dir);
+		printf("player spawn = %d | player x = %f y = %f | player dir = %f \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y, e->player.dir);
 	}
 }
 
