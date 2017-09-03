@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 00:37:21 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 21:41:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ typedef struct      s_player
 	t_ldpt			grid;
 	t_ldpt			pix;
 	t_ldpt			n_pix;
-	double			fov; // field of view
-	double          dir; // view direction
+	long double			fov; // field of view
+	long double          dir; // view direction
 	int             height; // player's height
 	int				spawned;
 }                   t_player;
