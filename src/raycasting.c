@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 22:49:14 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 23:59:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_ray(t_env *e, int x)
 	e->r.grid.x = e->player.grid.x;
 	e->r.grid.y = e->player.grid.y;
 	e->r.deg = (e->player.dir - (e->player.fov / 2)) + (x * e->deg_step);
-	printf("init_ray r.deg = %Lf | degstep = %Lf | fov = %Lf | fov/2 = %Lf\n", e->r.deg, e->deg_step, e->player.fov, e->player.fov/2);
+//	printf("init_ray r.deg = %Lf | degstep = %Lf | fov = %Lf | fov/2 = %Lf\n", e->r.deg, e->deg_step, e->player.fov, e->player.fov/2);
 	e->r.height = e->player.height;
 	e->r.h_xa = 0;
 	e->r.h_ya = 0;
@@ -42,7 +42,7 @@ void	convert_dir(t_env *e)
 		else if (tmp > 360)
 			e->r.deg = ft_fabs(tmp) - 360;
 		e->r.rad = e->r.deg * DEG2RAD;
-		printf("convert_dir new r.deg = %Lf | r.rad = %Lf\n", e->r.deg, e->r.rad);
+//		printf("convert_dir new r.deg = %Lf | r.rad = %Lf\n", e->r.deg, e->r.rad);
 	}
 }
 

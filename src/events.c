@@ -33,8 +33,8 @@ void	keypress_events(t_env *e)
 		(e->player.dir == 361 ? e->player.dir = 1 : 0);
 		if (e->eve.key.keysym.sym == 0x40000052) // haut
 		{
-			e->player.n_pix.x = e->player.pix.x + cosl((e->player.dir * DEG2RAD)) * 10;
-			e->player.n_pix.y = e->player.pix.y + sinl(e->player.dir * DEG2RAD) * 10;
+			e->player.n_pix.x = e->player.pix.x + sinl((e->player.dir * DEG2RAD)) * 10;
+			e->player.n_pix.y = e->player.pix.y - cosl(e->player.dir * DEG2RAD) * 10;
 			if (read_pixels(e, e->player.n_pix.x, e->player.n_pix.y) != 1)
 			{
 				e->player.pix.x = e->player.n_pix.x;
@@ -43,8 +43,8 @@ void	keypress_events(t_env *e)
 		}
 		if (e->eve.key.keysym.sym == 0x40000051) // bas
 		{
-			e->player.n_pix.x = e->player.pix.x - cosl((e->player.dir * DEG2RAD)) * 10;
-			e->player.n_pix.y = e->player.pix.y - sinl(e->player.dir * DEG2RAD) * 10;
+			e->player.n_pix.x = e->player.pix.x - sinl((e->player.dir * DEG2RAD)) * 10;
+			e->player.n_pix.y = e->player.pix.y + cosl(e->player.dir * DEG2RAD) * 10;
 			if (read_pixels(e, e->player.n_pix.x, e->player.n_pix.y) != 1)
 			{
 				e->player.pix.x = e->player.n_pix.x;
