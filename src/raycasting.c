@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 21:41:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 22:49:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	convert_dir(t_env *e)
 			e->r.deg = 360 - ft_fabs(tmp);
 		else if (tmp > 360)
 			e->r.deg = ft_fabs(tmp) - 360;
-		e->r.rad = e->r.deg * (M_PI / 180);
+		e->r.rad = e->r.deg * DEG2RAD;
 		printf("convert_dir new r.deg = %Lf | r.rad = %Lf\n", e->r.deg, e->r.rad);
 	}
 }

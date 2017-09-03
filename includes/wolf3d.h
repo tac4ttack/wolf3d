@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 21:41:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/03 22:48:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ID         "Wolf3D"
 # define BWID       1024
 # define BHEI       768
+# define DEG2RAD	(M_PI / 180)
+# define RAD2DEG	(180 / M_PI)
 # define WCEN       SDL_WINDOWPOS_CENTERED
 # define WFLA       SDL_WINDOW_SHOWN//|SDL_WINDOW_RESIZABLE
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
