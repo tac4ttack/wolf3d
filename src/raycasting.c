@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:25:15 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:34:12 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	calc_hor_step(t_env *e)
 			e->r.deg == 0 || e->r.deg == 360)
 	{
 		e->r.h_ya = -e->tile_h;
-		e->r.a.y = (floor(e->r.pix.y / e->tile_h) * e->tile_h) - 1;
+		e->r.a.y = (floor(e->r.pix.y / e->tile_h) * e->tile_h) - 0.0001;
 	}
 	else
 	{
@@ -83,7 +83,7 @@ void	calc_ver_step(t_env *e)
 	else
 	{
 		e->r.v_xa = -e->tile_w;
-		e->r.b.x = floor(e->r.pix.x / e->tile_w) * e->tile_w - 1;
+		e->r.b.x = floor(e->r.pix.x / e->tile_w) * e->tile_w - 0.0001;
 	}
 	e->r.v_ya = ft_fabs(e->r.v_xa / ft_tan(e->r.rad));
 	e->r.b.y = e->r.pix.y + ((e->r.pix.x - e->r.b.x) / ft_tan(e->r.rad));
@@ -125,7 +125,8 @@ void	calc_dst(t_env *e)
 		e->player.pix.c.h = 0xff00ff00;
 		(int)e->r.b.x % 64 > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
 	}
-	printf("\nhdst = %f | vdst = %f | dst = %f\n\n", h_dst, v_dst, e->r.dst);
+//	printf("\nhdst = %f | vdst = %f | dst = %f\n\n", h_dst, v_dst, e->r.dst);
+
 //	ft_putstr("HDST = ");
 //	ft_putnbr(h_dst);
 //	ft_putstr(" VDST = ");

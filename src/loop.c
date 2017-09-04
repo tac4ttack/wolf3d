@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:06:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:31:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_frame(t_env *e)
 	x = 0;
 	while (x < e->w_w)
 	{
-		printf("X%d\n-----------\n",x);
+	//	printf("X%d\n-----------\n",x);
 		init_ray(e, x);		// initialisation rayon, semble OK
 		convert_dir(e);		// conversion direction en radian, semble OK
 		calc_hor_step(e);		//calc_step

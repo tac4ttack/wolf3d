@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:17:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:31:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ int		read_pixels(t_env *e, int x, int y)
 //	ft_putstr(" | base y = ");
 //	ft_putnbr(y);
 //	ft_putstr("\n");
-	printf("base x = %d | base y = %d\n", x, y);
+//	printf("base x = %d | base y = %d\n", x, y);
+
 //	if (x > 0 && y > 0 && x <= e->w_w && y <= e->w_h)
 	if (x >= 0 && y >= 0 && x < e->w_w && y < e->w_h)
 	{
@@ -88,7 +89,8 @@ int		read_pixels(t_env *e, int x, int y)
 		y = y / e->tile_h;
 		res = e->map.grid[y][x];
 	}
-	printf("new x = %d | new y = %d | res = %d\n\n", x , y, res);
+//	printf("new x = %d | new y = %d | res = %d\n\n", x , y, res);
+
 //	ft_putstr("x = ");
 //	ft_putnbr(x);
 //	ft_putstr(" | y = ");
