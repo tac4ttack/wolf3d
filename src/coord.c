@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/02 22:02:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:17:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		search_player_pos(t_env *e)
 
 	x = 0;
 	y = 0;
-	while (y < e->map.lin)
+	while (y < e->map.lin && e->player.spawned != 1)
 	{
-		while (x < e->map.col)
+		while (x < e->map.col && e->player.spawned != 1)
 		{
 			if (e->map.grid[y][x] == 9)
 			{
@@ -80,16 +80,21 @@ int		read_pixels(t_env *e, int x, int y)
 //	ft_putstr(" | base y = ");
 //	ft_putnbr(y);
 //	ft_putstr("\n");
+	printf("base x = %d | base y = %d\n", x, y);
+//	if (x > 0 && y > 0 && x <= e->w_w && y <= e->w_h)
 	if (x >= 0 && y >= 0 && x < e->w_w && y < e->w_h)
 	{
 		x = x / e->tile_w;
 		y = y / e->tile_h;
 		res = e->map.grid[y][x];
 	}
+	printf("new x = %d | new y = %d | res = %d\n\n", x , y, res);
 //	ft_putstr("x = ");
 //	ft_putnbr(x);
 //	ft_putstr(" | y = ");
 //	ft_putnbr(y);
+//	ft_putstr(" | res = ");
+//	ft_putnbr(res);
 //	ft_putstr("\n\n");
 	return (res);
 }

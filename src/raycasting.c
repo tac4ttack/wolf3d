@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 00:08:41 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:25:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	convert_dir(t_env *e)
 	else
 	{
 		if (tmp < 0)
-			e->r.deg = 360 - ft_fabs(tmp);
+			e->r.deg = 360 - fabs(tmp);
 		else if (tmp > 360)
-			e->r.deg = ft_fabs(tmp) - 360;
+			e->r.deg = fabs(tmp) - 360;
 		e->r.rad = e->r.deg * DEG2RAD;
 //		printf("convert_dir new r.deg = %f | r.rad = %f\n", e->r.deg, e->r.rad);
 	}
@@ -60,9 +60,9 @@ void	calc_hor_step(t_env *e)
 		e->r.h_ya = e->tile_h;
 		e->r.a.y = (floor(e->r.pix.y / e->tile_h) * e->tile_h) + e->tile_h;
 	}
-	e->r.h_xa = ft_fabs(e->r.h_ya / tanl(M_PI_2 - e->r.rad));
+	e->r.h_xa = fabs(e->r.h_ya / tan(M_PI_2 - e->r.rad));
 	//	A.x = Px + (Py-A.y)/ft_tan(ALPHA);
-	e->r.a.x = e->r.pix.x + ((e->r.pix.y - e->r.a.y) / tanl(M_PI_2 - e->r.rad));
+	e->r.a.x = e->r.pix.x + ((e->r.pix.y - e->r.a.y) / tan(M_PI_2 - e->r.rad));
 	(e->r.deg > 180 ? e->r.h_xa *= -1 : 0);
 //	ft_putendl("hor dda:");
 	while(read_pixels(e, e->r.a.x, e->r.a.y) != 1)
@@ -110,22 +110,27 @@ void	calc_dst(t_env *e)
 	diff_x = e->r.pix.x - e->r.a.x;
 	diff_y = e->r.pix.y - e->r.a.y;
 	h_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
-//	h_dst = ft_fabs(e->r.pix.x - e->r.a.x) / cos(M_PI_2 - e->r.rad);
 	diff_x = e->r.pix.x - e->r.b.x;
 	diff_y = e->r.pix.y - e->r.b.y;
 	v_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
-//	v_dst = ft_fabs(e->r.pix.x - e->r.b.x) / cos(M_PI_2 - e->r.rad);
-//	ft_putstr("h_dist = ");
-//	ft_putnbr(h_dst);
-//	ft_putstr(" | v_dist = ");
-//	ft_putnbr(v_dst);
-//	ft_putstr("\n");
 	if (h_dst < v_dst)
+	{
 		e->r.dst = h_dst;
+		e->player.pix.c.h = 0xffff0000;
+		(int)e->r.a.y % 64 > 0.5 ? e->player.pix.c.h = 0xffff9900 : 0;
+	}
 	else
+	{
 		e->r.dst = v_dst;
-//	printf("hdst = %f | vdst = %f | dst = %f\n", h_dst, v_dst, e->r.dst);
-//	ft_putstr("DST = ");
+		e->player.pix.c.h = 0xff00ff00;
+		(int)e->r.b.x % 64 > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
+	}
+	printf("\nhdst = %f | vdst = %f | dst = %f\n\n", h_dst, v_dst, e->r.dst);
+//	ft_putstr("HDST = ");
+//	ft_putnbr(h_dst);
+//	ft_putstr(" VDST = ");
+//	ft_putnbr(v_dst);
+//	ft_putstr(" DST = ");
 //	ft_putnbr(e->r.dst);
 //	ft_putendl("\n");
 }
