@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 00:08:41 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 01:38:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_player(t_env *e)
 	{
 		e->player.spawned = 0;
 		e->player.fov = 60;
-		e->player.dir = 0;
+		e->player.dir = 300;
 		e->player.height = e->tile_h / 2;
 		e->deg_step = e->player.fov / e->w_w;
 		e->sc_gap = (e->w_w / 2) / tan(M_PI / 6);
