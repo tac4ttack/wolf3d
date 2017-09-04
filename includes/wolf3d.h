@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 00:08:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 02:12:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct      s_hue // ARGB8888 Pixels format
 	Uint32          h;
 }                   t_hue;
 
-typedef struct			s_ldpt    // USELESS? float est le seul interet
+typedef struct		s_ldpt    // USELESS? float est le seul interet
 {
 	float			x;
 	float			y;
-	t_hue				c;
-}                   	t_ldpt;
+	t_hue			c;
+}                   t_ldpt;
 
 typedef struct      s_rec   // USELESS?
 {
@@ -61,13 +61,13 @@ typedef struct      s_ray
 	t_ldpt			pix;
 	t_ldpt			a;
 	t_ldpt			b;
-	float		deg;
-	float		rad;
-	float		h_xa;
-	float		h_ya;
-	float		v_xa;
-	float		v_ya;
-	float		dst;
+	float			deg;
+	float			rad;
+	float			h_xa;
+	float			h_ya;
+	float			v_xa;
+	float			v_ya;
+	float			dst;
 	int				height;
 }                   t_ray;
 
@@ -77,7 +77,7 @@ typedef struct      s_player
 	t_ldpt			pix;
 	t_ldpt			n_pix;
 	float			fov; // field of view
-	float          dir; // view direction
+	float			dir; // view direction
 	int             height; // player's height
 	int				spawned;
 }                   t_player;
@@ -105,7 +105,7 @@ typedef struct      s_env
 	int             tile_w;
 	int             tile_h;
 	int				sc_gap;
-	float		deg_step;
+	float			deg_step;
 	t_map           map;
 	t_ray			r;
 	t_player		player;
@@ -146,13 +146,17 @@ void                PrintWindowEvent(const SDL_Event *ev);
 void				map_test(t_env *e);
 
 // fonctions chargement map
-int					get_map_grid_val(t_env *e, int x, int y);
 void				load_map(t_env *e, char *file);
 
 // fonctions données de map
 int					check_data(char *str);
 int					count_col(char *data);
 void				parse_data(t_env *e, char *data);
+
+// fonction deplacement joueur
+void				move(t_env *e, int delta);
+void				strafe(t_env *e, int delta);
+void				look(t_env *e, int delta);
 
 // fonctions raycasting
 void				draw_frame(t_env *e);	// pour test
@@ -164,7 +168,7 @@ void				calc_ver_step(t_env *e);
 void				calc_dst(t_env *e);
 
 // fonction rendering
-void	draw_wall_col(t_env *e, int x);
+void				draw_wall_col(t_env *e, int x);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);
