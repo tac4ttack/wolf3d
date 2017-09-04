@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:31:42 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 23:02:28 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ Uint8	main_loop(t_env *e)
 			{
 				(e->eve.type == SDL_WINDOWEVENT ? win_events(e) : 0);
 				(e->eve.type == SDL_KEYDOWN ? keypress_events(e) : 0);
+				(e->eve.type == SDL_MOUSEMOTION ? mouse_events(e) : 0);
 				(e->debug ? PrintWindowEvent(&e->eve) : 0);
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);

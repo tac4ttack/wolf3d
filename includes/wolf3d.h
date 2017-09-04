@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:12:50 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 00:05:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DEG2RAD	(M_PI / 180)
 # define RAD2DEG	(180 / M_PI)
 # define WCEN       SDL_WINDOWPOS_CENTERED
-# define WFLA       SDL_WINDOW_SHOWN//|SDL_WINDOW_RESIZABLE
+# define WFLA       SDL_WINDOW_SHOWN//|SDL_WINDOW_MOUSE_CAPTURE//|SDL_WINDOW_RESIZABLE
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
 # define TEXACC		SDL_TEXTUREACCESS_STREAMING
 
@@ -157,6 +157,7 @@ void				parse_data(t_env *e, char *data);
 void				move(t_env *e, int delta);
 void				strafe(t_env *e, int delta);
 void				look(t_env *e, int delta);
+void				mouse_look(t_env *e);
 
 // fonctions raycasting
 void				draw_frame(t_env *e);	// pour test
@@ -176,6 +177,7 @@ Uint8               main_loop(t_env *env);
 // SDL events
 void				win_events(t_env *e);
 void				keypress_events(t_env *e);
+void				mouse_events(t_env *e);
 
 /* Test & play funky funct' */
 void  		        Render_Scramble_SDL(t_env *env);

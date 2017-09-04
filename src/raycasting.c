@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:34:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 21:34:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ void	calc_hor_step(t_env *e)
 			e->r.deg == 0 || e->r.deg == 360)
 	{
 		e->r.h_ya = -e->tile_h;
-		e->r.a.y = (floor(e->r.pix.y / e->tile_h) * e->tile_h) - 0.0001;
+		e->r.a.y = (floorf(e->r.pix.y / e->tile_h) * e->tile_h) - 0.0001;
 	}
 	else
 	{
 		e->r.h_ya = e->tile_h;
-		e->r.a.y = (floor(e->r.pix.y / e->tile_h) * e->tile_h) + e->tile_h;
+		e->r.a.y = (floorf(e->r.pix.y / e->tile_h) * e->tile_h) + e->tile_h;
 	}
 	e->r.h_xa = fabs(e->r.h_ya / tan(M_PI_2 - e->r.rad));
 	//	A.x = Px + (Py-A.y)/ft_tan(ALPHA);
-	e->r.a.x = e->r.pix.x + ((e->r.pix.y - e->r.a.y) / tan(M_PI_2 - e->r.rad));
+	e->r.a.x = e->r.pix.x + ((e->r.pix.y - e->r.a.y) / tanf(M_PI_2 - e->r.rad));
 	(e->r.deg > 180 ? e->r.h_xa *= -1 : 0);
 //	ft_putendl("hor dda:");
 	while(read_pixels(e, e->r.a.x, e->r.a.y) != 1)
@@ -78,15 +78,15 @@ void	calc_ver_step(t_env *e)
 	if (e->r.deg >= 0 && e->r.deg < 180)
 	{
 		e->r.v_xa = e->tile_w;
-		e->r.b.x = floor(e->r.pix.x / e->tile_w) * e->tile_w + e->tile_w;
+		e->r.b.x = floorf(e->r.pix.x / e->tile_w) * e->tile_w + e->tile_w;
 	}
 	else
 	{
 		e->r.v_xa = -e->tile_w;
-		e->r.b.x = floor(e->r.pix.x / e->tile_w) * e->tile_w - 0.0001;
+		e->r.b.x = floorf(e->r.pix.x / e->tile_w) * e->tile_w - 0.0001;
 	}
-	e->r.v_ya = ft_fabs(e->r.v_xa / ft_tan(e->r.rad));
-	e->r.b.y = e->r.pix.y + ((e->r.pix.x - e->r.b.x) / ft_tan(e->r.rad));
+	e->r.v_ya = fabs(e->r.v_xa / tanf(e->r.rad));
+	e->r.b.y = e->r.pix.y + ((e->r.pix.x - e->r.b.x) / tanf(e->r.rad));
 	if ((e->r.deg > 270 && e->r.deg < 360) ||
 			(e->r.deg >= 0 && e->r.deg < 90) ||
 			e->r.deg == 0 || e->r.deg == 360)
@@ -109,21 +109,21 @@ void	calc_dst(t_env *e)
 
 	diff_x = e->r.pix.x - e->r.a.x;
 	diff_y = e->r.pix.y - e->r.a.y;
-	h_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
+	h_dst = sqrtf((diff_x * diff_x) + (diff_y * diff_y));
 	diff_x = e->r.pix.x - e->r.b.x;
 	diff_y = e->r.pix.y - e->r.b.y;
-	v_dst = sqrt((diff_x * diff_x) + (diff_y * diff_y));
+	v_dst = sqrtf((diff_x * diff_x) + (diff_y * diff_y));
 	if (h_dst < v_dst)
 	{
 		e->r.dst = h_dst;
 		e->player.pix.c.h = 0xffff0000;
-		(int)e->r.a.y % 64 > 0.5 ? e->player.pix.c.h = 0xffff9900 : 0;
+		(int)e->r.a.y % e->tile_w > 0.5 ? e->player.pix.c.h = 0xffff9900 : 0;
 	}
 	else
 	{
 		e->r.dst = v_dst;
 		e->player.pix.c.h = 0xff00ff00;
-		(int)e->r.b.x % 64 > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
+		(int)e->r.b.x % e->tile_h > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
 	}
 //	printf("\nhdst = %f | vdst = %f | dst = %f\n\n", h_dst, v_dst, e->r.dst);
 

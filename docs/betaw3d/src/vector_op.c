@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/03 16:10:48 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/03 16:20:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 22:46:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	vec2_rotate(t_vec2 *vec2, float theta)
 {
-	t_vec2	vec2t;
+	t_vec2	vec2_tmp;
 
 	theta *= DEG2RAD;
-	vec2t.x = vec2->x * cos(theta) - vec2->y * sin(theta);
-	vec2t.y = vec2->x * sin(theta) + vec2->y * cos(theta);
-	vec2->x = vec2t.x;
-	vec2->y = vec2t.y;
+	vec2_tmp.x = vec2->x * cos(theta) - vec2->y * sin(theta);
+	vec2_tmp.y = vec2->x * sin(theta) + vec2->y * cos(theta);
+	vec2->x = vec2_tmp.x;
+	vec2->y = vec2_tmp.y;
 }
 
 t_vec2	vec2_add(t_vec2 vec2_a, t_vec2 vec2_b)

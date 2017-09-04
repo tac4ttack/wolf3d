@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 01:38:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/04 23:17:49 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_player(t_env *e)
 		e->player.dir = 300;
 		e->player.height = e->tile_h / 2;
 		e->deg_step = e->player.fov / e->w_w;
-		e->sc_gap = (e->w_w / 2) / tan(M_PI / 6);
+		e->sc_gap = (e->w_w / 2) / tanf(M_PI / 6);
 		printf("sc_gap = %d | ", e->sc_gap);
 		if (search_player_pos(e) != 1)
 			env_error(e, "Error during initializing player data");
@@ -104,6 +104,7 @@ void	init(t_env *e)
 		env_error(e, "Error creating the rendering context");
 	if (!(e->pix = (Uint32*)malloc(e->w_w * e->w_h * sizeof(Uint32))))
 		env_error(e, "Error allocating memory for texture pixels");
-//	init_texture_pixels(e); inutile?
+	SDL_WarpMouseInWindow(e->win, e->w_w / 2, e->w_h / 2);
+	//	init_texture_pixels(e); inutile?
 	e->run = 1;
 }
