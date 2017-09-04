@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 23:17:49 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 00:07:12 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	init(t_env *e)
 	if (!(e->pix = (Uint32*)malloc(e->w_w * e->w_h * sizeof(Uint32))))
 		env_error(e, "Error allocating memory for texture pixels");
 	SDL_WarpMouseInWindow(e->win, e->w_w / 2, e->w_h / 2);
+	SDL_ShowCursor(0);
 	//	init_texture_pixels(e); inutile?
 	e->run = 1;
 }
