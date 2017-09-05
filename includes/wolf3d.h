@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 00:05:33 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 03:10:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "SDL.h"
 
 # define ID         "Wolf3D"
-# define BWID       1024
-# define BHEI       768
+# define BWID       1280
+# define BHEI       720
 # define DEG2RAD	(M_PI / 180)
 # define RAD2DEG	(180 / M_PI)
 # define WCEN       SDL_WINDOWPOS_CENTERED
@@ -41,10 +41,10 @@ typedef struct      s_hue // ARGB8888 Pixels format
 	Uint32          h;
 }                   t_hue;
 
-typedef struct		s_ldpt    // USELESS? float est le seul interet
+typedef struct		s_ldpt    // USELESS? long double est le seul interet
 {
-	float			x;
-	float			y;
+	long double			x;
+	long double			y;
 	t_hue			c;
 }                   t_ldpt;
 
@@ -61,13 +61,13 @@ typedef struct      s_ray
 	t_ldpt			pix;
 	t_ldpt			a;
 	t_ldpt			b;
-	float			deg;
-	float			rad;
-	float			h_xa;
-	float			h_ya;
-	float			v_xa;
-	float			v_ya;
-	float			dst;
+	long double		deg;
+	long double		rad;
+	long double		h_xa;
+	long double		h_ya;
+	long double		v_xa;
+	long double		v_ya;
+	long double		dst;
 	int				height;
 }                   t_ray;
 
@@ -76,8 +76,8 @@ typedef struct      s_player
 	t_ldpt			grid;
 	t_ldpt			pix;
 	t_ldpt			n_pix;
-	float			fov; // field of view
-	float			dir; // view direction
+	long double		fov; // field of view
+	long double		dir; // view direction
 	int             height; // player's height
 	int				spawned;
 }                   t_player;
@@ -105,7 +105,7 @@ typedef struct      s_env
 	int             tile_w;
 	int             tile_h;
 	int				sc_gap;
-	float			deg_step;
+	long double		deg_step;
 	t_map           map;
 	t_ray			r;
 	t_player		player;
@@ -147,6 +147,7 @@ void				map_test(t_env *e);
 
 // fonctions chargement map
 void				load_map(t_env *e, char *file);
+void				 load_raw_map(t_env *e);
 
 // fonctions données de map
 int					check_data(char *str);
@@ -187,7 +188,7 @@ void		        Render_Rand_Rect(t_env *env);
 void		        Render_Fill_SDLRect(SDL_Renderer *ren, SDL_Rect rec);
 void		        Render_Rand_SDLRect(t_env *env);
 void				Texture_Draw(t_env *env);
-//void				Text_Draw2(t_env *env, float alpha);
+//void				Text_Draw2(t_env *env, long double alpha);
 
 # ifdef DEBUG
 #  define DBUG 1

@@ -44,6 +44,7 @@ void	mouse_events(t_env *e)
 	if (e->eve.motion.type == SDL_MOUSEMOTION)
 	{
 	//	ft_putendl("MOUSEMOTION");
+		printf("player dir = %Lf\n", e->player.dir);
 		mouse_look(e);
 	}
 }

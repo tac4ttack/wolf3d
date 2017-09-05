@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 00:07:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 02:40:16 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_map(t_env *e)
 	{
 		e->map.col = 0;
 		e->map.lin = 0;
-		e->map.cei = 64;
+		e->map.cei = e->tile_h;
 		e->map.flo = 0;
 	}	
 }
@@ -46,14 +46,14 @@ void	init_player(t_env *e)
 	{
 		e->player.spawned = 0;
 		e->player.fov = 60;
-		e->player.dir = 300;
+		e->player.dir = 40;
 		e->player.height = e->tile_h / 2;
 		e->deg_step = e->player.fov / e->w_w;
-		e->sc_gap = (e->w_w / 2) / tanf(M_PI / 6);
-		printf("sc_gap = %d | ", e->sc_gap);
+		e->sc_gap = (e->w_w / 2) / tanl(M_PI / 6);
+//		printf("sc_gap = %d | ", e->sc_gap);
 		if (search_player_pos(e) != 1)
 			env_error(e, "Error during initializing player data");
-		printf("player spawn = %d | player x = %f y = %f | player dir = %f \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y, e->player.dir);
+//		printf("player spawn = %d | player x = %f y = %f | player dir = %f \n\n", e->player.spawned, e->player.pix.x, e->player.pix.y, e->player.dir);
 	}
 }
 
@@ -92,7 +92,7 @@ void	init(t_env *e)
 	e->pix = NULL;
 	e->tex = NULL;
 	e->win = NULL;
-	e->tile_w = 64;//BHEI / 6;
+	e->tile_w = BHEI / 12;
 	e->tile_h = e->tile_w;
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		env_error(e, "Error initializing SDL2");

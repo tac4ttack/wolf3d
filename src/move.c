@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 00:05:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 01:45:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	strafe(t_env *e, int delta)
 
 void	mouse_look(t_env *e)
 {
-	float	angle;
-	float	dif;
+	long double	angle;
+	long double	dif;
 
 	dif = e->eve.motion.x - (e->w_w / 2);
 	SDL_WarpMouseInWindow(e->win, e->w_w / 2, e->w_h / 2);
@@ -61,7 +61,7 @@ void	mouse_look(t_env *e)
 	e->player.dir += angle;
 	(e->player.dir < 0 ? e->player.dir = 359 : 0);
 	(e->player.dir > 360 ? e->player.dir = 1 : 0);
-//	printf("player dir = %f | mouse angle = %f\n", e->player.dir, angle);
+//	printf("player dir = %Lf | mouse angle = %Lf\n", e->player.dir, angle);
 }
 
 void	look(t_env *e, int delta)

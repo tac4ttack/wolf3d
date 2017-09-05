@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/01 00:42:10 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/05 02:08:19 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ void	load_map(t_env *e, char *file)
 	
 	data = ft_strnew(0);
 	init_map(e);
+	ft_putendl("map init ok");
 	data = ft_strjoin_free(data, read_file(e, file));
+	ft_putendl("parsing map data");
 	parse_data(e, data);
+	ft_putendl("map data parsed");
 	init_player(e);
 	free(data);
 }

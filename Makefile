@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/04 00:23:49 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/05 03:38:27 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ SRC_NAME =				color.c \
 						map.c \
 						map_data.c \
 						move.c \
+						raw_map.c \
 						raycasting.c \
 						render.c \
 						test.c \
@@ -90,11 +91,13 @@ debug_flag:
 clean:
 	@echo "Cleaning..."
 	@echo "Deleting .obj files"
+	@make -C $(LIBFT_PATH)/ clean
 	@rm -rf $(OBJ_PATH)
 
 fclean: cleansdl2 clean 
 	@echo "Full cleaning..."
 	@echo "Deleting $(NAME) executable and config file"
+	@make -C $(LIBFT_PATH)/ fclean
 	@rm -rf $(NAME) ./config
 
 libft:
