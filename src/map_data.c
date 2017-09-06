@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 02:14:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:04:39 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char		*split_map_data(t_env *e, char *data)
 	i = 0;
 	tmp = ft_strnew(0);
 	split = ft_strsplit(data, '\n');
-	while (i < e->map.lin)
+	while (i < LIN)
 	{
 		tmp = ft_strjoin_free(tmp, ft_strjoin(split[i], " "));
 		i++;
@@ -38,25 +38,25 @@ static void	fill_map_grid(t_env *e, char *data)
 
 	i = 0;
 	j = 0;
-	ft_putendl(data);
-	ft_putstr("col = ");
-	ft_putnbr(e->map.col);
-	ft_putstr(" line = ");
-	ft_putnbr(e->map.lin);
-	ft_putchar('\n');
-	ft_putendl("split?");
+//	ft_putendl(data);
+//	ft_putstr("col = ");
+//	ft_putnbr(COL);
+//	ft_putstr(" line = ");
+//	ft_putnbr(LIN);
+//	ft_putchar('\n');
+//	ft_putendl("split?");
 	split = ft_strsplit(data, ' ');
 //	ft_putendl("split ok");
-	while (j < e->map.lin)
+	while (j < LIN)
 	{
 //		ft_putstr("j = ");
 //		ft_putnbr(j);
-		while (i < e->map.col)
+		while (i < COL)
 		{
 //			ft_putstr(" i = ");
 //			ft_putnbr(i);
 //			ft_putchar('\n');
-			e->map.grid[j][i] = ft_atoi(split[i + (j * e->map.col)]);
+			e->map.grid[j][i] = ft_atoi(split[i + (j * COL)]);
 			i++;
 		}
 		j++;
@@ -113,15 +113,15 @@ void		parse_data(t_env *e, char *data)
 	tmp = NULL;
 	if (check_data(data) != 0)
 		env_error(e, "Error, the map file seems to be invalid");
-	ft_putendl("data checked ok\ncounting columns");
-	e->map.col = count_col(data);
-	ft_putendl("columns counted\ngrid map init");
+//	ft_putendl("data checked ok\ncounting columns");
+	COL = count_col(data);
+//	ft_putendl("columns counted\ngrid map init");
 	e->map.grid = init_map_grid(e);
-	ft_putendl("map grid init ok\nspliting map data");
+//	ft_putendl("map grid init ok\nspliting map data");
 	tmp = split_map_data(e, data);
-	ft_putendl("map data split ok\nfilling grid");
+//	ft_putendl("map data split ok\nfilling grid");
 	fill_map_grid(e, tmp);
-	ft_putendl("map grid filled");
-	(e->debug ? map_test(e) : 0);
+//	ft_putendl("map grid filled");
+//	(e->debug ? map_test(e) : 0);
 	free(tmp);
 }

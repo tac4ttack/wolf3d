@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 16:38:42 by fmessina          #+#    #+#             */
-/*   Updated: 2017/08/18 16:23:25 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:07:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	sdl_tex_pix_put(t_env *e, int x, int y,  int color)
 {
 	int	i;
 
-	if (x < e->w_w && y < e->w_h && x >= 0 && y >= 0)
+	if (x < WW && y < WH && x >= 0 && y >= 0)
 	{
-		i = (x + (y * e->w_w));
+		i = (x + (y * WW));
 		if (SDL_BYTEORDER == SDL_LIL_ENDIAN)
 			e->pix[i] = color;
 		else

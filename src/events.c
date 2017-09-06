@@ -16,8 +16,14 @@ void win_events(t_env *e)
 {
 	if (e->eve.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 	{
-		e->w_w = e->eve.window.data1;
-		e->w_h = e->eve.window.data2;
+		WW = e->eve.window.data1;
+		WH = e->eve.window.data2;
+		TW = WH / 12;
+		TH = TW;
+		e->player.height = TH / 2;
+		e->deg_step = FOV / WW;
+		e->sc_gap = (WW / 2) / tanl(M_PI / 6);
+		e->map.cei = TH;
 	}
 }
 
@@ -44,7 +50,7 @@ void	mouse_events(t_env *e)
 	if (e->eve.motion.type == SDL_MOUSEMOTION)
 	{
 	//	ft_putendl("MOUSEMOTION");
-		printf("player dir = %Lf\n", e->player.dir);
+	//	printf("player dir = %Lf\n", e->player.dir);
 		mouse_look(e);
 	}
 }

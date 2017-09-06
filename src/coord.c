@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 02:31:30 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:09:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int		search_player_pos(t_env *e)
 
 	x = 0;
 	y = 0;
-	while (y < e->map.lin && e->player.spawned != 1)
+	while (y < LIN && e->player.spawned != 1)
 	{
-		while (x < e->map.col && e->player.spawned != 1)
+		while (x < COL && e->player.spawned != 1)
 		{
 			if (e->map.grid[y][x] == 9)
 			{
 				e->player.spawned = 1;
 				e->player.grid.x = x;
 				e->player.grid.y = y;
-				e->player.pix.x = (x * e->tile_w) + (e->tile_w / 2);
-				e->player.pix.y = (y * e->tile_h) + (e->tile_h / 2);
+				PX = (x * TW) + (TW / 2);
+				PY = (y * TH) + (TH / 2);
 			}
 			x++;
 		}
@@ -45,8 +45,8 @@ t_ldpt	grid_to_pixels(t_env *e, int x, int y)
 
 	res.x = 0;
 	res.y = 0;
-	res.x = (x * e->tile_w) + (e->tile_w / 2);
-	res.y = (y * e->tile_h) + (e->tile_h / 2);
+	res.x = (x * TW) + (TW / 2);
+	res.y = (y * TH) + (TH / 2);
 	return (res);
 }
 
@@ -57,8 +57,8 @@ t_ldpt pixels_to_grid(t_env *e, int x, int y)
 	
 	res.x = 0;
 	res.y = 0;
-	res.x = x / e->tile_w;
-	res.y = y / e->tile_h;
+	res.x = x / TW;
+	res.y = y / TH;
 	return (res);
 }
 
@@ -81,16 +81,14 @@ int		read_pixels(t_env *e, int x, int y)
 //	ft_putnbr(y);
 //	ft_putstr("\n");
 //	printf("base x = %d | base y = %d\n", x, y);
-
 //	if (x > 0 && y > 0 && x <= e->w_w && y <= e->w_h)
-	if (x >= 0 && y >= 0 && x < e->w_w && y < e->w_h)
+	if (x >= 0 && y >= 0 && x < COL * TW && y < LIN * TH)
 	{
-		x = x / e->tile_w;
-		y = y / e->tile_h;
+		x = x / TW;
+		y = y / TH;
 		res = e->map.grid[y][x];
 	}
 //	printf("new x = %d | new y = %d | res = %d\n\n", x , y, res);
-
 //	ft_putstr("x = ");
 //	ft_putnbr(x);
 //	ft_putstr(" | y = ");

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 03:28:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:02:44 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,11 @@ int 		main(int ac, char **av)
 {
 	t_env *e;
 
-//	if (ac != 2)
-//	{
-//		perror(NULL);
-//		ft_putstr("\nUsage : ./wolf3d <map filename>");
-//		return(1);
-//	}
-	if (ac == 1)
+	if (ac != 2)
 	{
-		if (!(e = (t_env*)malloc(sizeof(t_env))))
-			perror("Error allocating memory for environment:\n");
-		init(e);
-		load_raw_map(e);
+		perror(NULL);
+		ft_putstr("\nUsage : ./wolf3d <map filename>");
+		return(1);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 02:08:19 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:03:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 		else
 			free(buf);
 	}
-	e->map.lin = i;
+	LIN = i;
 	return (tmp);
 }
 

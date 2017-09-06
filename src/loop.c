@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/04 23:02:28 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 21:05:02 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_frame(t_env *e)
 	int x;
 	
 	x = 0;
-	while (x < e->w_w)
+	while (x < WW)
 	{
 	//	printf("X%d\n-----------\n",x);
 		init_ray(e, x);		// initialisation rayon, semble OK
@@ -52,7 +52,7 @@ Uint8	main_loop(t_env *e)
 			}
 			draw_frame(e);
 		//	Render_Rand_Rect_SDL(e);
-			SDL_UpdateTexture(e->tex, NULL, e->pix, e->w_w * sizeof (Uint32));
+			SDL_UpdateTexture(e->tex, NULL, e->pix, WW * sizeof (Uint32));
 			SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
 			SDL_RenderPresent(e->ren);
 		}

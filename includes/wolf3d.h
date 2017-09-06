@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/05 03:10:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 20:59:58 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,37 @@
 # include "SDL.h"
 
 # define ID         "Wolf3D"
-# define BWID       1280
-# define BHEI       720
+# define BWID       1024
+# define BHEI       768
+
 # define DEG2RAD	(M_PI / 180)
 # define RAD2DEG	(180 / M_PI)
+# define I			(int)
+# define FT			(float)
+# define D			(double)
+# define LD			(long double)
+
+# define TH			e->tile_h
+# define TW			e->tile_w
+# define WW			e->w_w
+# define WH			e->w_h
+# define COL		e->map.col
+# define LIN		e->map.lin
+# define FOV		e->player.fov
+# define PDIR		e->player.dir
+# define PX			e->player.pix.x
+# define PY			e->player.pix.y
+# define PNX		e->player.n_pix.x
+# define PNY		e->player.n_pix.y
+# define PGX		e->player.grid.x
+# define PGY		e->player.grid.y
+# define RX			e->r.pix.x
+# define RY			e->r.pix.y
+# define RGX		e->r.grid.x
+# define RGY		e->r.grid.y
+
 # define WCEN       SDL_WINDOWPOS_CENTERED
-# define WFLA       SDL_WINDOW_SHOWN//|SDL_WINDOW_MOUSE_CAPTURE//|SDL_WINDOW_RESIZABLE
+# define WFLA       SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
 # define TEXACC		SDL_TEXTUREACCESS_STREAMING
 
