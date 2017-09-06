@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 20:59:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 22:15:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct      s_ray
 	long double		v_xa;
 	long double		v_ya;
 	long double		dst;
+	int				t_x;
 	int				height;
 }                   t_ray;
 

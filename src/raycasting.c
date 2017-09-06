@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 20:59:03 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 22:52:39 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_ray(t_env *e, int x)
 	e->r.deg = (PDIR - (FOV / 2.0)) + (x * e->deg_step);
 //	printf("init_ray r.deg = %Lf | degstep = %Lf | fov = %Lf | fov/2 = %Lf\n", e->r.deg, e->deg_step, e->player.fov, e->player.fov/2);
 	e->r.height = e->player.height;
+	e->r.t_x = 0;
 	e->r.h_xa = 0;
 	e->r.h_ya = 0;
 	e->r.v_xa = 0;
@@ -117,21 +118,28 @@ void	calc_dst(t_env *e)
 	{
 		e->r.dst = h_dst;
 		e->player.pix.c.h = 0xffff0000;
+		e->r.t_x = (int)e->r.a.x % TW;
 		(int)e->r.a.y % TW > 0.5 ? e->player.pix.c.h = 0xffff9900 : 0;
+//		ft_putstr("R.A.X = ");
+//		ft_putnbr(e->r.a.x);
 	}
 	else
 	{
 		e->r.dst = v_dst;
 		e->player.pix.c.h = 0xff00ff00;
+		e->r.t_x = (int)e->r.b.y % TH;
 		(int)e->r.b.x % TH > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
+//		ft_putstr("R.B.Y = ");
+//		ft_putnbr(e->r.b.y);
 	}
 //	printf("\nhdst = %Lf | vdst = %Lf | dst = %Lf\n\n", h_dst, v_dst, e->r.dst);
-
+//	ft_putstr("\nR.T_X = ");
+//	ft_putnbr(e->r.t_x);
 //	ft_putstr("HDST = ");
 //	ft_putnbr(h_dst);
 //	ft_putstr(" VDST = ");
 //	ft_putnbr(v_dst);
 //	ft_putstr(" DST = ");
 //	ft_putnbr(e->r.dst);
-//	ft_putendl("\n");
+///	ft_putendl("\n");
 }

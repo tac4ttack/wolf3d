@@ -18,12 +18,12 @@ void win_events(t_env *e)
 	{
 		WW = e->eve.window.data1;
 		WH = e->eve.window.data2;
-		TW = WH / 12;
-		TH = TW;
-		e->player.height = TH / 2;
-		e->deg_step = FOV / WW;
-		e->sc_gap = (WW / 2) / tanl(M_PI / 6);
-		e->map.cei = TH;
+	//	TW = WH / 12;
+	//	TH = TW;
+	//	e->player.height = TH / 2;
+	//	e->deg_step = FOV / WW;
+	//	e->sc_gap = (WW / 2) / tanl(M_PI / 6);
+	//	e->map.cei = TH;
 	}
 }
 

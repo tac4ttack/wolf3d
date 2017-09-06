@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 21:05:02 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 22:52:52 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,8 @@ void	draw_frame(t_env *e)
 		calc_ver_step(e);
 		calc_dst(e);
 		draw_wall_col(e, x);
-		//	calc_dda(e);		// calcul du point d'intersection avec algo dda
-		// calcul taille mur a dessiner
-		// calcul couleur a appliquer
-		// dessin du mur
 		x++;
 	}
-	// fonction mouvement
 }
 
 Uint8	main_loop(t_env *e)

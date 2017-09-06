@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 21:02:44 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/06 22:52:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ int 		main(int ac, char **av)
 
 	if (DBUG == 1)
 		printf("Ce fichier a ete compile le %s a %s\n", __DATE__, __TIME__);
+//	ft_putstr("TW = ");
+//	ft_putnbr(TW);
+//	ft_putstr("\nTH = ");
+//	ft_putnbr(TH);
+//	ft_putchar('\n');
+//	draw_frame(e);
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");
 	quit(e);
