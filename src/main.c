@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 22:52:47 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 03:57:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,23 @@ int 		main(int ac, char **av)
 //	ft_putnbr(TH);
 //	ft_putchar('\n');
 //	draw_frame(e);
+
+/*
+	SDL_Surface *surf;
+	SDL_Texture *text;
+	SDL_Rect	*holder;
+	surf = SDL_LoadBMP("./wall.bmp");
+	text = SDL_CreateTextureFromSurface(e->ren, surf);
+	holder = (SDL_Rect*)malloc(sizeof(SDL_Rect*));
+	printf("TW = %d | TH = %d\n", TW, TH);
+	holder->x = 20;
+	holder->y = 500;
+	holder->w = TW;
+	holder->h = TH;
+	SDL_RenderCopy(e->ren, text, NULL, holder);
+	SDL_RenderPresent(e->ren);
+*/
+	
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");
 	quit(e);

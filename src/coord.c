@@ -6,38 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 15:43:02 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 21:09:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 04:01:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-int		search_player_pos(t_env *e)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (y < LIN && e->player.spawned != 1)
-	{
-		while (x < COL && e->player.spawned != 1)
-		{
-			if (e->map.grid[y][x] == 9)
-			{
-				e->player.spawned = 1;
-				e->player.grid.x = x;
-				e->player.grid.y = y;
-				PX = (x * TW) + (TW / 2);
-				PY = (y * TH) + (TH / 2);
-			}
-			x++;
-		}
-		y++;
-		x = 0;
-	}
-	return (e->player.spawned);
-}
 
 t_ldpt	grid_to_pixels(t_env *e, int x, int y)
 {

@@ -41,6 +41,7 @@ void	keypress_events(t_env *e)
 		(e->eve.key.keysym.sym == 0x73 ? move(e, -1) : 0); // s
 		(e->eve.key.keysym.sym == 0x61 ? strafe(e, 1) : 0); // a
 		(e->eve.key.keysym.sym == 0x64 ? strafe(e, -1) : 0); // q
+		(e->eve.key.keysym.sym == 0x74 ? e->texturing *= -1 : 0); // t
 		(e->eve.key.keysym.sym == 104 ? PrintWindowEvent(&e->eve) : 0);
 	}
 }

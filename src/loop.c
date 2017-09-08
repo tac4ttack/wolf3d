@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 22:52:52 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 03:56:05 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_frame(t_env *e)
 		calc_hor_step(e);		//calc_step
 		calc_ver_step(e);
 		calc_dst(e);
-		draw_wall_col(e, x);
+		render(e, x);
 		x++;
 	}
 }
