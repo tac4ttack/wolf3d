@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 22:15:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 04:07:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "SDL.h"
 
 # define ID         "Wolf3D"
-# define BWID       1024
-# define BHEI       768
+# define BWID       900
+# define BHEI       900
 
 # define DEG2RAD	(M_PI / 180)
 # define RAD2DEG	(180 / M_PI)
@@ -105,7 +105,7 @@ typedef struct      s_player
 	long double		fov; // field of view
 	long double		dir; // view direction
 	int             height; // player's height
-	int				spawned;
+	Uint8				spawned;
 }                   t_player;
 
 typedef struct      s_map
@@ -135,6 +135,7 @@ typedef struct      s_env
 	t_map           map;
 	t_ray			r;
 	t_player		player;
+	int			texturing;
 }                   t_env;
 
 // fonctions utilitaires
@@ -150,11 +151,14 @@ int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
 
 // fonctions coord
-int					search_player_pos(t_env *e);
+int					get_spawn_pos(t_env *e);
 t_ldpt				grid_to_pixels(t_env *e, int x, int y);
 t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);
 int					read_pixels(t_env *e, int x, int y);
+
+// fonctions textures
+int					init_textures(t_env *e);
 
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
@@ -196,7 +200,9 @@ void				calc_ver_step(t_env *e);
 void				calc_dst(t_env *e);
 
 // fonction rendering
-void				draw_wall_col(t_env *e, int x);
+void				render(t_env *e, int x);
+void				render_no_textures(t_env *e, int x);
+void				render_textures(t_env *e, int x);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);

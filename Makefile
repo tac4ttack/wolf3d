@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/06 21:02:27 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/08 04:00:39 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,15 +44,17 @@ SRC_NAME =				color.c \
 						debug.c \
 						drawing.c \
 						events.c \
-						init.c \
+						core.c \
 						loop.c \
 						main.c \
 						map.c \
 						map_data.c \
 						move.c \
+						player.c \
 						raycasting.c \
 						render.c \
 						test.c \
+						texture.c \
 						utils.c
 
 default: usage
