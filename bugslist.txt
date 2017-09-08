@@ -1,7 +1,0 @@
-* erreur lorsque dossier de map donné en argument au lieu d'un fichier
-	-> extension .w3d obligatoire pour valider ou non argument?
-	-> read ou gnl renvoie -1 si dossier donc avec ça ça devrait aller
-// CORRIGÉ
-
-* leaks GNL première ligne
-// CORRIGÉ
