@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:06:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 04:17:37 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	init(t_env *e)
 		env_error(e, "Error creating the rendering context");
 	if (!(e->pix = (Uint32*)malloc(WW * WH * sizeof(Uint32))))
 		env_error(e, "Error allocating memory for texture pixels");
-	if (init_textures(e) != 0)
-		env_error(e, "Error initalizing textures");
+	init_textures(e);
 	SDL_WarpMouseInWindow(e->win, WW / 2, WH / 2);
 	SDL_ShowCursor(0);
 	e->run = 1;

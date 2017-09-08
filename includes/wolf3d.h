@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:07:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/08 05:08:12 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 # define WOLF3D_H
 
 # include <fcntl.h>
-# include <libft.h>
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
+
+# include "libft.h"
 
 # define SDL_MAIN_HANDLED
 # include "SDL.h"
 
 # define ID         "Wolf3D"
-# define BWID       900
-# define BHEI       900
+# define BWID       1600
+# define BHEI       1050
 
 # define DEG2RAD	(M_PI / 180)
 # define RAD2DEG	(180 / M_PI)
@@ -146,7 +147,7 @@ void				flush_str_array(t_env *e, char **array);
 
 // fonctions d'initialisation
 void                init(t_env *env);
-void				init_map(t_env *e);
+//void				init_map(t_env *e);
 int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
 
@@ -158,7 +159,7 @@ int					read_grid(t_env *e, int x, int y);
 int					read_pixels(t_env *e, int x, int y);
 
 // fonctions textures
-int					init_textures(t_env *e);
+void				init_textures(t_env *e);
 
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
