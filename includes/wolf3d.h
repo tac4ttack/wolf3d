@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 05:08:12 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/17 22:16:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,10 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdio.h>
-
 # include "libft.h"
 
 # define SDL_MAIN_HANDLED
-# include "SDL.h"
+# include <SDL.h>
 
 # define ID         "Wolf3D"
 # define BWID       1600
@@ -69,8 +68,8 @@ typedef struct      s_hue // ARGB8888 Pixels format
 
 typedef struct		s_ldpt    // USELESS? long double est le seul interet
 {
-	long double			x;
-	long double			y;
+	long double		x;
+	long double		y;
 	t_hue			c;
 }                   t_ldpt;
 
@@ -106,7 +105,7 @@ typedef struct      s_player
 	long double		fov; // field of view
 	long double		dir; // view direction
 	int             height; // player's height
-	Uint8				spawned;
+	Uint8			spawned;
 }                   t_player;
 
 typedef struct      s_map
@@ -125,10 +124,9 @@ typedef struct      s_env
 	SDL_Texture     *tex;
 	SDL_Event       eve;
 	SDL_bool        run;
-	Uint8           debug;
+	Uint32			*pix;
 	Uint16          w_w;
 	Uint16          w_h;
-	Uint32			*pix;
 	int             tile_w;
 	int             tile_h;
 	int				sc_gap;
@@ -136,7 +134,9 @@ typedef struct      s_env
 	t_map           map;
 	t_ray			r;
 	t_player		player;
-	int			texturing;
+	int				debug;
+	int				texturing;
+	int				mouse_look;			
 }                   t_env;
 
 // fonctions utilitaires
@@ -178,7 +178,7 @@ void				map_test(t_env *e);
 
 // fonctions chargement map
 void				load_map(t_env *e, char *file);
-void				 load_raw_map(t_env *e);
+void				load_raw_map(t_env *e);
 
 // fonctions données de map
 int					check_data(char *str);
@@ -213,7 +213,7 @@ void				win_events(t_env *e);
 void				keypress_events(t_env *e);
 void				mouse_events(t_env *e);
 
-/* Test & play funky funct' */
+/* Test & play funky funct'
 void  		        Render_Scramble_SDL(t_env *env);
 void		        Render_Rand_Rect_SDL(t_env *env);
 void		        Render_Fill_Rect(SDL_Renderer *ren, t_rec rec);
@@ -222,6 +222,7 @@ void		        Render_Fill_SDLRect(SDL_Renderer *ren, SDL_Rect rec);
 void		        Render_Rand_SDLRect(t_env *env);
 void				Texture_Draw(t_env *env);
 //void				Text_Draw2(t_env *env, long double alpha);
+*/
 
 # ifdef DEBUG
 #  define DBUG 1
