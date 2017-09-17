@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:25:07 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/17 19:16:53 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,15 @@ int 		main(int ac, char **av)
 //	printf("player pos.x = %d pos.y = %d\n", e->player.pos_x, e->player.pos_y);
 	// NE PAS OUBLIER DE VIRER LE PRINTF OU REFAIRE LA FONCTION
 
+	ft_putstr("Tile Width = ");
+	ft_putnbr(TW);
+	ft_putstr("\nTile Height = ");
+	ft_putnbr(TH);
+	ft_putchar('\n');
+//	draw_frame(e);
+	init_textures(e);
 	if (DBUG == 1)
 		printf("Ce fichier a ete compile le %s a %s\n", __DATE__, __TIME__);
-//	ft_putstr("TW = ");
-//	ft_putnbr(TW);
-//	ft_putstr("\nTH = ");
-//	ft_putnbr(TH);
-//	ft_putchar('\n');
-//	draw_frame(e);
-	
-	init_textures(e);
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");
 	quit(e);
