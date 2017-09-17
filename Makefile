@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/08 04:00:39 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/17 22:24:47 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,18 @@ LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
 
-SDL2 :=					libSDL2.a
-SDL2_PATH :=			./SDL2/lib
-SDL2_INC_PATH :=		./SDL2/include/SDL2
-SLD2FLAGS :=			-lSDL2
+FREETYPE :=				
+FREETYPE_PATH :=		./freetype2
+FREETYPE_INC_PATH :=	./freetype2
+FREETYPEFLAGS :=		
+
+SDL2LIB :=				$(shell sdl2-config --libs)
+SDL2CFLAGS :=			$(shell sdl2-config --cflags)
+
+SDL2TTF :=				
+SDL2TTF_PATH :=			./SDL2_ttf/lib
+SDL2TTF_INC_PATH :=		./SDL2_ttf/include
+SDL2TTFFLAGS :=			
 
 OBJ =					$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJ_PATH =				./obj
@@ -61,26 +69,28 @@ default: usage
 
 all: $(NAME)
 
-$(NAME): libft $(SDL2_PATH)/$(SDL2) $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
+$(NAME): libft brew $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) -L$(SDL2_PATH) $(SLD2FLAGS)
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) -I $(SDL2_INC_PATH) $(DEBUG)
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(DEBUG)
 
 $(OBJ_PATH):
 	@echo "Creating ./obj path and making binaries from source files"
 	@mkdir $(OBJ_PATH)
 
-$(SDL2_PATH)/$(SDL2):
-	rm -rf SDL2/trash/SDL2-2.0.5.tar.gz SDL2/trash/SDL2-2.0.5
-	mkdir -p SDL2/trash
-	curl -O https://www.libsdl.org/release/SDL2-2.0.5.tar.gz
-	tar xf SDL2-2.0.5.tar.gz
-	(cd SDL2-2.0.5 \
-	&& ./configure CC=clang --prefix=$(shell pwd)/SDL2/ \
-	&& $(MAKE) CC=clang && $(MAKE) CC=clang install )
-	mv SDL2-2.0.5.tar.gz SDL2-2.0.5 SDL2/trash
+brew:
+	@echo "$(GREEN)Checking pkg-config presence$(EOC)"
+	brew -v install pkg-config
+	@echo "$(GREEN)Checking libpng presence$(EOC)"
+	brew -v install libpng
+	@echo "$(GREEN)Checking SDL2 presence$(EOC)"
+	brew -v install sdl2
+	@echo "$(GREEN)Checking freetype2 presence$(EOC)"
+	brew -v install freetype
+	@echo "$(GREEN)Checking SDL2_ttf presence$(EOC)"
+	brew -v install sdl2_ttf
 
 COMPILE: all
 compile: COMPILE
