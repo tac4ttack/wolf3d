@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/17 22:24:47 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/18 00:27:25 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,11 @@ LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
 
-FREETYPE :=				
-FREETYPE_PATH :=		./freetype2
-FREETYPE_INC_PATH :=	./freetype2
-FREETYPEFLAGS :=		
-
-SDL2LIB :=				$(shell sdl2-config --libs)
-SDL2CFLAGS :=			$(shell sdl2-config --cflags)
-
-SDL2TTF :=				
-SDL2TTF_PATH :=			./SDL2_ttf/lib
-SDL2TTF_INC_PATH :=		./SDL2_ttf/include
-SDL2TTFFLAGS :=			
+sdl2lib:
+	$(eval SDL2LIB = $(shell sdl2-config --libs))
+sdl2cflags:
+	$(eval SDL2CFLAGS = $(shell sdl2-config --cflags))
+SDL2TTFLIB :=			-lSDL2_ttf
 
 OBJ =					$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJ_PATH =				./obj
@@ -69,9 +62,9 @@ default: usage
 
 all: $(NAME)
 
-$(NAME): libft brew $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
+$(NAME): libft brew sdl2lib sdl2cflags $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB)
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
 	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(DEBUG)
@@ -92,6 +85,13 @@ brew:
 	@echo "$(GREEN)Checking SDL2_ttf presence$(EOC)"
 	brew -v install sdl2_ttf
 
+cleanbrew:
+	brew uninstall -f sdl2_ttf
+	brew uninstall -f freetype
+	brew uninstall -f pkg-config
+	brew uninstall -f libgpng
+	brew uninstall -f sdl2)
+
 COMPILE: all
 compile: COMPILE
 
@@ -99,13 +99,13 @@ debug: debug_flag
 debug_flag:
 	$(eval DEBUG = -DDEBUG -g)
 
-clean:
+clean: clean libft
 	@echo "Cleaning..."
 	@echo "Deleting .obj files"
 	@make -C $(LIBFT_PATH)/ clean
 	@rm -rf $(OBJ_PATH)
 
-fclean: cleansdl2 clean 
+fclean: clean fcleanlibft cleanbrew
 	@echo "Full cleaning..."
 	@echo "Deleting $(NAME) executable and config file"
 	@make -C $(LIBFT_PATH)/ fclean
@@ -115,9 +115,13 @@ libft:
 	@echo "Compiling Libft library"
 	make -C $(LIBFT_PATH)/ all
 
-cleansdl2:
-	@echo "Full cleaning SDL2"
-	$(RM) ./SDL2/
+cleanlibft:
+	@echo "Cleaning the Libft"
+	make -C $(LIBFT_PATH)/ clean
+
+fcleanlibft:
+	@echo "Cleaning the Libft"
+	make -C $(LIBFT_PATH)/ fclean
 
 re: fclean all
 

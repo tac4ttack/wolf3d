@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/17 22:16:18 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/17 22:28:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include "libft.h"
 
 # define SDL_MAIN_HANDLED
-# include <SDL.h>
+# include "SDL.h"
+# include "SDL_ttf.h"
 
 # define ID         "Wolf3D"
 # define BWID       1600
