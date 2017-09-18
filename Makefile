@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/18 00:27:25 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/18 02:00:14 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC_NAME =				color.c \
 						raycasting.c \
 						render.c \
 						test.c \
+						text.c \
 						texture.c \
 						utils.c
 

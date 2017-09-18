@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/06 20:55:44 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/18 02:39:39 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ void	mouse_look(t_env *e)
 	long double	angle;
 	long double	dif;
 
-	dif = e->eve.motion.x - (WW / 2);
-	SDL_WarpMouseInWindow(e->win, WW / 2, WH / 2);
-	angle = dif / 20;
-	PDIR += angle;
-	(PDIR < 0 ? PDIR = 359 : 0);
-	(PDIR > 360 ? PDIR = 1 : 0);
+	if (e->mouse_look == 1)
+	{
+		dif = e->eve.motion.x - (WW / 2);
+		SDL_WarpMouseInWindow(e->win, WW / 2, WH / 2);
+		angle = dif / 20;
+		PDIR += angle;
+		(PDIR < 0 ? PDIR = 359 : 0);
+		(PDIR > 360 ? PDIR = 1 : 0);
+	}
 //	printf("player dir = %Lf | mouse angle = %Lf\n", PDIR, angle);
 }
 

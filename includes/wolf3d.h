@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/17 22:28:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/18 03:21:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct      s_env
 	SDL_Texture     *tex;
 	SDL_Event       eve;
 	SDL_bool        run;
+	TTF_Font		*ttf;
 	Uint32			*pix;
 	Uint16          w_w;
 	Uint16          w_h;
@@ -213,6 +214,10 @@ Uint8               main_loop(t_env *env);
 void				win_events(t_env *e);
 void				keypress_events(t_env *e);
 void				mouse_events(t_env *e);
+
+SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
+void				reset_screen(t_env *e);
+
 
 /* Test & play funky funct'
 void  		        Render_Scramble_SDL(t_env *env);

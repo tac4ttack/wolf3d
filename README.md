@@ -23,3 +23,15 @@ Bonus:
 6 - téléporteurs?
 7 - HUD?
 8 - Portabilité win/mac/linux?
+
+Actual bonus checklist:
+-----------------------
+Map Parser -> ok 0.5
+Mouse Look -> ok 1
+Collisions -> ok 1
+Texturing  ->
+Sprites    ->
+Score	   ->
+Ghosts     ->
+Sounds	   ->
+Menu	   ->
