@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:04:09 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 05:00:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int		check_data(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == 10 || str[i] == 32 || (str[i] >= 48 && str[i] <= 57))
+		if (str[i] == 10 || str[i] == 32 || str[i == 45] ||
+			(str[i] >= 48 && str[i] <= 57))
 			i++;
 		else
 			return (1);
