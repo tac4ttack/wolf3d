@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/18 03:21:00 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 03:33:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ typedef struct      s_ray
 	long double		v_xa;
 	long double		v_ya;
 	long double		dst;
-	int				t_x;
+	int				hit_x;
+	int				hit_val;
 	int				height;
 }                   t_ray;
 
@@ -118,6 +119,16 @@ typedef struct      s_map
 	int				flo; // floor height
 }                   t_map;
 
+typedef struct		s_tex
+{
+	char			*file;
+	SDL_Surface		*sheet;
+	SDL_Surface		*buffer;
+	SDL_Texture		*frame;
+	SDL_Rect		src;
+	SDL_Rect		dst;
+}					t_tex;
+
 typedef struct      s_env
 {
 	SDL_Window      *win;
@@ -126,6 +137,10 @@ typedef struct      s_env
 	SDL_Event       eve;
 	SDL_bool        run;
 	TTF_Font		*ttf;
+	t_map           map;
+	t_ray			r;
+	t_player		player;
+	t_tex			textures;
 	Uint32			*pix;
 	Uint16          w_w;
 	Uint16          w_h;
@@ -133,9 +148,6 @@ typedef struct      s_env
 	int             tile_h;
 	int				sc_gap;
 	long double		deg_step;
-	t_map           map;
-	t_ray			r;
-	t_player		player;
 	int				debug;
 	int				texturing;
 	int				mouse_look;			
@@ -150,8 +162,10 @@ void				flush_str_array(t_env *e, char **array);
 // fonctions d'initialisation
 void                init(t_env *env);
 //void				init_map(t_env *e);
+void				launch_sdl(t_env *e);
 int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
+void				reset_screen(t_env *e);
 
 // fonctions coord
 int					get_spawn_pos(t_env *e);
@@ -160,22 +174,21 @@ t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);
 int					read_pixels(t_env *e, int x, int y);
 
-// fonctions textures
-void				init_textures(t_env *e);
-
 // fonctions couleurs
 t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
 Uint32				set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
 Uint32				flip_color_byte_order(int color);
 
 // fonctions dessin SDL
-void				sdl_tex_pix_put(t_env *e, int x, int y,  int color);
-void				sdl_tex_line(t_env *e, t_ldpt pt1, t_ldpt pt2, int color);
-void				sdl_tex_line_ver(t_env *e, t_ldpt p1, t_ldpt p2, int c);
-void				sdl_tex_line_hor(t_env *e, t_ldpt p1, t_ldpt p2, int c);
+void				sdl_pix_put(t_env *e, int x, int y,  int color);
+void				sdl_line(t_env *e, t_ldpt pt1, t_ldpt pt2, int color);
+void				sdl_line_ver(t_env *e, t_ldpt p1, t_ldpt p2, int c);
+void				sdl_line_hor(t_env *e, t_ldpt p1, t_ldpt p2, int c);
 
 // fonctions de debug
-void                PrintWindowEvent(const SDL_Event *ev);
+void				print_info(t_env *e);
+void				print_window_events_a(const SDL_Event *ev);
+void				print_window_events_b(const SDL_Event *ev);
 void				map_test(t_env *e);
 
 // fonctions chargement map
@@ -216,8 +229,9 @@ void				keypress_events(t_env *e);
 void				mouse_events(t_env *e);
 
 SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
-void				reset_screen(t_env *e);
 
+void				init_textures(t_env *e);
+void				resize_textures(t_env *e);
 
 /* Test & play funky funct'
 void  		        Render_Scramble_SDL(t_env *env);
@@ -229,11 +243,5 @@ void		        Render_Rand_SDLRect(t_env *env);
 void				Texture_Draw(t_env *env);
 //void				Text_Draw2(t_env *env, long double alpha);
 */
-
-# ifdef DEBUG
-#  define DBUG 1
-# else
-#  define DBUG 0
-# endif
 
 #endif

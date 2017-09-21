@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/18 02:00:14 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/21 03:56:32 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = 					wolf3d
 
 CC = 					clang
 CFLAGS +=				-Wall -Wextra -Werror
-OFLAGS := 				-O3
+OFLAGS := 				-O3 -Ofast
 RM := 					rm -rf
 
 INC = 					$(addprefix $(INC_PATH)/,$(INC_NAMES))
@@ -32,6 +32,7 @@ sdl2lib:
 	$(eval SDL2LIB = $(shell sdl2-config --libs))
 sdl2cflags:
 	$(eval SDL2CFLAGS = $(shell sdl2-config --cflags))
+
 SDL2TTFLIB :=			-lSDL2_ttf
 
 OBJ =					$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
@@ -68,13 +69,15 @@ $(NAME): libft brew sdl2lib sdl2cflags $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(DEBUG)
-
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS)
+	
 $(OBJ_PATH):
 	@echo "Creating ./obj path and making binaries from source files"
 	@mkdir $(OBJ_PATH)
 
 brew:
+	@echo "$(GREEN)Updating brew packages$(EOC)"
+	brew upgrade
 	@echo "$(GREEN)Checking pkg-config presence$(EOC)"
 	brew -v install pkg-config
 	@echo "$(GREEN)Checking libpng presence$(EOC)"
@@ -95,10 +98,6 @@ cleanbrew:
 
 COMPILE: all
 compile: COMPILE
-
-debug: debug_flag
-debug_flag:
-	$(eval DEBUG = -DDEBUG -g)
 
 clean: clean libft
 	@echo "Cleaning..."
@@ -133,9 +132,7 @@ norme:
 usage:
 	@echo "\n$(B_RED)Please use one of the following command:$(EOC)\n"
 	@echo "Compile $(GREEN)$(NAME)$(EOC) -> $(B_YELL)make compile$(EOC)\n"
-	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug compile$(EOC)\n"
-	@echo "If you want to activate the debug mode, be sure to do a 'make fclean' first\n"
-	
+	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug compile$(EOC)\n"	
 
 .PHONY: all clean fclean re libft sdl
 
