@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 04:25:24 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 04:37:24 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	render_textured(t_env *e, int x)
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
 //	(height > WH ? height = WH : 0);
-	
 //	config rect plafond
 	e->textures.src.x = 1232;
 	e->textures.src.y = 866;

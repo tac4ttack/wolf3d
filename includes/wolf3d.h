@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 03:33:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 04:38:27 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ typedef struct		s_tex
 	SDL_Texture		*frame;
 	SDL_Rect		src;
 	SDL_Rect		dst;
+	int				x;
+	int				y;
 }					t_tex;
 
 typedef struct      s_env
