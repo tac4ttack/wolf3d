@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/18 03:18:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 03:43:48 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ Uint8	main_loop(t_env *e)
 				(e->eve.type == SDL_WINDOWEVENT ? win_events(e) : 0);
 				(e->eve.type == SDL_KEYDOWN ? keypress_events(e) : 0);
 				(e->eve.type == SDL_MOUSEMOTION ? mouse_events(e) : 0);
-				(e->debug ? PrintWindowEvent(&e->eve) : 0);
+				(e->debug == 1 ? print_window_events_a(&e->eve) : 0);
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);
 			}
 			draw_frame(e);
-			SDL_UpdateTexture(e->tex, NULL, e->pix, WW * sizeof (Uint32));
+			if (e->texturing == -1)
+				SDL_UpdateTexture(e->tex, NULL, e->pix, WW * sizeof (Uint32));
+			else
+				e->tex = SDL_CreateTextureFromSurface(e->ren, e->textures.buffer);
 			SDL_RenderCopy(e->ren, e->tex, NULL, NULL);
 			SDL_RenderPresent(e->ren);
 		}

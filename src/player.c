@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:00:47 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:01:58 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 04:33:37 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		get_spawn_pos(t_env *e)
 	{
 		while (x < COL && e->player.spawned != 1)
 		{
-			if (e->map.grid[y][x] == 9)
+			if (e->map.grid[y][x] == 666)
 			{
 				e->player.spawned = 1;
 				e->player.grid.x = x;

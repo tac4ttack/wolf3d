@@ -17,26 +17,23 @@ void win_events(t_env *e)
 	if (e->eve.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 	{
 		reset_screen(e);
-	//	TW = WH / 12;
-	//	TH = TW;
-	//	e->player.height = TH / 2;
-	//	e->deg_step = FOV / WW;
-	//	e->sc_gap = (WW / 2) / tanl(M_PI / 6);
-	//	e->map.cei = TH;
+		resize_textures(e);
 	}
 }
 
-void	print_player_info(t_env *e)
-{
-	printf("player x = %Lf | y = %Lf\n", e->player.pix.x, e->player.pix.y);
-	printf("player gridx = %Lf | gridy = %Lf\n", e->player.grid.x, e->player.grid.y);
-}
+
 
 void	keypress_events(t_env *e)
 {
 	if (e->eve.key.type == SDL_KEYDOWN)
 	{
-	//	ft_putendl("KEYDOWN");
+		if (e->debug == 1)
+		{
+			ft_putstr("Input is ");
+			ft_putnbr(e->eve.key.keysym.sym);
+			ft_putchar('\n');
+			(e->eve.key.keysym.sym == 0x70 ? print_info(e) : 0); // p
+		}
 		(e->eve.key.keysym.sym == 27 ? quit(e) : 0);
 		(e->eve.key.keysym.sym == 0x40000050 ? look(e, -1) : 0); // gauche
 		(e->eve.key.keysym.sym == 0x4000004F ? look(e, 1) : 0); // droite
@@ -47,9 +44,13 @@ void	keypress_events(t_env *e)
 		(e->eve.key.keysym.sym == 0x61 ? strafe(e, 1) : 0); // a
 		(e->eve.key.keysym.sym == 0x64 ? strafe(e, -1) : 0); // q
 		(e->eve.key.keysym.sym == 0x74 ? e->texturing *= -1 : 0); // t
-		(e->eve.key.keysym.sym == 104 ? PrintWindowEvent(&e->eve) : 0);
-		(e->eve.key.keysym.sym == 0x09 ? e->mouse_look *= -1 : 0); // tabulation
-		(e->eve.key.keysym.sym == 0x70 ? print_player_info(e) : 0); // p
+		(e->eve.key.keysym.sym == 96 ? e->debug *= -1 : 0); // `
+		if (e->eve.key.keysym.sym == 0x09)
+		{
+			e->mouse_look *= -1;
+			(SDL_ShowCursor(-1) == 0 ? SDL_ShowCursor(1) : SDL_ShowCursor(0));
+		}
+		
 	}
 }
 
@@ -57,8 +58,6 @@ void	mouse_events(t_env *e)
 {
 	if (e->eve.motion.type == SDL_MOUSEMOTION)
 	{
-	//	ft_putendl("MOUSEMOTION");
-	//	printf("player dir = %Lf\n", e->player.dir);
 		mouse_look(e);
 	}
 }

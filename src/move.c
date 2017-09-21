@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/18 02:39:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/21 04:30:10 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,14 @@ void	move(t_env *e, int delta)
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
 	if (read_pixels(e, PNX, PNY) != 1)
-		{
-			PX = PNX;
-			PY = PNY;
-		}
+	{
+		PX = PNX;
+		PY = PNY;
+	}
+//	else if (read_pixels(e, PNX, PY) != 1)
+//		PX = PNY;
+//	else if (read_pixels(e, PX, PNY) != 1)
+//		PY = PNY;
 }
 
 void	strafe(t_env *e, int delta)
@@ -44,10 +48,14 @@ void	strafe(t_env *e, int delta)
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
 	if (read_pixels(e, PNX, PNY) != 1)
-		{
-			PX = PNX;
-			PY = PNY;
-		}
+	{
+		PX = PNX;
+		PY = PNY;
+	}
+//	else if (read_pixels(e, PNX, PY) != 1)
+//		PX = PNY;
+//	else if (read_pixels(e, PX, PNY) != 1)
+//		PY = PNY;
 }
 
 void	mouse_look(t_env *e)
