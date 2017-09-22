@@ -1,5 +1,8 @@
-probleme largueur textures suivant dimensions fenetres
-artefacts lorsquon est proche d'un mur
-index texture a finir
 textures inversee sur certaines orientations
-securiser parseur avec map bien fermées
+textures depassent un peu sur l'index suivant // ? semble ok a tester mieux
+securiser parseur:
+	- avec map bien fermées
+	- multiples espaces a supprimer automatiquement?
+couleur plafond / sol bug suivant resolution // ? semble ok a tester mieux
+hitbox collision un peu plus large
+glisser contre les murs
