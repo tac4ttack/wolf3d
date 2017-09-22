@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 04:37:24 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 06:01:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,37 +41,28 @@ void	render_textured(t_env *e, int x)
 	
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
-//	(height > WH ? height = WH : 0);
-//	config rect plafond
-	e->textures.src.x = 1232;
-	e->textures.src.y = 866;
-	e->textures.src.w = 1;
-	e->textures.src.h = 1;
-	e->textures.dst.x = x;
-	e->textures.dst.y = 0;
-	e->textures.dst.w = 1;
-	e->textures.dst.h = (WH / 2) - (height / 2);
-	SDL_BlitScaled(e->textures.sheet, &e->textures.src, e->textures.buffer, &e->textures.dst); // blit plafond
-//	config rect mur
-	e->textures.src.x = (e->r.hit_val * 128) + e->r.hit_x;
-	e->textures.src.y = 0;
-	e->textures.src.w = 1;
-	e->textures.src.h = 128;
-	e->textures.dst.x = x;
-	e->textures.dst.y = (WH / 2) - (height / 2);
-	e->textures.dst.w = 1;
-	e->textures.dst.h = height;
-	SDL_BlitScaled(e->textures.sheet, &e->textures.src, e->textures.buffer, &e->textures.dst); // blit mur
-//	config rect sol
-	e->textures.src.x = 1152;
-	e->textures.src.y = 768;
-	e->textures.src.w = 1;
-	e->textures.src.h = 1;
-	e->textures.dst.x = x;
-	e->textures.dst.y = (WH / 2) + (height / 2);
-	e->textures.dst.w = 1;
-	e->textures.dst.h = (WH / 2) - (height / 2);
-	SDL_BlitScaled(e->textures.sheet, &e->textures.src, e->textures.buffer, &e->textures.dst); // blit sol
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2);
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2);
+//	printf("ceilling src.x = %d | src.y = %d\n", e->tex.src.x, e->tex.src.y);
+	e->tex.src.h = 1;
+	e->tex.dst.x = x;
+	e->tex.dst.y = 0;
+	e->tex.dst.h = (WH / 2) - (height / 2);
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
+	e->tex.src.x = (((e->r.hit_val % 12) - 1) * TW) + e->r.hit_x;
+	e->tex.src.y = (e->r.hit_val / 12) * TH;
+//	printf("wall src.x = %d | src.y = %d\n", e->tex.src.x, e->tex.src.y);
+	e->tex.src.h = e->tile_h;
+	e->tex.dst.y = (WH / 2) - (height / 2);
+	e->tex.dst.h = height;
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
+	e->tex.src.x = (((82 % 12) - 1) * TW) + (10 * (TW / 8) / 2);
+	e->tex.src.y = ((82 / 12) * TH) + (10 * (TH / 8) / 2);
+//	printf("floor src.x = %d | src.y = %d\n\n", e->tex.src.x, e->tex.src.y);
+	e->tex.src.h = 1;
+	e->tex.dst.y = (WH / 2) + (height / 2);
+	e->tex.dst.h = (WH / 2) - (height / 2);
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
 }
 
 void	render(t_env *e, int x)

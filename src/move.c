@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 04:30:10 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 02:05:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	move(t_env *e, int delta)
 		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
-	if (read_pixels(e, PNX, PNY) != 1)
+	if (read_pixels(e, PNX, PNY) < 1)
 	{
 		PX = PNX;
 		PY = PNY;
@@ -47,7 +47,7 @@ void	strafe(t_env *e, int delta)
 		PNX = PX - sinl(((PDIR - 90) * DEG2RAD)) * 10;
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
-	if (read_pixels(e, PNX, PNY) != 1)
+	if (read_pixels(e, PNX, PNY) < 1)
 	{
 		PX = PNX;
 		PY = PNY;

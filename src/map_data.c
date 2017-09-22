@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 05:00:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 05:53:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	fill_map_grid(t_env *e, char *data)
 //			ft_putstr(" i = ");
 //			ft_putnbr(i);
 //			ft_putchar('\n');
-			e->map.grid[j][i] = ft_atoi(split[i + (j * COL)]);
+			e->map.grid[j][i] = atoi(split[i + (j * COL)]);
 			i++;
 		}
 		j++;

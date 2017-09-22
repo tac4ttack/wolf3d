@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/21 04:29:10 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 05:18:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	calc_hor_step(t_env *e)
 			e->r.deg == 0 || e->r.deg == 360)
 	{
 		e->r.h_ya = -TH;
-		e->r.a.y = (floorl(RY / TH) * TH) - 0.0001;
+		e->r.a.y = (floorl(RY / TH) * TH) - 0.00001;
 	}
 	else
 	{
@@ -78,7 +78,7 @@ void	calc_ver_step(t_env *e)
 	else
 	{
 		e->r.v_xa = -TW;
-		e->r.b.x = floorl(RX / TW) * TW - 0.0001;
+		e->r.b.x = floorl(RX / TW) * TW - 0.00001;
 	}
 	e->r.v_ya = fabsl(e->r.v_xa / tanl(e->r.rad));
 	e->r.b.y = RY + ((RX - e->r.b.x) / tanl(e->r.rad));

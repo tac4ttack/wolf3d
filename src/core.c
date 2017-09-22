@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/20 22:12:11 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 02:03:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void		launch_sdl(t_env *e)
 {
 	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, WW, WH, WFLA)))
 		env_error(e, "Error creating the window");
-	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_SOFTWARE)))
+	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_PRESENTVSYNC)))
 		env_error(e, "Error creating the renderer");
-	if (!(e->tex = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, WW, WH)))
+	if (!(e->buf = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, WW, WH)))
 		env_error(e, "Error creating the rendering context");
 	if (!(e->pix = (Uint32*)malloc(WW * WH * sizeof(Uint32))))
 		env_error(e, "Error allocating memory for texture pixels");
@@ -34,7 +34,7 @@ void		init(t_env *e)
 	WH = BHEI;
 	e->ren = NULL;
 	e->pix = NULL;
-	e->tex = NULL;
+	e->buf = NULL;
 	e->win = NULL;
 	TW = WW / 12;
 	TH = TW;
