@@ -3,6 +3,8 @@ textures depassent un peu sur l'index suivant // ? semble ok a tester mieux
 securiser parseur:
 	- avec map bien fermées
 	- multiples espaces a supprimer automatiquement?
+	- segfaults a virer lorsque trop d'esapces
+	
 couleur plafond / sol bug suivant resolution // ? semble ok a tester mieux
 hitbox collision un peu plus large
 glisser contre les murs
