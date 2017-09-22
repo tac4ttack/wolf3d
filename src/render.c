@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 06:01:00 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 07:43:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	render_textured(t_env *e, int x)
 	
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
-	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2);
-	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2);
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 5) + 1;
 //	printf("ceilling src.x = %d | src.y = %d\n", e->tex.src.x, e->tex.src.y);
 	e->tex.src.h = 1;
 	e->tex.dst.x = x;
@@ -56,8 +56,8 @@ void	render_textured(t_env *e, int x)
 	e->tex.dst.y = (WH / 2) - (height / 2);
 	e->tex.dst.h = height;
 	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
-	e->tex.src.x = (((82 % 12) - 1) * TW) + (10 * (TW / 8) / 2);
-	e->tex.src.y = ((82 / 12) * TH) + (10 * (TH / 8) / 2);
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 6) + 1;
 //	printf("floor src.x = %d | src.y = %d\n\n", e->tex.src.x, e->tex.src.y);
 	e->tex.src.h = 1;
 	e->tex.dst.y = (WH / 2) + (height / 2);

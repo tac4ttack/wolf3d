@@ -18,7 +18,6 @@ void win_events(t_env *e)
 	{
 		reset_screen(e);
 		resize_textures(e);
-	//	draw_frame(e);
 	}
 }
 

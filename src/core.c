@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 02:03:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 07:55:37 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void		reset_screen(t_env *e)
 	old.x = e->player.pix.x / TW;
 	old.y = e->player.pix.y / TH;
 	e->run = 0;
-	WW = e->eve.window.data1;
-	WH = e->eve.window.data2;
-	TW = WW / 12;
+	WW = e->eve.window.data1 - (e->eve.window.data1 % 128);
+	WH = e->eve.window.data2 - (e->eve.window.data2 % 128);
+	printf("WW = %d | WH = %d \n", WW, WH);
+	TW = WW / (WW / 128);
 	TH = TW;
 	if (e->ren)
 		SDL_DestroyRenderer(e->ren);

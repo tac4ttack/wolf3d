@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:27:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/20 22:07:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/22 07:49:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void		print_info(t_env *e)
 {
-	ft_putendl("Player position:");
+	ft_putstr("\nWindow's width = ");
+	ft_putnbr(WW);
+	ft_putstr(" | height = ");
+	ft_putnbr(WH);
+	ft_putendl("\nPlayer position:");
 	ft_putstr("Grid_x = ");
 	ft_putnbr(e->player.grid.x);
 	ft_putstr(" | Grid_y = ");
