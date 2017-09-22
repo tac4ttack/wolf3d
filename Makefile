@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/21 03:56:32 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/22 01:14:32 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,9 @@ LIBFT_INC_PATH :=		$(LIBFT_PATH)/
 LIBFTFLAGS :=			-lft
 
 LIBMATHFLAGS :=			-lm
+
+RENTER :=				-DREENTRANT
+PTHREADFLAG :=			-lpthread
 
 sdl2lib:
 	$(eval SDL2LIB = $(shell sdl2-config --libs))
@@ -55,7 +58,6 @@ SRC_NAME =				color.c \
 						player.c \
 						raycasting.c \
 						render.c \
-						test.c \
 						text.c \
 						texture.c \
 						utils.c
@@ -66,10 +68,10 @@ all: $(NAME)
 
 $(NAME): libft brew sdl2lib sdl2cflags $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB)
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB) $(PTHREADFLAG)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS)
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(RENTER)
 	
 $(OBJ_PATH):
 	@echo "Creating ./obj path and making binaries from source files"

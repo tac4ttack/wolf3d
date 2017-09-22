@@ -2,3 +2,4 @@ probleme largueur textures suivant dimensions fenetres
 artefacts lorsquon est proche d'un mur
 index texture a finir
 textures inversee sur certaines orientations
+securiser parseur avec map bien fermées
