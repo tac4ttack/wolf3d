@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/22 01:14:32 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/22 08:09:28 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,10 +101,9 @@ cleanbrew:
 COMPILE: all
 compile: COMPILE
 
-clean: clean libft
+clean: cleanlibft
 	@echo "Cleaning..."
 	@echo "Deleting .obj files"
-	@make -C $(LIBFT_PATH)/ clean
 	@rm -rf $(OBJ_PATH)
 
 fclean: clean fcleanlibft cleanbrew
