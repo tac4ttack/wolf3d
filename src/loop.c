@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 04:14:17 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 11:07:43 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	draw_frame(t_env *e)
 	x = 0;
 	while (x < WW)
 	{
-		init_ray(e, x);		// initialisation rayon, semble OK
-		convert_dir(e);		// conversion direction en radian, semble OK
-		calc_hor_step(e);		//calc_step
+		init_ray(e, x);
+		convert_dir(e);
+		calc_hor_step(e);
 		calc_ver_step(e);
 		calc_dst(e);
 		render(e, x);
@@ -44,20 +44,6 @@ Uint8	main_loop(t_env *e)
 				(e->run == 0 ? quit(e) : 0);
 			}
 			draw_frame(e);
-			if (e->texturing == -1)
-			{
-				SDL_UpdateTexture(e->buf, NULL, e->pix, WW * sizeof (Uint32));
-				SDL_RenderCopy(e->ren, e->buf, NULL, NULL);
-			}
-//			else
-//				e->buf = SDL_CreateTextureFromSurface(e->ren, e->tex.buffer);
-//			SDL_RenderCopy(e->ren, e->buf, NULL, NULL);
-			SDL_Rect	a;
-			a.x = 66;
-			a.y = 66;
-			a.w = 666;
-			a.h = 333;
-//			SDL_RenderCopy(e->ren, e->tex.sheet2, NULL, &a);
 			SDL_RenderPresent(e->ren);
 		}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 08:50:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 11:13:11 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			get_offset(t_env *e, long double hit, char dir)
 	return (offset);
 }
 
-void	render_no_textures(t_env *e, int x)
+/*void	render_no_textures(t_env *e, int x)
 {
 	int		height;
 	t_ldpt	p1;
@@ -54,6 +54,32 @@ void	render_no_textures(t_env *e, int x)
 	p1.y = p2.y;
 	p2.y = WH;
 	sdl_line(e, p1, p2, 0xFF333333);
+}*/
+
+void	render_no_textures(t_env *e, int x)
+{
+	int			height;
+	
+	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
+	height = (TW / e->r.dst) * e->sc_gap;
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 5) + 1;
+	e->tex.src.h = 1;
+	e->tex.dst.x = x;
+	e->tex.dst.y = 0;
+	e->tex.dst.h = (WH / 2) - (height / 2);
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
+	e->tex.src = get_wall_color(e);
+//	e->tex.src.h = e->tile_h;
+	e->tex.dst.y = (WH / 2) - (height / 2);
+	e->tex.dst.h = height;
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 6) + 1;
+//	e->tex.src.h = 1;
+	e->tex.dst.y = (WH / 2) + (height / 2);
+	e->tex.dst.h = (WH / 2) - (height / 2);
+	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
 }
 
 void	render_textured(t_env *e, int x)
@@ -63,7 +89,7 @@ void	render_textured(t_env *e, int x)
 //	e->r.dst *= fabsl(cosl((PDIR - e->r.rad) * DEG2RAD)); // euclidian lsd
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
-	printf("X = %d\n", x);
+//	printf("X = %d\n", x);
 	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
 	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 5) + 1;
 //	printf("ceilling src.x = %d | src.y = %d\n", e->tex.src.x, e->tex.src.y);
@@ -73,7 +99,7 @@ void	render_textured(t_env *e, int x)
 	e->tex.dst.h = (WH / 2) - (height / 2);
 	SDL_RenderCopy(e->ren, e->tex.sheet2, &e->tex.src, &e->tex.dst);
 	e->tex.src = get_texture(e);
-	printf("hit_x = %d\nwall src.x = %d | src.y = %d\n", e->r.hit_x, e->tex.src.x, e->tex.src.y);
+//	printf("hit_x = %d\nwall src.x = %d | src.y = %d\n", e->r.hit_x, e->tex.src.x, e->tex.src.y);
 	e->tex.src.h = e->tile_h;
 	e->tex.dst.y = (WH / 2) - (height / 2);
 	e->tex.dst.h = height;

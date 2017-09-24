@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/22 08:09:28 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/24 11:13:40 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,8 @@ OBJ_NAME =				$(SRC_NAME:.c=.o)
 
 SRC =					$(addprefix $(SRC_PATH)/,$(SRC_NAME))
 SRC_PATH =				./src
-SRC_NAME =				color.c \
-						coord.c \
+SRC_NAME =				coord.c \
 						debug.c \
-						drawing.c \
 						events.c \
 						core.c \
 						loop.c \
