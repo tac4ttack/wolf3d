@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 11:13:47 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 12:12:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,6 @@ void				flush_str_array(t_env *e, char **array);
 
 // fonctions d'initialisation
 void                init(t_env *env);
-//void				init_map(t_env *e);
 void				launch_sdl(t_env *e);
 int					**init_map_grid(t_env *e);
 void				init_player(t_env *e);
@@ -203,7 +202,7 @@ void				calc_dst(t_env *e);
 void				render(t_env *e, int x);
 void				render_no_textures(t_env *e, int x);
 void				render_textures(t_env *e, int x);
-int					get_offset(t_env *e, long double hit, char dir);
+int					get_offset(t_env *e, long double hit);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);

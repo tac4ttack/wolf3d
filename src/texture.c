@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 11:15:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 12:01:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ SDL_Rect	get_wall_color(t_env *e)
 	
 	result.w = 1;
 	result.h = 1;
-//	printf("hitside = %d\n", e->r.hit_side);
 	if (e->r.hit_side == 1)
 	{
 		result.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 2);
