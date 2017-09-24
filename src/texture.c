@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 05:06:59 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 07:58:55 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,13 @@
 
 void		init_textures(t_env *e)
 {
-	int	w,h;
-	
 	e->tex.src.w = 1;
 	e->tex.dst.w = 1;
 	e->tex.file = ft_strnew(28);
-	e->tex.file = "./assets/textures_sheet.bmp";
+	e->tex.file = "./assets/textures.bmp";
 	if (!(e->tex.sheet = SDL_LoadBMP(e->tex.file)))
-		env_error(e, (char*)SDL_GetError());
+		env_error(e, NULL);
 	e->tex.sheet2 = SDL_CreateTextureFromSurface(e->ren, e->tex.sheet);
-
-
-
-
-
-	
-//////	
-	printf("INIT\nsurface sheet\nwidth = %d | height = %d\n", e->tex.sheet->w, e->tex.sheet->h);
-	SDL_QueryTexture(e->tex.sheet2, NULL, NULL, &w, &h);
-	printf("INIT\ntexture sheet initialized \nwidth = %d | height = %d\n\n", w, h);
-//////
 }
 
 void		resize_textures(t_env *e)
@@ -58,4 +45,22 @@ void		resize_textures(t_env *e)
 											TW * 12, TH * 13)))
 		env_error(e, "Error creating the texture frame buffer");
 	e->tex.sheet2 = SDL_CreateTextureFromSurface(e->ren, e->tex.sheet);
+}
+
+SDL_Rect	get_texture(t_env *e)
+{
+	SDL_Rect	result;
+	
+	result.w = 1;
+	if (e->r.hit_val % 12 == 0)
+	{
+		result.x = ((((e->r.hit_val - 1) % 12)) * TW) + e->r.hit_x;
+		result.y = ((e->r.hit_val / 12) - 1) * TH;
+	}
+	else
+	{
+		result.x = (((e->r.hit_val % 12) - 1) * TW) + e->r.hit_x;
+		result.y = (e->r.hit_val / 12) * TH;
+	}
+	return (result);
 }

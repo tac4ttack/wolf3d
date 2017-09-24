@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 04:11:39 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 08:46:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ typedef struct      s_ray
 	long double		v_ya;
 	long double		dst;
 	int				hit_x;
-	int				hit_y;
+//	int				hit_y;
 	int				hit_val;
 	int				height;
 }                   t_ray;
@@ -146,7 +146,7 @@ typedef struct      s_env
 	long double		deg_step;
 	int				debug;
 	int				texturing;
-	int				mouse_look;			
+	int				mouse_look;		
 }                   t_env;
 
 // fonctions utilitaires
@@ -215,6 +215,7 @@ void				calc_dst(t_env *e);
 void				render(t_env *e, int x);
 void				render_no_textures(t_env *e, int x);
 void				render_textures(t_env *e, int x);
+int					get_offset(t_env *e, long double hit, char dir);
 
 // SDL loop functions
 Uint8               main_loop(t_env *env);
@@ -228,5 +229,6 @@ SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
 
 void				init_textures(t_env *e);
 void				resize_textures(t_env *e);
+SDL_Rect			get_texture(t_env *e);
 
 #endif

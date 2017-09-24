@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 05:18:46 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 09:16:17 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	calc_dst(t_env *e)
 	{
 		e->r.dst = h_dst;
 		e->player.pix.c.h = 0xffff0000;
-		e->r.hit_x = (int)e->r.a.x % TW;
+		e->r.hit_x = get_offset(e, e->r.a.x, 'h');
 		e->r.hit_val = read_pixels(e, e->r.a.x, e->r.a.y);
 		(int)e->r.a.y % TW > 0.5 ? e->player.pix.c.h = 0xffff9900 : 0;
 	}
@@ -113,7 +113,7 @@ void	calc_dst(t_env *e)
 	{
 		e->r.dst = v_dst;
 		e->player.pix.c.h = 0xff00ff00;
-		e->r.hit_x = (int)e->r.b.y % TH;
+		e->r.hit_x = get_offset(e, e->r.b.y, 'v');
 		e->r.hit_val = read_pixels(e, e->r.b.x, e->r.b.y);
 		(int)e->r.b.x % TH > 0.5 ? e->player.pix.c.h = 0xff00ff99 : 0;
 	}
