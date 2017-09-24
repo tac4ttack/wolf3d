@@ -1,16 +1,20 @@
-* textures inversee sur certaines orientations  // // ? semble ok a tester mieux
-* couleur plafond / sol bug suivant resolution // ? semble ok a tester mieux
-* textures depassent un peu sur l'index suivant // ? semble ok a tester mieux
-* hitbox collision un peu plus large // semble ok
-* glisser contre les murs // semble ok
-* optimisation rendu non texturé // ok
+* textures inversee sur certaines orientations  	// ? semble ok a tester mieux
+* couleur plafond / sol bug suivant resolution 		// ? semble ok a tester mieux
+* textures depassent un peu sur l'index suivant 	// ? semble ok a tester mieux
+* hitbox collision un peu plus large 				// semble ok
+* glisser contre les murs							// semble ok
+* optimisation rendu non texturé	 				// ok
 
-* faire brouillard avec distance
+* faire brouillard avec distance ?
+
 * securiser parseur:
 	- avec map bien fermées
 	- multiples espaces a supprimer automatiquement?
 	- segfaults a virer lorsque trop d'espaces	
 
+* rajouter viseur activable
+
+* rajouter multi input
 
 
 BONUS:

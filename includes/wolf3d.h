@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 12:12:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 13:36:20 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,6 @@
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
 # define TEXACC		SDL_TEXTUREACCESS_STREAMING
 
-typedef struct      s_hue
-{
-	Uint8           r;
-	Uint8           g;
-	Uint8           b;
-	Uint8           a;
-	Uint32          h;
-}                   t_hue;
-
 typedef struct		s_ldpt
 {
 	long double		x;
@@ -116,8 +107,9 @@ typedef struct      s_map
 typedef struct		s_tex
 {
 	char			*file;
-	SDL_Surface		*sheet;
-	SDL_Texture		*sheet2;
+	SDL_Surface		*bitmap;
+	SDL_Texture		*sheet;
+	SDL_Texture		*shadow;
 	SDL_Rect		src;
 	SDL_Rect		dst;
 	int				x;
@@ -128,8 +120,6 @@ typedef struct      s_env
 {
 	SDL_Window      *win;
 	SDL_Renderer    *ren;
-	SDL_Texture     *buf;
-	Uint32			*pix;
 	SDL_Event       eve;
 	SDL_bool        run;
 	TTF_Font		*ttf;

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 12:01:30 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 13:42:55 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void		init_textures(t_env *e)
 	e->tex.dst.w = 1;
 	e->tex.file = ft_strnew(28);
 	e->tex.file = "./assets/textures.bmp";
-	if (!(e->tex.sheet = SDL_LoadBMP(e->tex.file)))
+	if (!(e->tex.bitmap = SDL_LoadBMP(e->tex.file)))
 		env_error(e, NULL);
-	e->tex.sheet2 = SDL_CreateTextureFromSurface(e->ren, e->tex.sheet);
+	if (!(e->tex.shadow = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, 1, 1)))
+		env_error(e, "Error creating the shadow buffer");
+	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
 }
 
 void		resize_textures(t_env *e)
@@ -28,23 +30,23 @@ void		resize_textures(t_env *e)
 	SDL_Surface	*tmp;
 	SDL_Rect	canvas;
 	
-	SDL_FreeSurface(e->tex.sheet);
-	e->tex.sheet = SDL_CreateRGBSurfaceWithFormat(0, TW * 12, TH * 13,
+	SDL_FreeSurface(e->tex.bitmap);
+	e->tex.bitmap = SDL_CreateRGBSurfaceWithFormat(0, TW * 12, TH * 13,
 													32, TEXPIX);
 	if (!(tmp = SDL_LoadBMP(e->tex.file)))
 		env_error(e, (char*)SDL_GetError());
 	canvas.x = 0;
 	canvas.y = 0;
-	canvas.w = e->tex.sheet->w;
-	canvas.h = e->tex.sheet->h;
-	SDL_BlitScaled(tmp, NULL, e->tex.sheet, &canvas);
+	canvas.w = e->tex.bitmap->w;
+	canvas.h = e->tex.bitmap->h;
+	SDL_BlitScaled(tmp, NULL, e->tex.bitmap, &canvas);
 	SDL_FreeSurface(tmp);
-	if (e->tex.sheet2 != NULL)
-		SDL_DestroyTexture(e->tex.sheet2);
-	if (!(e->tex.sheet2 = SDL_CreateTexture(e->ren, TEXPIX, TEXACC,
+	if (e->tex.sheet != NULL)
+		SDL_DestroyTexture(e->tex.sheet);
+	if (!(e->tex.sheet = SDL_CreateTexture(e->ren, TEXPIX, TEXACC,
 											TW * 12, TH * 13)))
-		env_error(e, "Error creating the texture frame buffer");
-	e->tex.sheet2 = SDL_CreateTextureFromSurface(e->ren, e->tex.sheet);
+		env_error(e, "Error creating the texture sheet buffer");
+	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
 }
 
 SDL_Rect	get_texture(t_env *e)
