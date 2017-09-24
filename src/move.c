@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 02:05:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 10:13:45 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,52 @@
 
 void	move(t_env *e, int delta)
 {
-	if (delta == 1) // haut
+	int tmp_x;
+	int tmp_y;
+
+	tmp_x = PX;
+	tmp_y = PY;
+	if (delta == 1)
 	{
 		PNX = PX + sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY - cosl(PDIR * DEG2RAD) * 10;
 	}
-	if (delta == -1) // bas
+	if (delta == -1)
 	{
 		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
-	if (read_pixels(e, PNX, PNY) < 1)
-	{
-		PX = PNX;
-		PY = PNY;
-	}
-//	else if (read_pixels(e, PNX, PY) != 1)
-//		PX = PNY;
-//	else if (read_pixels(e, PX, PNY) != 1)
-//		PY = PNY;
+	if (read_pixels(e, (PDIR > 0 && PDIR < 180 ? PNX + 10 : PNX - 10), PY) < 1)
+		tmp_x = PNX;
+	if (read_pixels(e, PX, (PDIR > 90 && PDIR < 270 ? PNY + 10 : PNY - 10)) < 1)
+		tmp_y = PNY;
+	PX = tmp_x;
+	PY = tmp_y;
 }
 
 void	strafe(t_env *e, int delta)
 {
-	if (delta == 1) // gauche
+	int tmp_x;
+	int tmp_y;
+
+	tmp_x = PX;
+	tmp_y = PY;
+	if (delta == 1)
 	{
 		PNX = PX + sinl(((PDIR - 90) * DEG2RAD)) * 10;
 		PNY = PY - cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
-	if (delta == -1) // droite
+	if (delta == -1)
 	{
 		PNX = PX - sinl(((PDIR - 90) * DEG2RAD)) * 10;
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
-	if (read_pixels(e, PNX, PNY) < 1)
-	{
-		PX = PNX;
-		PY = PNY;
-	}
-//	else if (read_pixels(e, PNX, PY) != 1)
-//		PX = PNY;
-//	else if (read_pixels(e, PX, PNY) != 1)
-//		PY = PNY;
+	if (read_pixels(e, (PDIR > 0 && PDIR < 180 ? PNX + 10 : PNX - 10), PY) < 1)
+		tmp_x = PNX;
+	if (read_pixels(e, PX, (PDIR > 90 && PDIR < 270 ? PNY + 10 : PNY - 10)) < 1)
+		tmp_y = PNY;
+	PX = tmp_x;
+	PY = tmp_y;
 }
 
 void	mouse_look(t_env *e)
@@ -72,12 +76,11 @@ void	mouse_look(t_env *e)
 		(PDIR < 0 ? PDIR = 359 : 0);
 		(PDIR > 360 ? PDIR = 1 : 0);
 	}
-//	printf("player dir = %Lf | mouse angle = %Lf\n", PDIR, angle);
 }
 
 void	look(t_env *e, int delta)
 {
-	PDIR += delta;	
+	PDIR += delta;
 	(PDIR == -1 ? PDIR = 359 : 0);
 	(PDIR == 361 ? PDIR = 1 : 0);
 }
