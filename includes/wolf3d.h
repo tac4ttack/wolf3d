@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 08:46:15 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/24 11:13:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ typedef struct		s_ldpt
 {
 	long double		x;
 	long double		y;
-	t_hue			c;
 }                   t_ldpt;
 
 typedef struct      s_ray
@@ -89,7 +88,7 @@ typedef struct      s_ray
 	long double		v_ya;
 	long double		dst;
 	int				hit_x;
-//	int				hit_y;
+	int				hit_side;
 	int				hit_val;
 	int				height;
 }                   t_ray;
@@ -170,17 +169,6 @@ t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);
 int					read_pixels(t_env *e, int x, int y);
 
-// fonctions couleurs
-t_hue		        set_hue(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
-Uint32				set_color(Uint8 a, Uint8 r, Uint8 g, Uint8 b);
-Uint32				flip_color_byte_order(int color);
-
-// fonctions dessin SDL
-void				sdl_pix_put(t_env *e, int x, int y,  int color);
-void				sdl_line(t_env *e, t_ldpt pt1, t_ldpt pt2, int color);
-void				sdl_line_ver(t_env *e, t_ldpt p1, t_ldpt p2, int c);
-void				sdl_line_hor(t_env *e, t_ldpt p1, t_ldpt p2, int c);
-
 // fonctions de debug
 void				print_info(t_env *e);
 void				print_window_events_a(const SDL_Event *ev);
@@ -230,5 +218,6 @@ SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
 void				init_textures(t_env *e);
 void				resize_textures(t_env *e);
 SDL_Rect			get_texture(t_env *e);
+SDL_Rect			get_wall_color(t_env *e);
 
 #endif
