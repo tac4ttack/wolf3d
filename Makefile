@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/27 19:34:33 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/27 20:23:25 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,10 +63,10 @@ all: brew compile
 
 $(NAME): $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
-	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB) $(PTHREADFLAG)
+	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB) $(PTHREADFLAG) $(ASANFLAGS)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDES_PATH) $(INC)
-	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(RENTER)
+	$(CC) $(CFLAGS) $(OFLAGS) -c $< -o $@ -I $(INC_PATH) -I $(LIBFT_INC_PATH) $(SDL2CFLAGS) $(RENTER) $(ASANFLAGS)
 	
 $(OBJ_PATH):
 	@echo "Creating ./obj path and making binaries from source files"
@@ -90,6 +90,9 @@ sdl2lib:
 	$(eval SDL2LIB = $(shell sdl2-config --libs))
 sdl2cflags:
 	$(eval SDL2CFLAGS = $(shell sdl2-config --cflags))
+
+debug: debuglibft
+	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer -g)
 
 cleanbrew:
 	brew uninstall -f sdl2_ttf
@@ -116,6 +119,10 @@ libft:
 	@echo "Compiling Libft library"
 	make -C $(LIBFT_PATH)/ all
 
+debuglibft:
+	@echo "Compiling Libft library with ASan"
+	make -C $(LIBFT_PATH)/ debug all
+	
 cleanlibft:
 	@echo "Cleaning the Libft"
 	make -C $(LIBFT_PATH)/ clean
