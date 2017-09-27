@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/24 11:13:40 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/27 19:34:33 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,6 @@ LIBMATHFLAGS :=			-lm
 
 RENTER :=				-DREENTRANT
 PTHREADFLAG :=			-lpthread
-
-sdl2lib:
-	$(eval SDL2LIB = $(shell sdl2-config --libs))
-sdl2cflags:
-	$(eval SDL2CFLAGS = $(shell sdl2-config --cflags))
 
 SDL2TTFLIB :=			-lSDL2_ttf
 
@@ -60,11 +55,13 @@ SRC_NAME =				coord.c \
 						texture.c \
 						utils.c
 
-default: usage
+default: all
 
-all: $(NAME)
+help: usage
 
-$(NAME): libft brew sdl2lib sdl2cflags $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
+all: brew compile
+
+$(NAME): $(SRC) $(INC) $(OBJ_PATH) $(OBJ)
 	@echo "Compiling $(NAME)"
 	$(CC) -o $@ $(OBJ) -L$(LIBFT_PATH) $(LIBFTFLAGS) $(LIBMATHFLAGS) $(SDL2LIB) $(SDL2TTFLIB) $(PTHREADFLAG)
 
@@ -89,14 +86,19 @@ brew:
 	@echo "$(GREEN)Checking SDL2_ttf presence$(EOC)"
 	brew -v install sdl2_ttf
 
+sdl2lib:
+	$(eval SDL2LIB = $(shell sdl2-config --libs))
+sdl2cflags:
+	$(eval SDL2CFLAGS = $(shell sdl2-config --cflags))
+
 cleanbrew:
 	brew uninstall -f sdl2_ttf
 	brew uninstall -f freetype
 	brew uninstall -f pkg-config
 	brew uninstall -f libgpng
-	brew uninstall -f sdl2)
+	brew uninstall -f sdl2
 
-COMPILE: all
+COMPILE: libft sdl2lib sdl2cflags $(NAME)
 compile: COMPILE
 
 clean: cleanlibft

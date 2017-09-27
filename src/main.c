@@ -6,36 +6,37 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/20 21:40:19 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 12:49:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-
-int 		main(int ac, char **av)
+int			main(int ac, char **av)
 {
-	t_env *e;
-	
+	t_env	*e;
+
 	if (ac != 2)
 	{
-		perror(NULL);
-		ft_putstr("\nUsage : ./wolf3d <map filename>");
-		return(1);
+		ft_putendl("\n\x1b[1;31mNo target file!\n---------------\x1b[0m");
+		ft_putstr("\x1b[2;32mUsage:\x1b[0m ./wolf3d");
+		ft_putstr(" \x1b[2;33m<map filename>\x1b[0m\n\n");
+		return (1);
 	}
 	else
 	{
+		ft_putendl("\n\x1b[1;31mWOLF3D\n-----\x1b[0m");
+		ft_putstr("Initializing game environment...");
 		if (!(e = (t_env*)malloc(sizeof(t_env))))
 			perror("Error allocating memory for environment:\n");
 		init(e);
-//		ft_putendl("init ok, loading map");
+		ft_putstr(" OK!\nLoading target map file...");
 		if (ac == 2)
 			load_map(e, av[1]);
-//		ft_putendl("map loaded");
+		ft_putstr("\nLaunching session...\n");
 	}
-
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");
 	quit(e);
-	return 0;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 13:35:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 15:31:10 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void		launch_sdl(t_env *e)
 		env_error(e, "Error creating the window");
 	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_PRESENTVSYNC)))
 		env_error(e, "Error creating the renderer");
+	if (TTF_Init() != 0)
+		env_error(e, "Error during SDL2 TTF initialization");
+	if (!(e->ttf = TTF_OpenFont("./assets/font.ttf", 14)))
+		env_error(e, "Error loading game text font");
 	SDL_SetRenderDrawBlendMode(e->ren, SDL_BLENDMODE_BLEND);
 }
 
@@ -32,6 +36,7 @@ void		init(t_env *e)
 	e->win = NULL;
 	TW = WW / 12;
 	TH = TW;
+	ft_bzero(&e->keys,sizeof(t_keys));
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		env_error(e, "Error initializing SDL2");
 	launch_sdl(e);

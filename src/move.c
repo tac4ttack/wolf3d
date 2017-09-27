@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 10:13:45 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 19:05:00 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ void	move(t_env *e, int delta)
 	tmp_y = PY;
 	if (delta == 1)
 	{
+//		PNX = PX + sinl((PDIR * DEG2RAD)) * 10;
+//		PNY = PY - cosl(PDIR * DEG2RAD) * 10;
 		PNX = PX + sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY - cosl(PDIR * DEG2RAD) * 10;
 	}
 	if (delta == -1)
 	{
+//		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
+//		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
@@ -46,12 +50,12 @@ void	strafe(t_env *e, int delta)
 	tmp_y = PY;
 	if (delta == 1)
 	{
-		PNX = PX + sinl(((PDIR - 90) * DEG2RAD)) * 10;
+		PNX = PX + sinl((PDIR - 90) * DEG2RAD) * 10;
 		PNY = PY - cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
 	if (delta == -1)
 	{
-		PNX = PX - sinl(((PDIR - 90) * DEG2RAD)) * 10;
+		PNX = PX - sinl((PDIR - 90) * DEG2RAD) * 10;
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
 	if (read_pixels(e, (PDIR > 0 && PDIR < 180 ? PNX + 10 : PNX - 10), PY) < 1)

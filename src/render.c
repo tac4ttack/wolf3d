@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 13:30:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:29:03 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ int			get_offset(t_env *e, long double hit)
 	if (e->r.hit_side == 2)
 		offset = (int)hit % TH;
 	return (offset);
+}
+
+void	render_crosshair(t_env *e)
+{
+	e->tex.src.w = 4;
+	e->tex.src.h = 4;
+	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8));
+	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 6) + 1;
+	e->tex.dst.w = 4;
+	e->tex.dst.h = 4;
+	e->tex.dst.x = (WW / 2) - 2;
+	e->tex.dst.y = (WH / 2) - 2;
+	SDL_RenderCopy(e->ren, e->tex.sheet, &e->tex.src, &e->tex.dst);
 }
 
 void	render_no_textures(t_env *e, int x)
