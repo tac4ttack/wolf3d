@@ -8,6 +8,10 @@
 
 * faire brouillard avec distance ?
 
+* rajouter limite inferieure pour taille fenetre
+
+**** LEAKS ET SEGFAULT USE ASAN 
+
 * securiser parseur:
 	- avec map bien fermées
 	- multiples espaces a supprimer automatiquement?
