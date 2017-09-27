@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 13:36:20 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:24:57 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,22 @@ typedef struct		s_tex
 	int				y;
 }					t_tex;
 
+typedef	struct		s_keys
+{
+	int				left;
+	int				right;
+	int				up;
+	int				down;
+	int				p;
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+	int				t;
+	int				apo;
+	int				tab;
+}					t_keys;
+
 typedef struct      s_env
 {
 	SDL_Window      *win;
@@ -123,6 +139,7 @@ typedef struct      s_env
 	SDL_Event       eve;
 	SDL_bool        run;
 	TTF_Font		*ttf;
+	t_keys			keys;
 	t_map           map;
 	t_ray			r;
 	t_player		player;
@@ -162,6 +179,7 @@ int					read_pixels(t_env *e, int x, int y);
 void				print_info(t_env *e);
 void				print_window_events_a(const SDL_Event *ev);
 void				print_window_events_b(const SDL_Event *ev);
+void				print_key(int key);
 void				map_test(t_env *e);
 
 // fonctions chargement map
@@ -192,6 +210,7 @@ void				calc_dst(t_env *e);
 void				render(t_env *e, int x);
 void				render_no_textures(t_env *e, int x);
 void				render_textures(t_env *e, int x);
+void				render_crosshair(t_env *e);
 int					get_offset(t_env *e, long double hit);
 
 // SDL loop functions
@@ -200,6 +219,8 @@ Uint8               main_loop(t_env *env);
 // SDL events
 void				win_events(t_env *e);
 void				keypress_events(t_env *e);
+void				keyrelease_events(t_env *e);
+void				key_events(t_env *e);
 void				mouse_events(t_env *e);
 
 SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
