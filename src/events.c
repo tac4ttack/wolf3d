@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmesft_sina <fmesft_sina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/16 17:01:07 by fmesft_sina          #+#    #+#             */
-/*   Updated: 2017/09/03 19:53:00 by fmesft_sina         ###   ########.fr       */
+/*   Created: 2017/09/27 16:24:26 by fmessina          #+#    #+#             */
+/*   Updated: 2017/09/27 17:15:26 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void win_events(t_env *e)
+void		win_events(t_env *e)
 {
 	if (e->eve.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
 	{
@@ -21,40 +21,83 @@ void win_events(t_env *e)
 	}
 }
 
+void		keyrelease_events(t_env *e)
+{
+	if (e->eve.key.type == SDL_KEYUP)
+	{
+		(e->eve.key.keysym.sym == 0x40000050 ? e->keys.left = 0 : 0);
+		(e->eve.key.keysym.sym == 0x4000004F ? e->keys.right = 0 : 0);
+		(e->eve.key.keysym.sym == 0x40000052 ? e->keys.up = 0 : 0);
+		(e->eve.key.keysym.sym == 0x40000051 ? e->keys.down = 0 : 0);
+		(e->eve.key.keysym.sym == 0x77 ? e->keys.w = 0 : 0);
+		(e->eve.key.keysym.sym == 0x73 ? e->keys.s = 0 : 0);
+		(e->eve.key.keysym.sym == 0x61 ? e->keys.a = 0 : 0);
+		(e->eve.key.keysym.sym == 0x64 ? e->keys.d = 0 : 0);
+		(e->eve.key.keysym.sym == 96 ? e->keys.apo = 0 : 0);
+		(e->eve.key.keysym.sym == 0x74 ? e->keys.t = 0 : 0);
+		(e->eve.key.keysym.sym == 0x09 ? e->keys.tab = 0 : 0);
+		(e->eve.key.keysym.sym == 0x70 ? e->keys.p = 0 : 0);
+	}
+}
 
+static void	keypress_events_toggle(t_env *e)
+{
+	if (e->eve.key.keysym.sym == 0x74)
+	{
+		if (e->keys.t == 0)
+		{
+			ft_putendl("Textured rendering toggle");
+			e->texturing *= -1;
+		}
+		e->keys.t = 1;
+	}
+	if (e->eve.key.keysym.sym == 0x09)
+	{
+		if (e->keys.tab == 0)
+		{
+			e->mouse_look *= -1;
+			ft_putendl("Mouse look toggle");
+			SDL_ShowCursor(-1) == 0 ? SDL_ShowCursor(1) : SDL_ShowCursor(0);
+		}
+		e->keys.tab = 1;
+	}
+	if (e->debug == 1)
+		if (e->eve.key.keysym.sym == 0x70)
+		{
+			(e->keys.p == 0 ? print_info(e) : 0);
+			e->keys.p = 1;
+		}
+}
 
-void	keypress_events(t_env *e)
+void		keypress_events(t_env *e)
 {
 	if (e->eve.key.type == SDL_KEYDOWN)
 	{
 		if (e->debug == 1)
-		{
-			ft_putstr("Input is ");
-			ft_putnbr(e->eve.key.keysym.sym);
-			ft_putchar('\n');
-			(e->eve.key.keysym.sym == 0x70 ? print_info(e) : 0); // p
-		}
+			print_key(e->eve.key.keysym.sym);
 		(e->eve.key.keysym.sym == 27 ? quit(e) : 0);
-		(e->eve.key.keysym.sym == 0x40000050 ? look(e, -1) : 0); // gauche
-		(e->eve.key.keysym.sym == 0x4000004F ? look(e, 1) : 0); // droite
-		(e->eve.key.keysym.sym == 0x40000052 ? move(e, 1) : 0); // haut
-		(e->eve.key.keysym.sym == 0x40000051 ? move(e, -1) : 0); // bas
-		(e->eve.key.keysym.sym == 0x77 ? move(e, 1) : 0); // w
-		(e->eve.key.keysym.sym == 0x73 ? move(e, -1) : 0); // s
-		(e->eve.key.keysym.sym == 0x61 ? strafe(e, 1) : 0); // a
-		(e->eve.key.keysym.sym == 0x64 ? strafe(e, -1) : 0); // q
-		(e->eve.key.keysym.sym == 0x74 ? e->texturing *= -1 : 0); // t
-		(e->eve.key.keysym.sym == 96 ? e->debug *= -1 : 0); // `
-		if (e->eve.key.keysym.sym == 0x09)
+		(e->eve.key.keysym.sym == 0x40000050 ? e->keys.left = 1 : 0);
+		(e->eve.key.keysym.sym == 0x4000004F ? e->keys.right = 1 : 0);
+		(e->eve.key.keysym.sym == 0x40000052 ? e->keys.up = 1 : 0);
+		(e->eve.key.keysym.sym == 0x40000051 ? e->keys.down = 1 : 0);
+		(e->eve.key.keysym.sym == 0x77 ? e->keys.w = 1 : 0);
+		(e->eve.key.keysym.sym == 0x73 ? e->keys.s = 1 : 0);
+		(e->eve.key.keysym.sym == 0x61 ? e->keys.a = 1 : 0);
+		(e->eve.key.keysym.sym == 0x64 ? e->keys.d = 1 : 0);
+		if (e->eve.key.keysym.sym == 96)
 		{
-			e->mouse_look *= -1;
-			(SDL_ShowCursor(-1) == 0 ? SDL_ShowCursor(1) : SDL_ShowCursor(0));
+			if (e->keys.apo == 0)
+			{
+				ft_putendl("Debug mode toggle");
+				e->debug *= -1;
+			}
+			e->keys.apo = 1;
 		}
-		
+		keypress_events_toggle(e);
 	}
 }
 
-void	mouse_events(t_env *e)
+void		mouse_events(t_env *e)
 {
 	if (e->eve.motion.type == SDL_MOUSEMOTION)
 	{

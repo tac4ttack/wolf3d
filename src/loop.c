@@ -6,16 +6,21 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 11:07:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 17:29:48 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	draw_frame(t_env *e)
+void			draw_frame(t_env *e)
 {
-	int x;
-	
+	int 		x;
+//	SDL_Color	hue;
+
+//	hue.a = 120;
+//	hue.r = 255;
+//	hue.g = 0;
+//	hue.b = 0;
 	x = 0;
 	while (x < WW)
 	{
@@ -27,10 +32,28 @@ void	draw_frame(t_env *e)
 		render(e, x);
 		x++;
 	}
+//	e->tex.dst.x = 10;
+//	e->tex.dst.y = 10;
+//	e->tex.dst.w = 60;
+//	e->tex.dst.h = 20;
+//	SDL_RenderCopy(e->ren, render_text(e, "toto caca", hue), NULL, &e->tex.dst);
+}
+
+void	keyboard_state_events(t_env *e)
+{
+	(e->keys.left == 1 ? look(e, -1) : 0);
+	(e->keys.right == 1 ? look(e, 1) : 0);
+	(e->keys.up == 1 ? move(e, 1) : 0);
+	(e->keys.down == 1 ? move(e, -1) : 0);
+	(e->keys.w == 1 ? move(e, 1) : 0);
+	(e->keys.s == 1 ? move(e, -1) : 0);
+	(e->keys.a == 1 ? strafe(e, 1) : 0);
+	(e->keys.d == 1 ? strafe(e, -1) : 0);
 }
 
 Uint8	main_loop(t_env *e)
 {
+
 	if (e)
 		while (e->run)
 		{
@@ -38,12 +61,15 @@ Uint8	main_loop(t_env *e)
 			{
 				(e->eve.type == SDL_WINDOWEVENT ? win_events(e) : 0);
 				(e->eve.type == SDL_KEYDOWN ? keypress_events(e) : 0);
+				(e->eve.type == SDL_KEYUP ? keyrelease_events(e) : 0);
 				(e->eve.type == SDL_MOUSEMOTION ? mouse_events(e) : 0);
 				(e->debug == 1 ? print_window_events_a(&e->eve) : 0);
 				(e->eve.type == SDL_QUIT ? e->run = 0 : 0);
 				(e->run == 0 ? quit(e) : 0);
 			}
+			keyboard_state_events(e);
 			draw_frame(e);
+			(e->debug == 1 ? render_crosshair(e) : 0);
 			SDL_RenderPresent(e->ren);
 		}
 	return (0);
