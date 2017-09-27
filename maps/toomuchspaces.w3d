@@ -1,0 +1,9 @@
+# An invalid map with too much spaces at beginning and end of lines
+# Used to demonstrate the ability of the parser to trim this shit
+    1 1 1 1 1 1 1 1 1     		
+		1 0 0   0 0   0 0 0 1
+	1 0 0 0 0 0 0 0 1
+  			1 0 0   0 0 0 0 0 1
+	  1 0 0 0 0 0 0 0 1 
+	1 0 0 0 0 -1 0 0 1 
+	1 1 1 1 1 1 1 1 1
