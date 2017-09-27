@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/08 04:03:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 12:51:54 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 	{
 		status = get_next_line(fd, &buf);
 		(status == -1 ? error() : 1);
-		if ( status == 0)
+		buf = ft_strtrim(buf);
+		if (status == 0)
 			break;
 		if (buf[0] != '#')
 		{
@@ -88,11 +89,11 @@ void	load_map(t_env *e, char *file)
 	
 	data = ft_strnew(0);
 	init_map(e);
-//	ft_putendl("map init ok");
 	data = ft_strjoin_free(data, read_file(e, file));
-//	ft_putendl("parsing map data");
 	parse_data(e, data);
-//	ft_putendl("map data parsed");
 	init_player(e);
 	free(data);
+	ft_putstr(" OK!\n\x1b[2;32m");
+	ft_putstr(file);
+	ft_putstr("\x1b[0m map successfully loaded!");
 }

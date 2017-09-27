@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/22 05:53:42 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/27 14:38:58 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static char		*split_map_data(t_env *e, char *data)
 {
-	int		i;
-	char	*tmp;
-	char	**split;
+	int			i;
+	char		*tmp;
+	char		**split;
 
 	i = 0;
 	tmp = ft_strnew(0);
@@ -30,48 +30,33 @@ static char		*split_map_data(t_env *e, char *data)
 	return (tmp);
 }
 
-static void	fill_map_grid(t_env *e, char *data)
+static void		fill_map_grid(t_env *e, char *data)
 {
-	int		i;
-	int		j;
-	char	**split;
+	int			i;
+	int			j;
+	char		**split;
 
 	i = 0;
 	j = 0;
-//	ft_putendl(data);
-//	ft_putstr("col = ");
-//	ft_putnbr(COL);
-//	ft_putstr(" line = ");
-//	ft_putnbr(LIN);
-//	ft_putchar('\n');
-//	ft_putendl("split?");
 	split = ft_strsplit(data, ' ');
-//	ft_putendl("split ok");
 	while (j < LIN)
 	{
-//		ft_putstr("j = ");
-//		ft_putnbr(j);
 		while (i < COL)
 		{
-//			ft_putstr(" i = ");
-//			ft_putnbr(i);
-//			ft_putchar('\n');
-			e->map.grid[j][i] = atoi(split[i + (j * COL)]);
+			e->map.grid[j][i] = ft_atoi(split[i + (j * COL)]);
 			i++;
 		}
 		j++;
 		i = 0;
 	}
-//	ft_putendl("flushing array?");
 	flush_str_array(e, split);
-//	ft_putendl("flushing array OK");
 }
 
-int		count_col(char *data)
+int				count_col(char *data)
 {
-	int	i;
-	int current;
-	int best;
+	int			i;
+	int			current;
+	int			best;
 
 	i = 0;
 	current = 0;
@@ -80,7 +65,12 @@ int		count_col(char *data)
 	{
 		while (data[i] != '\n')
 		{
-			(data[i] == ' ' ? current++ : 0);
+			if (data[i] == ' ' || data[i] == '\t')
+			{
+				while (data[i + 1] == ' ' || data[i + 1] == '\t')
+					i++;
+				current++;
+			}
 			i++;
 		}
 		i++;
@@ -91,14 +81,14 @@ int		count_col(char *data)
 	return (best);
 }
 
-int		check_data(char *str)
+int				check_data(char *str)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == 10 || str[i] == 32 || str[i == 45] ||
+		if (str[i] == '\n' || str[i] == ' ' || str[i] == '-' || str[i] == '+' ||
 			(str[i] >= 48 && str[i] <= 57))
 			i++;
 		else
@@ -107,22 +97,16 @@ int		check_data(char *str)
 	return (0);
 }
 
-void		parse_data(t_env *e, char *data)
+void			parse_data(t_env *e, char *data)
 {
-	char	*tmp;
-	
+	char		*tmp;
+
 	tmp = NULL;
 	if (check_data(data) != 0)
 		env_error(e, "Error, the map file seems to be invalid");
-//	ft_putendl("data checked ok\ncounting columns");
 	COL = count_col(data);
-//	ft_putendl("columns counted\ngrid map init");
 	e->map.grid = init_map_grid(e);
-//	ft_putendl("map grid init ok\nspliting map data");
 	tmp = split_map_data(e, data);
-//	ft_putendl("map data split ok\nfilling grid");
 	fill_map_grid(e, tmp);
-//	ft_putendl("map grid filled");
-//	(e->debug ? map_test(e) : 0);
 	free(tmp);
 }
