@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:26:50 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:28:26 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void		resize_textures(t_env *e)
 											TW * 12, TH * 13)))
 		env_error(e, "Error creating the texture sheet buffer");
 	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
+	SDL_FreeSurface(e->tex.bitmap);
 }
 
 SDL_Rect	get_texture(t_env *e)
