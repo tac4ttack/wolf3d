@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:26:19 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/28 19:58:06 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 	return (tmp);
 }
 
-static 	char *read_file(t_env *e, char *file)
+static 	void read_file(t_env *e, char *file)
 {
 	int		fd;
 	char	*tmp;
@@ -58,7 +58,7 @@ static 	char *read_file(t_env *e, char *file)
 	tmp = ft_strnew(0);	
 	if ((fd = open(file, O_RDONLY)) >= 0)
 	{
-		tmp = read_line(e, fd, tmp);
+		*dst = read_line(e, fd, *dst);
 		close(fd);
 	}
 	else

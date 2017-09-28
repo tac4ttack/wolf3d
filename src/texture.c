@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 13:42:55 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/28 21:26:50 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ void		init_textures(t_env *e)
 {
 	e->tex.src.w = 1;
 	e->tex.dst.w = 1;
-	e->tex.file = ft_strnew(28);
-	e->tex.file = "./assets/textures.bmp";
-	if (!(e->tex.bitmap = SDL_LoadBMP(e->tex.file)))
+	if (!(e->tex.bitmap = SDL_LoadBMP("./assets/textures.bmp")))
 		env_error(e, NULL);
 	if (!(e->tex.shadow = SDL_CreateTexture(e->ren, TEXPIX, TEXACC, 1, 1)))
 		env_error(e, "Error creating the shadow buffer");
 	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
+	SDL_FreeSurface(e->tex.bitmap);
 }
 
 void		resize_textures(t_env *e)
@@ -33,7 +32,7 @@ void		resize_textures(t_env *e)
 	SDL_FreeSurface(e->tex.bitmap);
 	e->tex.bitmap = SDL_CreateRGBSurfaceWithFormat(0, TW * 12, TH * 13,
 													32, TEXPIX);
-	if (!(tmp = SDL_LoadBMP(e->tex.file)))
+	if (!(tmp = SDL_LoadBMP("./assets/textures.bmp")))
 		env_error(e, (char*)SDL_GetError());
 	canvas.x = 0;
 	canvas.y = 0;
