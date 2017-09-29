@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 16:31:28 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:56:09 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,22 @@ void		init(t_env *e)
 	e->mouse_look = 1;
 	e->texturing = 1;
 	e->noclip = -1;
+	e->txt_hue.a = 0;
+	e->txt_hue.r = 255;
+	e->txt_hue.g = 0;
+	e->txt_hue.b = 0;
 	WW = BWID;
 	WH = BHEI;
 	e->ren = NULL;
 	e->win = NULL;
 	TW = WW / 12;
 	TH = TW;
-	ft_bzero(&e->keys,sizeof(t_keys));
+	ft_bzero(&e->keys, sizeof(t_keys));
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		env_error(e, "Error initializing SDL2");
 	launch_sdl(e);
+	e->start_ticks = SDL_GetTicks();
+	e->frames = 0;
 	init_textures(e);
 	SDL_WarpMouseInWindow(e->win, WW / 2, WH / 2);
 	SDL_ShowCursor(0);

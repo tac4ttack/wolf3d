@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 17:49:30 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:53:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,8 +156,10 @@ typedef struct      s_env
 	int             tile_h;
 	int				sc_gap;
 	long double		deg_step;
-	struct timeval	time;
-	struct timeval	old_time;
+	float			framerate;
+	int				frames;
+	int				start_ticks;
+	SDL_Color		txt_hue;
 	int				debug;
 	int				texturing;
 	int				mouse_look;		

@@ -6,21 +6,16 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 16:44:18 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 18:56:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void			draw_frame(t_env *e)
+static void	draw_frame(t_env *e)
 {
-	int 		x;
-//	SDL_Color	hue;
+	int		x;
 
-//	hue.a = 120;
-//	hue.r = 255;
-//	hue.g = 0;
-//	hue.b = 0;
 	x = 0;
 	while (x < WW)
 	{
@@ -32,14 +27,19 @@ static void			draw_frame(t_env *e)
 		render(e, x);
 		x++;
 	}
-//	e->tex.dst.x = 10;
-//	e->tex.dst.y = 10;
-//	e->tex.dst.w = 60;
-//	e->tex.dst.h = 20;
-//	SDL_RenderCopy(e->ren, render_text(e, "toto caca", hue), NULL, &e->tex.dst);
+	e->frames++;
+	e->framerate = ((float)e->frames / (float)(SDL_GetTicks() \
+					- (float)e->start_ticks)) * 1000;
+	e->tex.dst.x = 10;
+	e->tex.dst.y = 10;
+	e->tex.dst.w = 30;
+	e->tex.dst.h = 30;
+	if (e->debug == 1)
+		SDL_RenderCopy(e->ren, render_text(e, ft_itoa((int)e->framerate) \
+										, e->txt_hue), NULL, &e->tex.dst);
 }
 
-void	keyboard_state_events(t_env *e)
+void		keyboard_state_events(t_env *e)
 {
 	(e->keys.left == 1 ? look(e, -1) : 0);
 	(e->keys.right == 1 ? look(e, 1) : 0);
@@ -51,9 +51,8 @@ void	keyboard_state_events(t_env *e)
 	(e->keys.d == 1 ? strafe(e, -1) : 0);
 }
 
-Uint8	main_loop(t_env *e)
+Uint8		main_loop(t_env *e)
 {
-
 	if (e)
 		while (e->run)
 		{
