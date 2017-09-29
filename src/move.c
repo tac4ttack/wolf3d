@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 19:05:00 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 15:55:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	move(t_env *e, int delta)
 
 	tmp_x = PX;
 	tmp_y = PY;
+	printf("PDIR = %Lf\n", PDIR);
 	if (delta == 1)
 	{
 //		PNX = PX + sinl((PDIR * DEG2RAD)) * 10;
@@ -33,12 +34,13 @@ void	move(t_env *e, int delta)
 		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
-	if (read_pixels(e, (PDIR > 0 && PDIR < 180 ? PNX + 10 : PNX - 10), PY) < 1)
+//	if (read_pixels(e, (PDIR > 0 && PDIR < 180 ? PNX + 10 : PNX - 10), PY) < 1)
 		tmp_x = PNX;
-	if (read_pixels(e, PX, (PDIR > 90 && PDIR < 270 ? PNY + 10 : PNY - 10)) < 1)
+//	if (read_pixels(e, PX, (PDIR > 90 && PDIR < 270 ? PNY + 10 : PNY - 10)) < 1)
 		tmp_y = PNY;
-	PX = tmp_x;
-	PY = tmp_y;
+	PX = floor(tmp_x);
+	PY = floor(tmp_y);
+	printf("x = %Lf | y = %Lf\n", PX, PY);
 }
 
 void	strafe(t_env *e, int delta)
@@ -62,8 +64,9 @@ void	strafe(t_env *e, int delta)
 		tmp_x = PNX;
 	if (read_pixels(e, PX, (PDIR > 90 && PDIR < 270 ? PNY + 10 : PNY - 10)) < 1)
 		tmp_y = PNY;
-	PX = tmp_x;
-	PY = tmp_y;
+	PX = floorl(tmp_x);
+	PY = floorl(tmp_y);
+	printf("x = %Lf | y = %Lf\n", PX, PY);
 }
 
 void	mouse_look(t_env *e)
