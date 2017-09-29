@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 15:40:51 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:27:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:34:33 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			main(int ac, char **av)
 		ft_putstr(" OK!\nLoading target map file...");
 		if (ac == 2)
 			load_map(e, av[1]);
-		ft_putstr("\nLaunching session...\n");
+		print_keys();
 	}
 	if (main_loop(e) == 0)
 		env_error(e, "Error can't enter main loop");

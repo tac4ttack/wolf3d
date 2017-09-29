@@ -6,15 +6,15 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:33:38 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:26:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:43:13 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			flush_str_array(t_env *e, char **array)
+void	flush_str_array(t_env *e, char **array)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (array == NULL)
@@ -27,20 +27,21 @@ void			flush_str_array(t_env *e, char **array)
 	free(array);
 }
 
-void		error(void)
+void	error(void)
 {
 	ft_putendl("\nOh no I just crashed!");
 	perror(NULL);
 	exit(EXIT_FAILURE);
 }
 
-void		env_error(t_env *e, char *str)
+void	env_error(t_env *e, char *str)
 {
 	ft_putendl("\nOh no I just crashed!");
 	ft_putendl(SDL_GetError());
 	ft_putendl(str);
 	if (e)
 	{
+		SDL_ShowCursor(1);
 		if (e->ren)
 			SDL_DestroyRenderer(e->ren);
 		if (e->win)
@@ -51,10 +52,11 @@ void		env_error(t_env *e, char *str)
 	exit(EXIT_FAILURE);
 }
 
-void		quit(t_env *e)
+void	quit(t_env *e)
 {
 	if (e)
 	{
+		SDL_ShowCursor(1);
 		if (e->ren)
 			SDL_DestroyRenderer(e->ren);
 		if (e->win)
@@ -64,4 +66,15 @@ void		quit(t_env *e)
 	}
 	ft_putendl("Exiting");
 	exit(EXIT_SUCCESS);
+}
+
+void	print_keys(void)
+{
+	ft_putendl("\n\nKey bindings are:\n\t` -> enable/disable debug mode\n \
+	t -> enable/disable textures\n \
+	p -> print information when debug mode enabled\n \
+	n -> enable/disable noclip mode\n \
+	wasd and arrows -> move the player\n \
+	tab -> enable/disable mouse look");
+	ft_putstr("\nLaunching session... Enjoy!\n");
 }

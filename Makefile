@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/29 17:06:18 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/29 20:48:01 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ sdl2cflags:
 debug: debuglibft
 	$(eval ASANFLAGS = -fsanitize=address -fno-omit-frame-pointer -g)
 
-cleanbrew:
+fcleanbrew:
 	brew uninstall -f sdl2_ttf
 	brew uninstall -f freetype
 	brew uninstall -f pkg-config
@@ -143,7 +143,7 @@ usage:
 	@echo "Compile $(GREEN)$(NAME)$(EOC) -> $(B_YELL)make compile$(EOC)\n"
 	@echo "Compile with $(GREEN)debug mode$(EOC) activated -> $(B_YELL)make debug compile$(EOC)\n"	
 
-.PHONY: all clean fclean re libft sdl
+.PHONY: default help all brew sdl2lib sdl2cflags debug fcleanbrew COMPILE compile clean fclean libft debuglibft cleanlibft fcleanlibft re norme usage
 
 GREY =					\x1b[2;29m
 BLACK =					\x1b[2;30m

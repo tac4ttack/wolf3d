@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 16:24:26 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 17:19:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:45:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		keypress_events(t_env *e)
 	if (e->eve.key.type == SDL_KEYDOWN)
 	{
 		if (e->debug == 1)
-			print_key(e->eve.key.keysym.sym);
+			print_input(e->eve.key.keysym.sym);
 		(e->eve.key.keysym.sym == 27 ? quit(e) : 0);
 		(e->eve.key.keysym.sym == 0x40000050 ? e->keys.left = 1 : 0);
 		(e->eve.key.keysym.sym == 0x4000004F ? e->keys.right = 1 : 0);

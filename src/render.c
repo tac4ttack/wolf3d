@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 17:29:03 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:40:42 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			get_offset(t_env *e, long double hit)
 	return (offset);
 }
 
-void	render_crosshair(t_env *e)
+void		render_crosshair(t_env *e)
 {
 	e->tex.src.w = 4;
 	e->tex.src.h = 4;
@@ -40,10 +40,10 @@ void	render_crosshair(t_env *e)
 	SDL_RenderCopy(e->ren, e->tex.sheet, &e->tex.src, &e->tex.dst);
 }
 
-void	render_no_textures(t_env *e, int x)
+void		render_no_textures(t_env *e, int x)
 {
-	int			height;
-	
+	int		height;
+
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
 	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
@@ -64,11 +64,10 @@ void	render_no_textures(t_env *e, int x)
 	SDL_RenderCopy(e->ren, e->tex.sheet, &e->tex.src, &e->tex.dst);
 }
 
-void	render_textured(t_env *e, int x)
+void		render_textured(t_env *e, int x)
 {
-	int			height;
-	
-//	e->r.dst *= fabsl(cosl((PDIR - e->r.rad) * DEG2RAD)); // euclidian lsd
+	int		height;
+
 	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
 	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
@@ -91,7 +90,7 @@ void	render_textured(t_env *e, int x)
 	SDL_RenderCopy(e->ren, e->tex.sheet, &e->tex.src, &e->tex.dst);
 }
 
-void	render(t_env *e, int x)
+void		render(t_env *e, int x)
 {
 	if (e->texturing == -1)
 		render_no_textures(e, x);

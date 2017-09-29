@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:16:52 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 19:28:40 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:35:24 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static char		*split_map_data(t_env *e, char *data)
 	char		**split;
 
 	i = 0;
-	tmp = ft_strnew(0);					
-	split = ft_strsplit(data, '\n');	
+	tmp = ft_strnew(0);
+	split = ft_strsplit(data, '\n');
 	while (i < LIN)
 	{
 		tmp = ft_strjoin_free(tmp, ft_strjoin(split[i], " "));
@@ -38,7 +38,7 @@ static void		fill_map_grid(t_env *e, char *data)
 
 	i = 0;
 	j = 0;
-	split = ft_strsplit(data, ' ');	
+	split = ft_strsplit(data, ' ');
 	while (j < LIN)
 	{
 		while (i < COL)
@@ -52,7 +52,7 @@ static void		fill_map_grid(t_env *e, char *data)
 	flush_str_array(e, split);
 }
 
-int				count_col(char *data)
+static int		count_col(char *data)
 {
 	int			i;
 	int			current;
@@ -81,7 +81,7 @@ int				count_col(char *data)
 	return (best);
 }
 
-int				check_data(char *str)
+static int		check_data(char *str)
 {
 	int			i;
 

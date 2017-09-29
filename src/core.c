@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 18:56:09 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:10:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void		reset_screen(t_env *e)
 	if (e->win)
 		SDL_DestroyWindow(e->win);
 	launch_sdl(e);
-	e->player.height = TH / 2;
 	e->deg_step = FOV / WW;
 	e->sc_gap = (WW / 2) / tanl(M_PI / 6);
 	e->run = 1;

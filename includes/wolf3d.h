@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 18:53:21 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:45:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ typedef struct		s_ldpt
 {
 	long double		x;
 	long double		y;
-}                   t_ldpt;
+}					t_ldpt;
 
-typedef struct      s_ray
+typedef struct		s_ray
 {
 	t_ldpt			grid;
 	t_ldpt			pix;
@@ -86,28 +86,24 @@ typedef struct      s_ray
 	int				hit_x;
 	int				hit_side;
 	int				hit_val;
-	int				height;
-}                   t_ray;
+}					t_ray;
 
-typedef struct      s_player
+typedef struct		s_player
 {
 	t_ldpt			grid;
 	t_ldpt			pix;
 	t_ldpt			n_pix;
 	long double		fov;
 	long double		dir;
-	int             height;
 	Uint8			spawned;
-}                   t_player;
+}					t_player;
 
-typedef struct      s_map
+typedef struct		s_map
 {
-	int             **grid;
-	int             col;
-	int             lin;
-	int				cei;
-	int				flo;
-}                   t_map;
+	int				**grid;
+	int				col;
+	int				lin;
+}					t_map;
 
 typedef struct		s_tex
 {
@@ -138,22 +134,22 @@ typedef	struct		s_keys
 	int				tab;
 }					t_keys;
 
-typedef struct      s_env
+typedef struct		s_env
 {
-	SDL_Window      *win;
-	SDL_Renderer    *ren;
-	SDL_Event       eve;
-	SDL_bool        run;
+	SDL_Window		*win;
+	SDL_Renderer	*ren;
+	SDL_Event		eve;
+	SDL_bool		run;
 	TTF_Font		*ttf;
 	t_keys			keys;
-	t_map           map;
+	t_map			map;
 	t_ray			r;
 	t_player		player;
 	t_tex			tex;
-	Uint16          w_w;
-	Uint16          w_h;
-	int             tile_w;
-	int             tile_h;
+	Uint16			w_w;
+	Uint16			w_h;
+	int				tile_w;
+	int				tile_h;
 	int				sc_gap;
 	long double		deg_step;
 	float			framerate;
@@ -162,62 +158,102 @@ typedef struct      s_env
 	SDL_Color		txt_hue;
 	int				debug;
 	int				texturing;
-	int				mouse_look;		
+	int				mouse_look;
 	int				noclip;
-}                   t_env;
+}					t_env;
 
-void				error(void);
-void		        env_error(t_env *env, char *str);
-void                quit(t_env *env);
-void				flush_str_array(t_env *e, char **array);
-void                init(t_env *env);
+/*
+**	Core functions
+*/
+void				init(t_env *env);
 void				launch_sdl(t_env *e);
-int					**init_map_grid(t_env *e);
-void				init_player(t_env *e);
 void				reset_screen(t_env *e);
-int					get_spawn_pos(t_env *e);
+Uint8				main_loop(t_env *env);
+
+/*
+**	Coordinates functions
+*/
 t_ldpt				grid_to_pixels(t_env *e, int x, int y);
 t_ldpt				pixels_to_grid(t_env *e, int x, int y);
 int					read_grid(t_env *e, int x, int y);
 int					read_pixels(t_env *e, int x, int y);
+
+/*
+**	Debug functions
+*/
 void				print_info(t_env *e);
+void				print_input(int key);
 void				print_window_events_a(const SDL_Event *ev);
 void				print_window_events_b(const SDL_Event *ev);
-void				print_key(int key);
-void				map_test(t_env *e);
+
+/*
+**	Events functions
+*/
+void				key_events(t_env *e);
+void				keypress_events(t_env *e);
+void				keyrelease_events(t_env *e);
+void				mouse_events(t_env *e);
+void				toggle_option(t_env *e, int option);
+void				win_events(t_env *e);
+
+/*
+**	Map functions
+*/
+int					**init_map_grid(t_env *e);
 void				load_map(t_env *e, char *file);
-void				load_raw_map(t_env *e);
-int					check_data(char *str);
-int					count_col(char *data);
 void				parse_data(t_env *e, char *data);
-void				move(t_env *e, int delta);
-void				strafe(t_env *e, int delta);
+
+/*
+**	Movement functions
+*/
 void				look(t_env *e, int delta);
 void				mouse_look(t_env *e);
-void				toggle_option(t_env *e, int option);
+void				move(t_env *e, int delta);
+void				strafe(t_env *e, int delta);
+
+/*
+**	Player functions
+*/
+int					get_spawn_pos(t_env *e);
 t_ldpt				hit_check(t_env *e);
+void				init_player(t_env *e);
 t_ldpt				noclip_hit_check(t_env *e);
+
+/*
+**	Raycasting functions
+*/
 void				init_ray(t_env *e, int x);
 void				convert_dir(t_env *e);
 void				calc_dda(t_env *e);
 void				calc_hor_step(t_env *e);
 void				calc_ver_step(t_env *e);
 void				calc_dst(t_env *e);
-void				render(t_env *e, int x);
-void				render_no_textures(t_env *e, int x);
-void				render_textures(t_env *e, int x);
-void				render_crosshair(t_env *e);
+
+/*
+**	Rendering functions
+*/
 int					get_offset(t_env *e, long double hit);
-Uint8               main_loop(t_env *env);
-void				win_events(t_env *e);
-void				keypress_events(t_env *e);
-void				keyrelease_events(t_env *e);
-void				key_events(t_env *e);
-void				mouse_events(t_env *e);
+void				render(t_env *e, int x);
+void				render_crosshair(t_env *e);
+void				render_no_textures(t_env *e, int x);
 SDL_Texture			*render_text(t_env *e, char *str, SDL_Color color);
-void				init_textures(t_env *e);
-void				resize_textures(t_env *e);
+void				render_textures(t_env *e, int x);
+
+/*
+**	Textures functions
+*/
 SDL_Rect			get_texture(t_env *e);
 SDL_Rect			get_wall_color(t_env *e);
+void				init_textures(t_env *e);
+void				resize_textures(t_env *e);
+
+/*
+**	Utility functions
+*/
+void				error(void);
+void				env_error(t_env *env, char *str);
+void				flush_str_array(t_env *e, char **array);
+void				print_keys(void);
+void				quit(t_env *env);
 
 #endif

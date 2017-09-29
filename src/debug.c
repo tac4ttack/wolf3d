@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 18:27:10 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 17:15:31 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:45:09 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void		print_info(t_env *e)
 	ft_putchar('\n');
 }
 
-void		print_key(int key)
+void		print_input(int key)
 {
 	ft_putstr("Input is ");
 	ft_putnbr(key);

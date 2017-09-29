@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:28:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:42:15 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		resize_textures(t_env *e)
 {
 	SDL_Surface	*tmp;
 	SDL_Rect	canvas;
-	
+
 	SDL_FreeSurface(e->tex.bitmap);
 	e->tex.bitmap = SDL_CreateRGBSurfaceWithFormat(0, TW * 12, TH * 13,
 													32, TEXPIX);
@@ -52,7 +52,7 @@ void		resize_textures(t_env *e)
 SDL_Rect	get_texture(t_env *e)
 {
 	SDL_Rect	result;
-	
+
 	result.w = 1;
 	if (e->r.hit_val % 12 == 0)
 	{
@@ -70,18 +70,18 @@ SDL_Rect	get_texture(t_env *e)
 SDL_Rect	get_wall_color(t_env *e)
 {
 	SDL_Rect	result;
-	
+
 	result.w = 1;
 	result.h = 1;
 	if (e->r.hit_side == 1)
 	{
 		result.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 2);
-		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;	
+		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;
 	}
 	if (e->r.hit_side == 2)
 	{
 		result.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
-		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;	
+		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;
 	}
 	if (e->r.hit_side == 3)
 	{
@@ -91,7 +91,7 @@ SDL_Rect	get_wall_color(t_env *e)
 	if (e->r.hit_side == 4)
 	{
 		result.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 3);
-		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;	
+		result.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 1) + 1;
 	}
 	return (result);
 }

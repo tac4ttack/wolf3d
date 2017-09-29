@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/24 12:11:16 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:39:34 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_ray(t_env *e, int x)
 	RGX = PGX;
 	RGY = PGY;
 	e->r.deg = (PDIR - (FOV / 2.0)) + (x * e->deg_step);
-	e->r.height = e->player.height;
 	e->r.hit_x = 0;
 	e->r.h_xa = 0;
 	e->r.h_ya = 0;

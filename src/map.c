@@ -6,29 +6,18 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/16 11:15:13 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 17:59:13 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 20:37:48 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static void	init_map(t_env *e)
-{
-	if (e)
-	{
-		e->map.col = 0;
-		e->map.lin = 0;
-		e->map.cei = TH;
-		e->map.flo = 0;
-	}	
-}
-
 static	char	*read_line(t_env *e, int fd, char *tmp)
 {
-	int i;
-	int status;
-	char *buf;
-	
+	int			i;
+	int			status;
+	char		*buf;
+
 	i = 0;
 	status = 1;
 	while (status == 1)
@@ -36,11 +25,11 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 		status = get_next_line(fd, &buf);
 		(status == -1 ? error() : 1);
 		if (status == 0)
-			break;
+			break ;
 		if (buf[0] != '#')
 		{
 			buf = ft_strtrim_free(buf);
-			tmp = ft_strjoin_free(tmp, ft_strjoin_frs1(buf, "\n"));	
+			tmp = ft_strjoin_free(tmp, ft_strjoin_frs1(buf, "\n"));
 			i++;
 		}
 		else
@@ -50,27 +39,27 @@ static	char	*read_line(t_env *e, int fd, char *tmp)
 	return (tmp);
 }
 
-static 	char *read_file(t_env *e, char *file)
+static	char	*read_file(t_env *e, char *file)
 {
-	int		fd;
-	char	*tmp;
-	
-	tmp = ft_strnew(0);	
+	int			fd;
+	char		*tmp;
+
+	tmp = ft_strnew(0);
 	if ((fd = open(file, O_RDONLY)) >= 0)
 	{
 		tmp = read_line(e, fd, tmp);
 		close(fd);
 	}
 	else
-		error();	
+		error();
 	return (tmp);
 }
 
-int		**init_map_grid(t_env *e)
+int				**init_map_grid(t_env *e)
 {
-	int i;
-	int **map;
-	
+	int			i;
+	int			**map;
+
 	i = 0;
 	if (!(map = (int**)malloc(sizeof(int*) * LIN)))
 		env_error(e, "Error allocating memory for map grid lines");
@@ -83,12 +72,13 @@ int		**init_map_grid(t_env *e)
 	return (map);
 }
 
-void	load_map(t_env *e, char *file)
+void			load_map(t_env *e, char *file)
 {
-	char	*data;
-	
-	init_map(e);
-	data = read_file(e, file); 
+	char		*data;
+
+	e->map.col = 0;
+	e->map.lin = 0;
+	data = read_file(e, file);
 	parse_data(e, data);
 	init_player(e);
 	free(data);
