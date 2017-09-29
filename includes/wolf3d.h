@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 16:48:02 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 17:15:29 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@
 # define RGX		e->r.grid.x
 # define RGY		e->r.grid.y
 # define NOCLIP		e->noclip
+# define MLOOK		e->mouse_look
+# define TEXTURING	e->texturing
 
 # define WCEN       SDL_WINDOWPOS_CENTERED
 # define WFLA       SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE
@@ -187,6 +189,7 @@ void				move(t_env *e, int delta);
 void				strafe(t_env *e, int delta);
 void				look(t_env *e, int delta);
 void				mouse_look(t_env *e);
+void				toggle_option(t_env *e, int option);
 t_ldpt				hit_check(t_env *e);
 t_ldpt				noclip_hit_check(t_env *e);
 void				init_ray(t_env *e, int x);

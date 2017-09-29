@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 16:24:26 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 16:33:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 17:19:38 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,17 @@ static void	keypress_events_toggle(t_env *e)
 {
 	if (e->eve.key.keysym.sym == 0x74)
 	{
-		if (e->keys.t == 0)
-			e->texturing *= -1;
+		toggle_option(e, 0);
 		e->keys.t = 1;
 	}
 	if (e->eve.key.keysym.sym == 110)
 	{
-		if (e->keys.n == 0)
-			e->noclip *= -1;
-		e->keys.n = 1;	
+		toggle_option(e, 1);
+		e->keys.n = 1;
 	}
 	if (e->eve.key.keysym.sym == 0x09)
 	{
-		if (e->keys.tab == 0)
-		{
-			e->mouse_look *= -1;
-			SDL_ShowCursor(-1) == 0 ? SDL_ShowCursor(1) : SDL_ShowCursor(0);
-		}
+		toggle_option(e, 2);
 		e->keys.tab = 1;
 	}
 	if (e->debug == 1)
@@ -91,8 +85,9 @@ void		keypress_events(t_env *e)
 		{
 			if (e->keys.apo == 0)
 			{
-				ft_putendl("Debug mode toggle");
 				e->debug *= -1;
+				(e->debug == 1 ? ft_putendl("Debug mode enabled")\
+								: ft_putendl("Debug mode disabled"));
 			}
 			e->keys.apo = 1;
 		}

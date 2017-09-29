@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 17:00:02 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 17:03:14 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	move(t_env *e, int delta)
 		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
-	(NOCLIP == 1 ? PLOC = noclip_hit_check(e) : (PLOC = hit_check(e)));
+	NOCLIP == 1 ? (PLOC = noclip_hit_check(e)) : (PLOC = hit_check(e));
 }
 
 void	strafe(t_env *e, int delta)
@@ -39,7 +39,7 @@ void	strafe(t_env *e, int delta)
 		PNX = PX - sinl(((PDIR - 90) * DEG2RAD)) * 10;
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
-	(NOCLIP == 1 ? PLOC = noclip_hit_check(e) : (PLOC = hit_check(e)));
+	NOCLIP == 1 ? (PLOC = noclip_hit_check(e)) : (PLOC = hit_check(e));
 }
 
 

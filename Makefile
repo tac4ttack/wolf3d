@@ -6,7 +6,7 @@
 #    By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/17 21:25:49 by fmessina          #+#    #+#              #
-#    Updated: 2017/09/27 20:23:25 by fmessina         ###   ########.fr        #
+#    Updated: 2017/09/29 17:06:18 by fmessina         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC_NAME =				coord.c \
 						render.c \
 						text.c \
 						texture.c \
+						toggle.c \
 						utils.c
 
 default: all
