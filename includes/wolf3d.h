@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 17:15:29 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 17:49:30 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <sys/time.h>
 # include "libft.h"
 
 # define SDL_MAIN_HANDLED
@@ -155,6 +156,8 @@ typedef struct      s_env
 	int             tile_h;
 	int				sc_gap;
 	long double		deg_step;
+	struct timeval	time;
+	struct timeval	old_time;
 	int				debug;
 	int				texturing;
 	int				mouse_look;		
