@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/27 16:24:26 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 17:15:26 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:33:06 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		keyrelease_events(t_env *e)
 		(e->eve.key.keysym.sym == 0x74 ? e->keys.t = 0 : 0);
 		(e->eve.key.keysym.sym == 0x09 ? e->keys.tab = 0 : 0);
 		(e->eve.key.keysym.sym == 0x70 ? e->keys.p = 0 : 0);
+		(e->eve.key.keysym.sym == 110 ? e->keys.n = 0 : 0);
 	}
 }
 
@@ -45,18 +46,20 @@ static void	keypress_events_toggle(t_env *e)
 	if (e->eve.key.keysym.sym == 0x74)
 	{
 		if (e->keys.t == 0)
-		{
-			ft_putendl("Textured rendering toggle");
 			e->texturing *= -1;
-		}
 		e->keys.t = 1;
+	}
+	if (e->eve.key.keysym.sym == 110)
+	{
+		if (e->keys.n == 0)
+			e->noclip *= -1;
+		e->keys.n = 1;	
 	}
 	if (e->eve.key.keysym.sym == 0x09)
 	{
 		if (e->keys.tab == 0)
 		{
 			e->mouse_look *= -1;
-			ft_putendl("Mouse look toggle");
 			SDL_ShowCursor(-1) == 0 ? SDL_ShowCursor(1) : SDL_ShowCursor(0);
 		}
 		e->keys.tab = 1;

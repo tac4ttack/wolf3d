@@ -6,13 +6,13 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:59:00 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 17:29:48 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:44:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			draw_frame(t_env *e)
+static void			draw_frame(t_env *e)
 {
 	int 		x;
 //	SDL_Color	hue;

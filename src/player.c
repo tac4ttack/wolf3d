@@ -6,11 +6,41 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:00:47 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/27 12:50:54 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:58:35 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+t_ldpt	noclip_hit_check(t_env *e)
+{
+	t_ldpt res;
+
+	if (PNX > (COL * TW) || PNX < 1)
+		res.x = PX;
+	else
+		res.x = PNX;
+	if (PNY > (LIN * TH) || PNY < 1)
+		res.y = PY;
+	else
+		res.y = PNY;
+	return (res);
+}
+
+t_ldpt	hit_check(t_env *e)
+{
+	t_ldpt res;
+
+	if (read_pixels(e, PNX, PY) > 0)
+		res.x = PX;
+	else
+		res.x = PNX;
+	if (read_pixels(e, PX, PNY) > 0)
+		res.y = PY;
+	else
+		res.y = PNY;
+	return (res);
+}
 
 void	init_player(t_env *e)
 {

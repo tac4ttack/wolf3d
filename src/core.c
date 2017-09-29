@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/28 21:23:38 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 16:31:28 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		init(t_env *e)
 	e->debug = -1;
 	e->mouse_look = 1;
 	e->texturing = 1;
+	e->noclip = -1;
 	WW = BWID;
 	WH = BHEI;
 	e->ren = NULL;
