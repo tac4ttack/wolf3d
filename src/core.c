@@ -6,24 +6,11 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 20:10:18 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 23:27:18 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void		launch_sdl(t_env *e)
-{
-	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, WW, WH, WFLA)))
-		env_error(e, "Error creating the window");
-	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_PRESENTVSYNC)))
-		env_error(e, "Error creating the renderer");
-	if (TTF_Init() != 0)
-		env_error(e, "Error during SDL2 TTF initialization");
-	if (!(e->ttf = TTF_OpenFont("./assets/font.ttf", 14)))
-		env_error(e, "Error loading game text font");
-	SDL_SetRenderDrawBlendMode(e->ren, SDL_BLENDMODE_BLEND);
-}
 
 void		init(t_env *e)
 {
@@ -53,6 +40,19 @@ void		init(t_env *e)
 	e->run = 1;
 }
 
+void		launch_sdl(t_env *e)
+{
+	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, WW, WH, WFLA)))
+		env_error(e, "Error creating the window");
+	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_PRESENTVSYNC)))
+		env_error(e, "Error creating the renderer");
+	if (TTF_Init() != 0)
+		env_error(e, "Error during SDL2 TTF initialization");
+	if (!(e->ttf = TTF_OpenFont("./assets/font.ttf", 14)))
+		env_error(e, "Error loading game text font");
+	SDL_SetRenderDrawBlendMode(e->ren, SDL_BLENDMODE_BLEND);
+}
+
 void		reset_screen(t_env *e)
 {
 	t_ldpt	old;
@@ -61,13 +61,19 @@ void		reset_screen(t_env *e)
 	old.y = e->player.pix.y / TH;
 	e->run = 0;
 	WW = e->eve.window.data1 - (e->eve.window.data1 % 128);
+	(WW < 320 ? WW = 320 - 64 : 0);
 	WH = e->eve.window.data2 - (e->eve.window.data2 % 128);
+	(WH < 240 ? WH = 240 - 112 : 0);
 	TW = WW / (WW / 128);
 	TH = TW;
 	if (e->ren)
 		SDL_DestroyRenderer(e->ren);
 	if (e->win)
 		SDL_DestroyWindow(e->win);
+	if (e->tex.sheet)
+		SDL_DestroyTexture(e->tex.sheet);
+	if (e->ttf)
+		TTF_CloseFont(e->ttf);
 	launch_sdl(e);
 	e->deg_step = FOV / WW;
 	e->sc_gap = (WW / 2) / tanl(M_PI / 6);

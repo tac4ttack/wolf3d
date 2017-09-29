@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:05:53 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 22:05:56 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/09/29 23:11:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		init_textures(t_env *e)
 		env_error(e, "Error creating the shadow buffer");
 	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
 	SDL_FreeSurface(e->tex.bitmap);
+	e->tex.bitmap = NULL;
 }
 
 void		resize_textures(t_env *e)
@@ -29,7 +30,6 @@ void		resize_textures(t_env *e)
 	SDL_Surface	*tmp;
 	SDL_Rect	canvas;
 
-	SDL_FreeSurface(e->tex.bitmap);
 	e->tex.bitmap = SDL_CreateRGBSurfaceWithFormat(0, TW * 12, TH * 13,
 													32, TEXPIX);
 	if (!(tmp = SDL_LoadBMP("./assets/textures.bmp")))
@@ -40,13 +40,13 @@ void		resize_textures(t_env *e)
 	canvas.h = e->tex.bitmap->h;
 	SDL_BlitScaled(tmp, NULL, e->tex.bitmap, &canvas);
 	SDL_FreeSurface(tmp);
-	if (e->tex.sheet != NULL)
-		SDL_DestroyTexture(e->tex.sheet);
+	tmp = NULL;
 	if (!(e->tex.sheet = SDL_CreateTexture(e->ren, TEXPIX, TEXACC,
 											TW * 12, TH * 13)))
 		env_error(e, "Error creating the texture sheet buffer");
 	e->tex.sheet = SDL_CreateTextureFromSurface(e->ren, e->tex.bitmap);
 	SDL_FreeSurface(e->tex.bitmap);
+	e->tex.bitmap = NULL;
 }
 
 SDL_Rect	get_texture(t_env *e)
