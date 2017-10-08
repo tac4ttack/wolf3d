@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/10/08 20:54:53 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 21:01:47 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		init(t_env *e)
 {
 	e->debug = -1;
 	e->mouse_look = 1;
-	e->texturing = -1;
+	e->texturing = 1;
 	e->noclip = -1;
 	e->txt_hue.a = 0;
 	e->txt_hue.r = 255;

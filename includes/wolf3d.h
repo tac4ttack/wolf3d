@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/10/07 01:35:04 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 22:41:21 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,16 +208,16 @@ void				parse_data(t_env *e, char *data);
 */
 void				look(t_env *e, int delta);
 void				mouse_look(t_env *e);
-void				move(t_env *e, int delta);
-void				strafe(t_env *e, int delta);
+void				move(t_env *e, char dir);
+void				strafe(t_env *e, char dir);
 
 /*
 **	Player functions
 */
 int					get_spawn_pos(t_env *e);
-t_ldpt				hit_check(t_env *e);
 void				init_player(t_env *e);
-t_ldpt				noclip_hit_check(t_env *e);
+void				hit_check(t_env *e, char dir, float strafe);
+void				noclip_hit_check(t_env *e);
 
 /*
 **	Raycasting functions

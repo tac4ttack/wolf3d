@@ -6,43 +6,45 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 04:00:47 by fmessina          #+#    #+#             */
-/*   Updated: 2017/10/08 20:53:43 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 22:46:59 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_ldpt	noclip_hit_check(t_env *e)
+void		noclip_hit_check(t_env *e)
 {
-	t_ldpt res;
-
 	if (PNX > (COL * TW) || PNX < 1)
-		res.x = PX;
+		PX = PX;
 	else
-		res.x = PNX;
+		PX = PNX;
 	if (PNY > (LIN * TH) || PNY < 1)
-		res.y = PY;
+		PY = PY;
 	else
-		res.y = PNY;
-	return (res);
+		PY = PNY;
 }
 
-t_ldpt	hit_check(t_env *e)
+void		hit_check(t_env *e, char dir, float strafe)
 {
-	t_ldpt res;
+	t_ldpt	test;
 
-	if (read_pixels(e, PNX, PY) > 0)
-		res.x = PX;
-	else
-		res.x = PNX;
-	if (read_pixels(e, PX, PNY) > 0)
-		res.y = PY;
-	else
-		res.y = PNY;
-	return (res);
+	if (dir == 1)
+	{
+		test.x = PNX + sinl((PDIR + strafe) * DEG2RAD) * 20;
+		test.y = PNY - cosl((PDIR + strafe) * DEG2RAD) * 20;
+	}
+	if (dir == -1)
+	{
+		test.x = PNX - sinl((PDIR + strafe) * DEG2RAD) * 20;
+		test.y = PNY + cosl((PDIR + strafe) * DEG2RAD) * 20;
+	}
+	if (read_pixels(e, test.x, PY) <= 0)
+		PX = PNX;
+	if (read_pixels(e, PX, test.y) <= 0)
+		PY = PNY;
 }
 
-void	init_player(t_env *e)
+void		init_player(t_env *e)
 {
 	if (e)
 	{
@@ -53,10 +55,10 @@ void	init_player(t_env *e)
 	}
 }
 
-int		get_spawn_pos(t_env *e)
+int			get_spawn_pos(t_env *e)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;

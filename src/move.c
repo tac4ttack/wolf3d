@@ -6,46 +6,46 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/04 00:16:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/10/08 20:47:06 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 22:43:46 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	move(t_env *e, int delta)
+void	move(t_env *e, char dir)
 {
-	if (delta == 1)
+	if (dir == 1)
 	{
-		PNX = PX + sinl((PDIR * DEG2RAD)) * 10;
+		PNX = PX + sinl(PDIR * DEG2RAD) * 10;
 		PNY = PY - cosl(PDIR * DEG2RAD) * 10;
 	}
-	if (delta == -1)
+	if (dir == -1)
 	{
-		PNX = PX - sinl((PDIR * DEG2RAD)) * 10;
+		PNX = PX - sinl(PDIR * DEG2RAD) * 10;
 		PNY = PY + cosl(PDIR * DEG2RAD) * 10;
 	}
 	if (NOCLIP == 1)
-		PLOC = noclip_hit_check(e);
+		noclip_hit_check(e);
 	else
-		PLOC = hit_check(e);
+		hit_check(e, dir, 0);
 }
 
-void	strafe(t_env *e, int delta)
+void	strafe(t_env *e, char dir)
 {
-	if (delta == 1)
+	if (dir == 1)
 	{
-		PNX = PX + sinl(((PDIR - 90) * DEG2RAD)) * 10;
+		PNX = PX + sinl((PDIR - 90) * DEG2RAD) * 10;
 		PNY = PY - cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
-	if (delta == -1)
+	if (dir == -1)
 	{
-		PNX = PX - sinl(((PDIR - 90) * DEG2RAD)) * 10;
+		PNX = PX - sinl((PDIR - 90) * DEG2RAD) * 10;
 		PNY = PY + cosl((PDIR - 90) * DEG2RAD) * 10;
 	}
 	if (NOCLIP == 1)
-		PLOC = noclip_hit_check(e);
+		noclip_hit_check(e);
 	else
-		PLOC = hit_check(e);
+		hit_check(e, dir, -90);
 }
 
 void	mouse_look(t_env *e)
