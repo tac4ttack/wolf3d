@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/17 21:26:03 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 20:45:35 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/07 01:35:04 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define MLOOK		e->mouse_look
 # define TEXTURING	e->texturing
 
-# define WCEN       SDL_WINDOWPOS_CENTERED
+# define WPOS       SDL_WINDOWPOS_UNDEFINED
 # define WFLA       SDL_WINDOW_SHOWN|SDL_WINDOW_RESIZABLE
 # define TEXPIX     SDL_PIXELFORMAT_ARGB8888
 # define TEXACC		SDL_TEXTUREACCESS_STREAMING
@@ -119,19 +119,19 @@ typedef struct		s_tex
 
 typedef	struct		s_keys
 {
-	int				left;
-	int				right;
-	int				up;
-	int				down;
-	int				p;
-	int				w;
-	int				a;
-	int				s;
-	int				d;
-	int				t;
-	int				n;
-	int				apo;
-	int				tab;
+	char			left;
+	char			right;
+	char			up;
+	char			down;
+	char			p;
+	char			w;
+	char			a;
+	char			s;
+	char			d;
+	char			t;
+	char			n;
+	char			apo;
+	char			tab;
 }					t_keys;
 
 typedef struct		s_env
@@ -146,11 +146,11 @@ typedef struct		s_env
 	t_ray			r;
 	t_player		player;
 	t_tex			tex;
-	Uint16			w_w;
-	Uint16			w_h;
+	int				w_w;
+	int				w_h;
 	int				tile_w;
 	int				tile_h;
-	int				sc_gap;
+	long double		sc_gap;
 	long double		deg_step;
 	float			framerate;
 	int				frames;

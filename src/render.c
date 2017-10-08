@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:52:31 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 20:40:42 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 20:52:05 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		render_no_textures(t_env *e, int x)
 {
 	int		height;
 
-	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
+	e->r.dst = e->r.dst * cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
 	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
 	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 5) + 1;
@@ -68,7 +68,7 @@ void		render_textured(t_env *e, int x)
 {
 	int		height;
 
-	e->r.dst *= cosl((PDIR - e->r.deg) * DEG2RAD);
+	e->r.dst = e->r.dst * cosl((PDIR - e->r.deg) * DEG2RAD);
 	height = (TW / e->r.dst) * e->sc_gap;
 	e->tex.src.x = (((82 % 12) - 1) * TW) + ((TW / 8) / 2) + ((TW / 8) * 5);
 	e->tex.src.y = ((82 / 12) * TH) + ((TH / 8) / 2) + ((TW / 8) * 5) + 1;

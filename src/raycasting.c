@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 16:24:11 by fmessina          #+#    #+#             */
-/*   Updated: 2017/09/29 20:39:34 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 20:49:51 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_ray(t_env *e, int x)
 	RY = PY;
 	RGX = PGX;
 	RGY = PGY;
-	e->r.deg = (PDIR - (FOV / 2.0)) + (x * e->deg_step);
+	e->r.deg = PDIR - atanl(((WW / 2) - x) / e->sc_gap) * RAD2DEG;
 	e->r.hit_x = 0;
 	e->r.h_xa = 0;
 	e->r.h_ya = 0;
@@ -59,7 +59,7 @@ void	calc_hor_step(t_env *e)
 	}
 	e->r.h_xa = fabsl(e->r.h_ya / tanl(M_PI_2 - e->r.rad));
 	e->r.a.x = RX + ((RY - e->r.a.y) / tanl(M_PI_2 - e->r.rad));
-	(e->r.deg > 180 ? e->r.h_xa *= -1 : 0);
+	(e->r.deg > 180 ? e->r.h_xa *= -1. : 0);
 	while (read_pixels(e, e->r.a.x, e->r.a.y) < 1)
 	{
 		e->r.a.x += e->r.h_xa;

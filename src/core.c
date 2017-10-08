@@ -6,7 +6,7 @@
 /*   By: fmessina <fmessina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/11 16:58:40 by fmessina          #+#    #+#             */
-/*   Updated: 2017/10/03 22:57:05 by fmessina         ###   ########.fr       */
+/*   Updated: 2017/10/08 20:54:53 by fmessina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		init(t_env *e)
 {
 	e->debug = -1;
 	e->mouse_look = 1;
-	e->texturing = 1;
+	e->texturing = -1;
 	e->noclip = -1;
 	e->txt_hue.a = 0;
 	e->txt_hue.r = 255;
@@ -29,8 +29,8 @@ void		init(t_env *e)
 	TW = WW / 12;
 	TH = TW;
 	ft_bzero(&e->keys, sizeof(t_keys));
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		env_error(e, "Error initializing SDL2");
+	FOV = 60;
+	e->sc_gap = (WW / 2) / tanl((FOV / 2) * DEG2RAD);
 	launch_sdl(e);
 	e->start_ticks = SDL_GetTicks();
 	e->frames = 0;
@@ -42,7 +42,9 @@ void		init(t_env *e)
 
 void		launch_sdl(t_env *e)
 {
-	if (!(e->win = SDL_CreateWindow(ID, WCEN, WCEN, WW, WH, WFLA)))
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		env_error(e, "Error initializing SDL2");
+	if (!(e->win = SDL_CreateWindow(ID, WPOS, WPOS, WW, WH, WFLA)))
 		env_error(e, "Error creating the window");
 	if (!(e->ren = SDL_CreateRenderer(e->win, -1, SDL_RENDERER_PRESENTVSYNC)))
 		env_error(e, "Error creating the renderer");
@@ -53,6 +55,24 @@ void		launch_sdl(t_env *e)
 	SDL_SetRenderDrawBlendMode(e->ren, SDL_BLENDMODE_BLEND);
 }
 
+static void	valid_screen_res(t_env *e, int width, int height)
+{
+	if (width < 640 || height < 384)
+	{
+		if (width < 640)
+			width = 640;
+		if (height < 384)
+			height = 384;
+	}
+	else
+	{
+		width = width >= 2432 ? 2560 : width - (width % 128);
+		height = height >= 1187 ? 1315 : height - (height % 128);
+	}
+	WW = width;
+	WH = height;
+}
+
 void		reset_screen(t_env *e)
 {
 	t_ldpt	old;
@@ -60,10 +80,7 @@ void		reset_screen(t_env *e)
 	old.x = e->player.pix.x / TW;
 	old.y = e->player.pix.y / TH;
 	e->run = 0;
-	WW = e->eve.window.data1 - (e->eve.window.data1 % 128);
-	(WW < 320 ? WW = 320 - 64 : 0);
-	WH = e->eve.window.data2 - (e->eve.window.data2 % 128);
-	(WH < 240 ? WH = 240 - 112 : 0);
+	valid_screen_res(e, e->eve.window.data1, e->eve.window.data2);
 	TW = WW / (WW / 128);
 	TH = TW;
 	if (e->ren)
@@ -75,8 +92,7 @@ void		reset_screen(t_env *e)
 	if (e->ttf)
 		TTF_CloseFont(e->ttf);
 	launch_sdl(e);
-	e->deg_step = FOV / WW;
-	e->sc_gap = (WW / 2) / tanl(M_PI / 6);
+	e->sc_gap = (WW / 2) / tanl((FOV / 2) * DEG2RAD);
 	e->run = 1;
 	e->player.pix.x = old.x * TW;
 	e->player.pix.y = old.y * TH;
